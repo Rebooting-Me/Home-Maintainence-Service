@@ -41,7 +41,25 @@ const homeownerSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  // Nested listing feature-set:
+  // Listings: {
+  //  { 
+  //    Id: 1,
+  // Listing-Description: {
+  //   type: String,
+        // },
+  // Location: {
+  // type: String,
+        // },
+  //Type of service (could be array of strings): {
+  //   type: String,
+  //   id: ?,
+  //   required: true
+        // }
+  //  }
+  // }
+
 });
 
 //Created a homeowner model
@@ -63,7 +81,37 @@ const contractorSchema = new Schema({
     type: String,
     required: true
   }
-});
+})
+  // Nested bid-placing feature-set:
+  // Bids-Placed: {
+  //  { 
+  //    Id: 1
+  //  },
+  //  {
+  //   Id: 2
+  //  },
+  // }
+
+  //Type of service (could be array of strings): {
+  //   type: String,
+  //   id: ?,
+  //   required: true
+  // }
+
+  // Service-Description: {
+  //   type: String,
+  //   required: true
+  // }
+
+//   logo: {
+//     String newFileName = "my-image";
+//     File imageFile = new File("/users/victor/images/image.png");
+//     GridFS gfsPhoto = new GridFS(db, "photo");
+//     GridFSInputFile gfsFile = gfsPhoto.createFile(imageFile);
+//     gfsFile.setFilename(newFileName);
+//     gfsFile.save();
+//   }
+// });
 
 //Created a contractor model
 const Contractor = mongoose.model('Contractor', contractorSchema);
