@@ -7,6 +7,7 @@ These are the software versions we are using:
 - `Express`: 4.18.2
 - `Mongoose`: 6.9.1
 - `MongoDB`: 1.35
+- `npm`: 9.3.1
 
 # Installation and Setup
 This section describes how to get the project running on your local computer.
