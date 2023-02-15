@@ -3,10 +3,10 @@
  */
 
 /**
- * The dummy function to be tested. 
- * @param {*} x 
- * @param {*} y 
- * @returns the sum of x and y
+ * The dummy function to be tested.
+ * @param {*} x
+ * @param {*} y
+ * @return the sum of x and y
  */
 function dummySum(x, y) {
     return x + y;
