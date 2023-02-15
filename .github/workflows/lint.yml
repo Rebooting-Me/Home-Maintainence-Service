@@ -1,8 +1,6 @@
 # Source: https://github.com/marketplace/actions/lint-action
 name: Lint
-# Trigger the workflow on push or pull request,
-
-on: [push, pull_request]
+on: [push]
 
 # Down scope as necessary via https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
 permissions:
