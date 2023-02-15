@@ -15,17 +15,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v3
-
-      # Install your linters here
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.15.1
-
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          # Enable your linters here
-          eslint: true
+    - uses: actions/checkout@v3
+    - name: Install modules
+      run: npm ci
+    - name: Run ESLint
+      run: eslint . --ext .js,.jsx,.ts,.tsx
