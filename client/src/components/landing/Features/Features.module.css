@@ -1,0 +1,91 @@
+.featuresWrapper{
+    flex-direction: column;
+}
+
+.homeImage{
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    left: 14.29px;
+    top: 55%;
+    z-index: -10;
+}
+
+.featuresHeader{
+    margin: 20px 10px;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 70px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.featureListWrapper{
+    width:100%;
+    margin: 30px auto;
+}
+
+.featureList{
+    width: 1620px;
+    height: 600px;
+    margin: 0 10px;
+    flex-wrap: wrap;
+}
+
+.featureCard{
+    flex-direction: row;
+    justify-content: space-between;
+    background: #E7EAEE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 40%;
+    height: 24%;
+    margin: 1%;
+    border-radius: 50px;
+}
+
+.featureIconWrapper{
+    width: 38%;
+    flex-direction: column;
+}
+
+.feature{
+    margin: 6px auto;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #C40A30;
+}
+
+.featureDescription{
+    margin: 70px 20px 70px auto;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.featureImg{
+    margin: 6px 40px;
+    width: 50px;
+    height: 50px;
+}
+
+.toolsImage{
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    right: 14.29px;
+    top: 75%;
+    z-index: -10;
+}
