@@ -8,8 +8,8 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 //listening to port
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
+  console.log(`Server running at http://localhost:${port}`);
+});
 
 //connecting to our mongodb database
 mongoose.connect('mongodb://localhost:27017', {
@@ -20,7 +20,7 @@ mongoose.connect('mongodb://localhost:27017', {
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.once('open', function () {
   console.log('Connected to MongoDB');
 });
 
@@ -48,15 +48,15 @@ const homeownerSchema = new Schema({
   //    Id: 1,
   // Listing-Description: {
   //   type: String,
-        // },
+  // },
   // Location: {
   // type: String,
-        // },
+  // },
   //Type of service (could be array of strings): {
   //   type: String,
   //   id: ?,
   //   required: true
-        // }
+  // }
   //  }
   // }
 
@@ -82,26 +82,26 @@ const contractorSchema = new Schema({
     required: true
   }
 })
-  // Nested bid-placing feature-set:
-  // Bids-Placed: {
-  //  { 
-  //    Id: 1
-  //  },
-  //  {
-  //   Id: 2
-  //  },
-  // }
+// Nested bid-placing feature-set:
+// Bids-Placed: {
+//  { 
+//    Id: 1
+//  },
+//  {
+//   Id: 2
+//  },
+// }
 
-  //Type of service (could be array of strings): {
-  //   type: String,
-  //   id: ?,
-  //   required: true
-  // }
+//Type of service (could be array of strings): {
+//   type: String,
+//   id: ?,
+//   required: true
+// }
 
-  // Service-Description: {
-  //   type: String,
-  //   required: true
-  // }
+// Service-Description: {
+//   type: String,
+//   required: true
+// }
 
 //   logo: {
 //     String newFileName = "my-image";
