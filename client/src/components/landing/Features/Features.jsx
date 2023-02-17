@@ -22,7 +22,7 @@ const Features = () => {
                     features.map(({feature, description, image})=>{
                         var imgsvg = require(`../../../${image}`);
                         return (
-                            <div className={`${styles.featureCard} center`}>
+                            <div key={feature} className={`${styles.featureCard} center`}>
                                 <Fragment>
                                     <div className={`${styles.featureIconWrapper} center`}>
                                         <img className={styles.featureImg} src={imgsvg} alt={feature}/>
