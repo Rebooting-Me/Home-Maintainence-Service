@@ -14,15 +14,6 @@ const Navbar = () => {
             </div>
             <div className={styles.navbarRight}>
                 <div className={styles.navbarLinksWrapper}>
-                    <a href='/' className={`${styles.nav} center`}>About</a>
-                    <a href='/' className={`${styles.nav} center`}>Listings</a>
-                    <a href='/' className={`${styles.nav} center`}>Contact</a>
-                    <a href='/' className={`${styles.nav} center`}>Log In</a>
-                    <Link to='/signup' className={`${styles.nav} center`}>Sign Up</Link>
-                    {/* <div>
-                        <a href='/' className={`${styles.login} center`}>Log In</a>
-                        <a href='/' className={`${styles.signup} center`}>Sign Up</a>
-                    </div> */}
                 </div>
             </div>
         </div>

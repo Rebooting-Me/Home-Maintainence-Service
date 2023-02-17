@@ -1,0 +1,36 @@
+.navbarWrapper{
+    width: 100%;
+    height: min(12.5vh, 121px);
+    position: relative;
+    background: #E7EAEE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.navbarInner{
+    justify-content: space-between;
+    margin: 0 30px;
+    width: 100%;
+    height: 100%;
+}
+
+.navbarLeft{
+    min-width: 300px;
+    width: 15%;
+}
+
+.brand{
+    width: 80%;
+    cursor: pointer;
+}
+
+.navbarRight{
+    display:flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.navbarLinksWrapper{
+    display: flex;
+    width: 680px;
+    justify-content: flex-end;
+}

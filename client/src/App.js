@@ -1,14 +1,18 @@
-import Navbar from './components/landing/Navbar/Navbar';
-import Hero from './components/landing/Hero/Hero';
-import Features from './components/landing/Features/Features';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from './components/landing/Landing';
+import Signup from "./components/signup/Signup";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar/>
-      <Hero/>
-      <Features/>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Landing />}/>
+        {/* <Route index element={<Home />} />
+        <Route path="blogs" element={<Blogs />} />
+        <Route path="contact" element={<Contact />} /> */}
+      <Route path="signup" element={<Signup />} />
+    </Routes>
+  </BrowserRouter>
   );
 }
 

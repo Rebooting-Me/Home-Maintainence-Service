@@ -1,18 +1,20 @@
 .featuresWrapper{
     flex-direction: column;
+    width: 100%;
+    height: 90vh;
 }
 
 .homeImage{
     position: absolute;
     width: 25%;
     height: 25%;
-    left: 14.29px;
-    top: 55%;
+    left: 2%;
+    top: 100vh;
     z-index: -10;
 }
 
 .featuresHeader{
-    margin: 20px 10px;
+    margin-bottom: 5vh;
     font-weight: 600;
     font-size: 38px;
     line-height: 70px;
@@ -30,9 +32,9 @@
 }
 
 .featureList{
-    width: 1620px;
-    height: 600px;
-    margin: 0 10px;
+    width: 95%;
+    height: 540px;
+    margin: 0 auto;
     flex-wrap: wrap;
 }
 
@@ -85,7 +87,7 @@
     position: absolute;
     width: 25%;
     height: 25%;
-    right: 14.29px;
+    right: 2%;
     top: 75%;
     z-index: -10;
 }
