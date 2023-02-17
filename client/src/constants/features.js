@@ -31,7 +31,7 @@ export const features = [
     },
     {
         feature:'Electrical',
-        description:'CaseCare® serves all of your electrical needs with our expansive network of electricians.',
+        description:'CasaCare® serves all of your electrical needs with our expansive network of electricians.',
         image:'assets/electrical.svg'
     }
 ]

@@ -36,7 +36,7 @@ const Form = () => {
                     <input onChange={handlePassword} className={styles.input} placeholder='Enter an 8-digit password' type='password' />
                     <div className={styles.checkboxWrapper}>
                         <input onChange={handleCheckbox}  type='checkbox'/>
-                        <p>I`ve read and agree with&nbsp;</p> <a href='/'>Terms of Service</a><p>&nbsp;and our&nbsp;</p><a href='/'>Privacy Policy</a>
+                        <p>I've read and agree with&nbsp;</p> <a href='/'>Terms of Service</a><p>&nbsp;and our&nbsp;</p><a href='/'>Privacy Policy</a>
                     </div>
                     <div className={`${styles.buttonWrapper} center`}>
                         <button onClick={handleSubmitHomeowner} className={styles.btn} type="submit">
