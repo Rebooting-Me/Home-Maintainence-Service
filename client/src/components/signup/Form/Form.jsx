@@ -6,7 +6,7 @@ import Mailbox from '../../../assets/mailbox.svg';
 import Homeowner from '../../../assets/homeowner.svg';
 import Contractor from '../../../assets/contractor.svg';
 
-//TODO
+// TODO
 const handleName = () => {};
 const handleEmail = () => {};
 const handlePassword = () => {};
@@ -42,7 +42,7 @@ const Form = () => {
             />
             <div className={styles.checkboxWrapper}>
               <input onChange={handleCheckbox} type="checkbox" />
-              <p>I've read and agree with&nbsp;</p>{' '}
+              <p>I&apos;ve read and agree with&nbsp;</p>{' '}
               <a href="/">Terms of Service</a>
               <p>&nbsp;and our&nbsp;</p>
               <a href="/">Privacy Policy</a>

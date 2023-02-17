@@ -1,5 +1,4 @@
-import React from 'react';
-import { Fragment } from 'react';
+import { React, Fragment } from 'react';
 import styles from './Features.module.css';
 import { features } from '../../../constants/features';
 
@@ -19,7 +18,7 @@ const Features = () => {
       <div className={`${styles.featureListWrapper}`}>
         <div className={`${styles.featureList} center`}>
           {features.map(({ feature, description, image }) => {
-            var imgsvg = require(`../../../${image}`);
+            const imgsvg = require(`../../../${image}`);
             return (
               <div key={feature} className={`${styles.featureCard} center`}>
                 <Fragment>
