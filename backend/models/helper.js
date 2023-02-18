@@ -3,6 +3,7 @@ const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
 const validator = require('validator');
 
+/*
 async function login(user) {
     const { email, password } = user;
     if (!email || !password) {
@@ -12,7 +13,7 @@ async function login(user) {
     //Check if user exists - logic to che
     //Compare pwds using bcrypt
 }
-
+*/
 
 async function signup(user) {
     const { email, password, name, userType } = user;
@@ -44,7 +45,7 @@ async function signup(user) {
 
 async function exists(data, model) {
     return (await model.findOne(data)) ? true : false;   
-};
+}
 
 async function storeUser(email, password, name, model) {
     //hash password
@@ -54,5 +55,5 @@ async function storeUser(email, password, name, model) {
     const user = await model.create({ email, password: hash, name });
 
     return user;
-};
+}
 module.exports = { signup }

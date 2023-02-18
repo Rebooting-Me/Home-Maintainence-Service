@@ -8,7 +8,7 @@ const userRoutes = require('./routes/user');
 //Middleware
 const app = express();
 app.use(
-  bodyParser.urlencoded({
+  urlencoded({
     extended: false
   })
 );

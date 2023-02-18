@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { signup } = require('./helper');
 
 const Schema = mongoose.Schema;
 

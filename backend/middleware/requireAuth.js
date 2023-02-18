@@ -1,7 +1,7 @@
-const { exists } = require('../models/helper');
+//const { exists } = require('../models/helper');
 const jwt = require('jsonwebtoken');
 
-const requireAuth = async (req, res, next) => {
+const requireAuth = async (req, res) => {
     const { authorization } =req.headers;
     if (!authorization) {
         return res.status(401).json({ error: 'Authorization token required'});
@@ -11,7 +11,7 @@ const requireAuth = async (req, res, next) => {
     const token = authorization.split(' ')[1];
 
     try {
-        const {_id} = jwt.verify(token, process.env.SECRET);
+        //const {_id} = jwt.verify(token, process.env.SECRET);
         //req.user = fetch id and attach it to the req so it can be used in other pages
         //to check if user in logged in
         //next()

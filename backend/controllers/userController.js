@@ -8,19 +8,12 @@ const createToken = (_id) => {
 }
 
 //login user
-const loginUser = async (req, res) => {
-    const user = req.body;
-    //res.json({message : 'Login user'});
-
-    //use login from helper
-    //create and send token
-}
 
 // signup user
 const signupUser = async (req, res) => { 
     const user = req.body;
     try {
-        userInfo = await signup(user);
+        const userInfo = await signup(user);
 
         // create and send a token to the browser
         const token = createToken(userInfo._id);
