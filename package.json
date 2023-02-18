@@ -1,17 +1,23 @@
 {
-  "name": "home-maintainence-service",
-  "version": "1.0.0",
-  "description": "Home-maintenance-service",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "jest": "^27.3.1",
+    "mongoose": "^6.9.1"
+  },
   "scripts": {
+    "test": "jest",
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\" "
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Rebooting-Me/Home-Maintainence-Service.git"
-  },
-  "license": "ISC",
-  "homepage": "https://github.com/Rebooting-Me/Home-Maintainence-Service#readme",
   "devDependencies": {
+    "eslint": "^8.34.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.2",
     "concurrently": "^7.6.0"
   }
 }
