@@ -3,6 +3,7 @@ import Navbar from './Navbar/Navbar';
 import Hero from './Hero/Hero';
 import Features from './Features/Features';
 import Footer from '../Footer/Footer';
+import HomeownerComment from './HomeownerComment/HomeownerComment';
 
 export class Landing extends Component {
   render() {
@@ -11,6 +12,7 @@ export class Landing extends Component {
         <Navbar />
         <Hero />
         <Features />
+        <HomeownerComment />
         <Footer />
       </div>
     );
