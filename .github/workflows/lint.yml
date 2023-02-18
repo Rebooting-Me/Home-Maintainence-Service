@@ -1,5 +1,8 @@
-# Source: https://github.com/marketplace/actions/lint-action
-name: Lint
+# References:
+# JavaScript Linter: https://github.com/marketplace/actions/lint-action
+# HTML and CSS Validator: https://github.com/marketplace/actions/html5-validator
+
+name: JavaScript Linter and HTML and CSS Validator
 on: [push]
 
 # Down scope as necessary via https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
@@ -16,5 +19,16 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install modules
       run: npm ci
+    # JavaScript linter
     - name: Run ESLint
       run: ./node_modules/.bin/eslint . --ext .js,.jsx,.ts,.tsx
+    # HTML and CSS validator
+    - name: HTML and CSS validator
+      uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+      with:
+        # Root path of files to check
+        root: test/
+        # Relative file paths to exclude
+        blacklist: unused
+        # Enable or disable CSS checking
+        css: true      
