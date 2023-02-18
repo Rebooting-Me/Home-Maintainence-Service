@@ -3,18 +3,13 @@
   "version": "1.0.0",
   "description": "Home-maintenance-service",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\" "
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Rebooting-Me/Home-Maintainence-Service.git"
   },
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Rebooting-Me/Home-Maintainence-Service/issues"
-  },
   "homepage": "https://github.com/Rebooting-Me/Home-Maintainence-Service#readme",
   "devDependencies": {
     "concurrently": "^7.6.0"
