@@ -1,6 +1,6 @@
 .navbarWrapper {
   width: 100%;
-  height: min(12.5vh, 121px);
+  height: 12.5vh;
   position: relative;
   background: #e7eaee;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

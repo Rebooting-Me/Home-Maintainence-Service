@@ -69,7 +69,7 @@ const Form = () => {
         </div>
         <div className={`${styles.login} center`}>
           <p>Already have an account?</p>
-          <Link to="">Log in</Link>
+          <Link to="/signin">Sign in</Link>
         </div>
       </div>
       <Outlet />

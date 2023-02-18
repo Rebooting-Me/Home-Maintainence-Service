@@ -23,9 +23,9 @@ const Navbar = () => {
             <a href="/" className={`${styles.nav} center`}>
               Contact
             </a>
-            <a href="/" className={`${styles.nav} center`}>
-              Log In
-            </a>
+            <Link to="/signin" className={`${styles.nav} center`}>
+              Sign In
+            </Link>
             <Link to="/signup" className={`${styles.nav} center`}>
               Sign Up
             </Link>
