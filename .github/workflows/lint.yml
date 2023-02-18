@@ -24,13 +24,11 @@ jobs:
       run: ./node_modules/.bin/eslint . --ext .js,.jsx,.ts,.tsx
     # HTML and CSS validator
     - name: HTML and CSS validator
-      uses: Cyb3r-Jak3/html5validator-action
+      uses: Cyb3r-Jak3/html5validator-action@v7.2.0
       with:
         # Root path of files to check
         root: test/
         # Relative file paths to exclude
-        blacklist: invalid
+        blacklist: unused
         # Enable or disable CSS checking
-        css: true
-
-      
+        css: true      
