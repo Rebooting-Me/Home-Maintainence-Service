@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "jest": "^27.3.1",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",
@@ -8,11 +9,20 @@
     "mongoose": "^6.9.1",
     "validator": "^13.9.0"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
-  },
   "scripts": {
+    "test": "jest",
     "start": "node server.js",
     "server": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "eslint": "^8.34.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.2"
   }
 }
