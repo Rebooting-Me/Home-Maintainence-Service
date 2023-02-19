@@ -9,7 +9,7 @@ const otherRoutes = require('./routes/otherRoutes');
 //Middleware
 const app = express();
 app.use(
-  bodyParser.urlencoded({
+  urlencoded({
     extended: false
   })
 );

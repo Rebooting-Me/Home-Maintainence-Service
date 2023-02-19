@@ -11,7 +11,7 @@ async function login(user) {
 
     const userInfo = await getUserData({ email });
 
-    if (!userInfo.hasOwnProperty('email')) {
+    if (!userInfo) {
         throw Error('Account does not exist. Please signup first.');
     } 
 
@@ -50,7 +50,7 @@ async function signup(user) {
 async function exists(queryObj, model) {
     const data = await model.findOne(queryObj).lean();
     return data;   
-};
+}
 
 async function storeUser(email, password, name, model) {
     //hash password
@@ -60,7 +60,7 @@ async function storeUser(email, password, name, model) {
     const user = await model.create({ email, password: hash, name });
 
     return user;
-};
+}
 
 async function getUserData(queryObj) {
     const existsInHomeowner = await exists(queryObj, Homeowner);
@@ -68,8 +68,11 @@ async function getUserData(queryObj) {
 
     const userType = existsInHomeowner ? "Homeowner" : "Contractor";
     const userInfo = existsInHomeowner || existsInContractor;
-    userInfo.userType = userType;
+    if (userInfo) {
+        userInfo.userType = userType;
+    }
+    
     return userInfo; 
-};
+}
 
 module.exports = { login, signup, exists, storeUser, getUserData }
