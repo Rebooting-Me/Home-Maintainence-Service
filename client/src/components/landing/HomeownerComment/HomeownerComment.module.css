@@ -1,4 +1,5 @@
 .homeownerWrapper{
+    margin: 5vh 0 5vh 0;
     width: 100%;
     height: 100vh;
     justify-content: flex-start;
@@ -16,6 +17,7 @@
 }
 
 .homeownerHeader{
+    margin-top: 1vh;
     font-weight: 600;
     font-size: 54px;
     line-height: 65px;
@@ -67,9 +69,8 @@
 }
 
 .homeownerImageWrapper{  
-    margin: 2%;  
-    width: 35%;
-    height: 35%;
+    width: 25%;
+    height: 25%;
 }
 
 .quotes{
@@ -79,6 +80,7 @@
 }
 
 .commentWrapper{
+    width: 75%;
     flex-direction: column;
     font-style: italic;
     font-weight: 500;
@@ -89,16 +91,17 @@
 }
 
 .homeownerName{
+    margin-top: 1vh;
     font-style: italic;
-font-weight: 700;
-font-size: 24px;
-line-height: 29px;
-display: flex;
-align-items: center;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
 
-color: #F93059;
-align-self: flex-end;
-margin-right: 8%;
+    color: #F93059;
+    align-self: flex-end;
+    margin-right: 8%;
 }
 
 .homeImage{

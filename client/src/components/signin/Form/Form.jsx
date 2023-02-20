@@ -1,15 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Form.module.css';
 import { Outlet, Link } from 'react-router-dom';
+import { useSignin } from '../../../hooks/useSignin';
 
 import Signin from '../../../assets/signin.svg';
 
-// TODO
-const handleSignInEmail = () => {};
-const handleSignInPassword = () => {};
-const handleSignIn = () => {};
-
 const Form = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const {signin, isLoading, error} = useSignin();
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    
+    await signin(email, password);
+
+  };
+
   return (
     <div className={`${styles.formWrapper} center`}>
       <div className={styles.formImage}>
@@ -19,22 +27,25 @@ const Form = () => {
         <h2 className={styles.formHeader}>Sign in</h2>
         <hr className={styles.line}></hr>
         <div className={styles.formInnerWrapper}>
-          <form className={styles.formContainer}>
+          {error && <div className={styles.error}>{error}</div>}
+          <form className={styles.formContainer} onSubmit={handleSignIn}>
             <label className={styles.inputLabel}>Email</label>
             <input
-              onChange={handleSignInEmail}
+              onChange={(e) => {setEmail(e.target.value)}}
+              value={email}
               className={styles.input}
               type="email"
             />
             <label className={styles.inputLabel}>Password</label>
             <input
-              onChange={handleSignInPassword}
+              onChange={(e) => {setPassword(e.target.value)}}
+              value={password}
               className={styles.input}
               type="password"
             />
             <div className={`${styles.buttonWrapper} center`}>
               <button
-                onClick={handleSignIn}
+                disabled={isLoading}
                 className={styles.btn}
                 type="submit"
               >

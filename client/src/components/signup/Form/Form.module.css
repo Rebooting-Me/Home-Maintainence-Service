@@ -138,6 +138,10 @@
   align-items: center;
 }
 
+.btn:disabled{
+  background-color: #858585;
+}
+
 .btn p {
   font-weight: 600;
   margin-right: 5%;
@@ -174,4 +178,12 @@
 
 .login Link {
   color: #f93059;
+}
+
+.error{
+  align-items: flex-start;
+  align-content: flex-start;
+  font-weight: 400;
+  font-size: 16px;
+  color: red;
 }

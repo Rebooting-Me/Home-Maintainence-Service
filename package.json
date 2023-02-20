@@ -28,7 +28,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
-    "react-scripts": "^2.1.3",
+    "react-scripts": "^5.0.1",
     "react-test-renderer": "^18.2.0",
     "request": "^2.88.2",
     "typescript": "^4.9.5",
@@ -38,7 +38,6 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    },
-    "concurrently": "^7.6.0"
+    }
   }
 }

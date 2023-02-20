@@ -3,7 +3,7 @@ import styles from './HomeownerComment.module.css'
 
 import Home from '../../../assets/home.svg'
 import Quotes from '../../../assets/quotes.svg'
-import Homeowner from '../../../assets/homeowner.svg'
+import Homeowner from '../../../assets/homeowner-r.svg'
 import { homeownerComments } from '../../../constants/homeownerComments';
 
 function HomeownerComment() {
