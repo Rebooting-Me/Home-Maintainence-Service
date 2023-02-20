@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Navbar from './Navbar/Navbar';
-import Form from './Form/Form';
-import Footer from '../Footer/Footer';
+import Navbar from '../components/signin/Navbar/Navbar';
+import Form from '../components/signin/Form/Form';
+import Footer from '../components/footer/Footer';
 
 export class Signin extends Component {
   render() {

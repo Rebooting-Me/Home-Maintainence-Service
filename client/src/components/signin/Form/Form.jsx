@@ -1,15 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Form.module.css';
 import { Outlet, Link } from 'react-router-dom';
 
 import Signin from '../../../assets/signin.svg';
 
 // TODO
-const handleSignInEmail = () => {};
-const handleSignInPassword = () => {};
 const handleSignIn = () => {};
 
 const Form = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <div className={`${styles.formWrapper} center`}>
       <div className={styles.formImage}>
@@ -22,13 +23,15 @@ const Form = () => {
           <form className={styles.formContainer}>
             <label className={styles.inputLabel}>Email</label>
             <input
-              onChange={handleSignInEmail}
+              onChange={(e) => {setEmail(e.target.value)}}
+              value={email}
               className={styles.input}
               type="email"
             />
             <label className={styles.inputLabel}>Password</label>
             <input
-              onChange={handleSignInPassword}
+              onChange={(e) => {setPassword(e.target.value)}}
+              value={password}
               className={styles.input}
               type="password"
             />

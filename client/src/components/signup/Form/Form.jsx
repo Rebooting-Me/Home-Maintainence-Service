@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Form.module.css';
 import { Outlet, Link } from 'react-router-dom';
+import {useSignup} from '../../../hooks/useSignup';
 
 import Mailbox from '../../../assets/mailbox.svg';
 import Homeowner from '../../../assets/homeowner.svg';
 import Contractor from '../../../assets/contractor.svg';
 
-// TODO
-const handleName = () => {};
-const handleEmail = () => {};
-const handlePassword = () => {};
-const handleSubmitHomeowner = () => {};
-const handleSubmitContractor = () => {};
-const handleCheckbox = () => {};
 
 const Form = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [agree, setAgree] = useState('');
+  const [userType, setUserType] = useState('');
+  const {signup, isLoading, error} = useSignup();
+
+  const handleCheckbox = (e) => {
+    setAgree(e.target.checked);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(name, email, password, userType);
+    
+    await signup(name, email, password, userType);
+
+  };
+
   return (
     <div className={`${styles.formWrapper} center`}>
       <div className={styles.formImage}>
@@ -24,18 +36,24 @@ const Form = () => {
         <h2 className={styles.formHeader}>Sign up</h2>
         <hr className={styles.line}></hr>
         <div className={styles.formInnerWrapper}>
-          <form className={styles.formContainer}>
+          <form className={styles.formContainer} onSubmit={handleSubmit}>
             <label className={styles.inputLabel}>Name</label>
-            <input onChange={handleName} className={styles.input} type="text" />
+            <input 
+              onChange={(e) => {setName(e.target.value)}}
+              value={name} 
+              className={styles.input} 
+              type="text" />
             <label className={styles.inputLabel}>Email</label>
             <input
-              onChange={handleEmail}
+              onChange={(e) => {setEmail(e.target.value)}}
+              value={email}
               className={styles.input}
               type="email"
             />
             <label className={styles.inputLabel}>Password</label>
             <input
-              onChange={handlePassword}
+              onChange={(e) => {setPassword(e.target.value)}}
+              value={password}
               className={styles.input}
               placeholder="Enter an 8-digit password"
               type="password"
@@ -49,7 +67,8 @@ const Form = () => {
             </div>
             <div className={`${styles.buttonWrapper} center`}>
               <button
-                onClick={handleSubmitHomeowner}
+                disabled={(!agree) || isLoading}
+                onClick={() => {setUserType("Homeowner")}}
                 className={styles.btn}
                 type="submit"
               >
@@ -57,7 +76,8 @@ const Form = () => {
                 <img src={Homeowner} alt="" />
               </button>
               <button
-                onClick={handleSubmitContractor}
+                disabled={(!agree) || isLoading}
+                onClick={() => {setUserType("Contractor")}}
                 className={styles.btn}
                 type="submit"
               >
@@ -66,6 +86,7 @@ const Form = () => {
               </button>
             </div>
           </form>
+          {error && <div className={`${styles.error} center`}>{error}</div>}
         </div>
         <div className={`${styles.login} center`}>
           <p>Already have an account?</p>
