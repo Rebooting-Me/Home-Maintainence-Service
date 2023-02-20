@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './Form.module.css';
 import { Outlet, Link } from 'react-router-dom';
 import {useSignup} from '../../../hooks/useSignup';
+import { useLocation } from 'react-router-dom';
 
 import Mailbox from '../../../assets/mailbox.svg';
 import Homeowner from '../../../assets/homeowner.svg';
@@ -9,8 +10,9 @@ import Contractor from '../../../assets/contractor.svg';
 
 
 const Form = () => {
+  const location = useLocation();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(location.state?.email);
   const [password, setPassword] = useState('');
   const [agree, setAgree] = useState('');
   const [userType, setUserType] = useState('');

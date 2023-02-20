@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Hero.module.css';
 import Family from '../../../assets/family.svg';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
+  const [email, setEmail] = useState('');
+
   return (
     <div className={`${styles.heroWrapper} center`}>
       <div className={styles.heroInner}>
@@ -17,15 +20,17 @@ const Hero = () => {
         </div>
         <div className={styles.email}>
           <input
-            type="text"
+            onChange={(e) => {setEmail(e.target.value)}}
+            value={email}
+            type="email"
             placeholder="Enter your email"
             className={styles.emailInput}
           ></input>
-          <input
-            type="button"
-            value="Sign Up"
+          <Link
+            to="/signup"
+            state={{email:email}}
             className={styles.signUp}
-          ></input>
+          ><p>Sign up</p></Link>
         </div>
       </div>
       <div className={styles.heroImage}>

@@ -5,6 +5,7 @@ import Features from '../components/landing/Features/Features';
 import Footer from '../components/footer/Footer';
 import HomeownerComment from '../components/landing/HomeownerComment/HomeownerComment';
 import ContractorComment from '../components/landing/ContractorComment/ContractorComment';
+import About from '../components/landing/About/About';
 
 export class Landing extends Component {
   render() {
@@ -15,6 +16,7 @@ export class Landing extends Component {
         <Features />
         <HomeownerComment />
         <ContractorComment />
+        <About />
         <Footer />
       </div>
     );
