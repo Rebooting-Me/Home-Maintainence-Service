@@ -1,0 +1,120 @@
+.contractorWrapper{
+    margin: 5vh 0 5vh 0;
+    width: 100%;
+    height: 100vh;
+    justify-content: flex-start;
+    flex-flow: column;
+}
+
+.contractorHeaderWrapper{
+    /* margin: 25px 0 0 45px; */
+    width: 90%;
+    height: 12.5vh;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    align-content: center;
+}
+
+.contractorHeader{
+    margin-top: 1vh;
+    font-weight: 600;
+    font-size: 54px;
+    line-height: 65px;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    align-content: center;
+}
+
+.contractorFav{
+    position: relative;
+    margin-left: 1.5%;
+    width: 5%;
+    height: 5%;
+    align-content: center;
+}
+
+
+.contractorInnerWrapper{
+    margin-top: 5vh;
+    margin-left: 5%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contractorCommentListWrapper{
+    width: 100%;
+    /* margin: 30px auto; */
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.commentList{
+    width: 55%;
+    height: 60vh;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.commentCard{
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 42%;
+    margin: 5%;
+    background: #E7EAEE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px 0px;
+}
+
+.contractorImageWrapper{  
+    width: 25%;
+    height: 25%;
+}
+
+.quotes{
+    align-self: flex-start;
+    width: 7%;
+    height: 7%;
+}
+
+.commentWrapper{
+    padding-right: 3%;
+    width: 75%;
+    flex-direction: column;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.contractorName{
+    margin-top: 1vh;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+
+    color: #F93059;
+    align-self: flex-end;
+    margin-right: 8%;
+}
+
+.servImage{
+    margin-top: 15vh;
+    display: flex;
+    height: 45%;
+    width: 45%;
+    z-index: -10;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.servImage img{
+    height: 100%;
+}
