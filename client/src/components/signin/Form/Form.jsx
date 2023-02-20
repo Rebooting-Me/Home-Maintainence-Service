@@ -1,15 +1,22 @@
 import React, {useState} from 'react';
 import styles from './Form.module.css';
 import { Outlet, Link } from 'react-router-dom';
+import { useSignin } from '../../../hooks/useSignin';
 
 import Signin from '../../../assets/signin.svg';
-
-// TODO
-const handleSignIn = () => {};
 
 const Form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {signin, isLoading, error} = useSignin();
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    
+    await signin(email, password);
+
+  };
 
   return (
     <div className={`${styles.formWrapper} center`}>
@@ -20,7 +27,8 @@ const Form = () => {
         <h2 className={styles.formHeader}>Sign in</h2>
         <hr className={styles.line}></hr>
         <div className={styles.formInnerWrapper}>
-          <form className={styles.formContainer}>
+          {error && <div className={styles.error}>{error}</div>}
+          <form className={styles.formContainer} onSubmit={handleSignIn}>
             <label className={styles.inputLabel}>Email</label>
             <input
               onChange={(e) => {setEmail(e.target.value)}}
@@ -37,7 +45,7 @@ const Form = () => {
             />
             <div className={`${styles.buttonWrapper} center`}>
               <button
-                onClick={handleSignIn}
+                disabled={isLoading}
                 className={styles.btn}
                 type="submit"
               >
