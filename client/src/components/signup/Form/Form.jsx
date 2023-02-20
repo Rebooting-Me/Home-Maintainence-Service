@@ -36,6 +36,7 @@ const Form = () => {
         <h2 className={styles.formHeader}>Sign up</h2>
         <hr className={styles.line}></hr>
         <div className={styles.formInnerWrapper}>
+          {error && <div className={styles.error}>{error}</div>}
           <form className={styles.formContainer} onSubmit={handleSubmit}>
             <label className={styles.inputLabel}>Name</label>
             <input 
@@ -86,7 +87,6 @@ const Form = () => {
               </button>
             </div>
           </form>
-          {error && <div className={`${styles.error} center`}>{error}</div>}
         </div>
         <div className={`${styles.login} center`}>
           <p>Already have an account?</p>

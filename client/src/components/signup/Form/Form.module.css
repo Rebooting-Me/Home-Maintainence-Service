@@ -181,11 +181,9 @@
 }
 
 .error{
-  display: flexbox;
-  align-items: center;
-  align-content: center;
-  text-align: center;
+  align-items: flex-start;
+  align-content: flex-start;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 16px;
   color: red;
 }
