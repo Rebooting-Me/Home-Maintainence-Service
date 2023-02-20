@@ -29,7 +29,7 @@ const signupUser = async (req, res) => {
 
         // create and send a token to the browser
         const token = createToken(userInfo._id);
-        res.status(200).json(token);
+        res.status(200).json({ token });
     }
     catch(error) {
         res.status(400).json({ error: error.message });
