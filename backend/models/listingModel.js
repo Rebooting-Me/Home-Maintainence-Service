@@ -39,6 +39,7 @@ const listingSchema = new Schema({
     // ObjectId of the homeowner who created this listing
     homeowner_id: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'Homeowner',
         required: true
     }
 
