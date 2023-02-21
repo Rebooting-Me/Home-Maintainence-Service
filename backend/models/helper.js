@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
+const Listing = require('../models/Listing');
 const validator = require('validator');
 
 async function login(user) {
@@ -75,4 +76,28 @@ async function getUserData(queryObj) {
     return userInfo; 
 }
 
-module.exports = { login, signup, exists, storeUser, getUserData }
+// Function to create new listing
+async function createProjectListing(listing, homeowner_id) {
+    const { title, description, city, state, zip_code, services } = listing;
+    
+    if (!title || !description || !city || !state || !zip_code || !services) {
+        throw Error("All fields must be filled");
+    }
+
+    const owner = await exists({_id: homeowner_id}, Homeowner);
+
+    if (!owner) {
+        throw Error('Owner does not exist');
+    }
+
+    const createdListing = await Listing.create({ title, description, city, state, zip_code, services, homeowner_id});
+
+    /*the line of code below is adding the ID of the newly created Listing document to the
+    listings array of the Homeowner document with the specified homeowner_id.*/
+    await Homeowner.updateOne({ _id: homeowner_id}, { $push: { listings: createdListing._id } });
+
+    return createdListing;
+}
+
+
+module.exports = { login, signup, exists, storeUser, getUserData, createProjectListing }
