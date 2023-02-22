@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
+const contractorRoutes = require('./routes/contractor');
 const otherRoutes = require('./routes/otherRoutes');
 
 //Middleware
@@ -17,7 +18,9 @@ app.use(bodyParser.json());
 
 //Routes
 app.use('/api/user', userRoutes);
+app.use("/api/contractor", contractorRoutes);
 app.use('/api/otherRoutes', otherRoutes);
+
 
 //Database
 const db = process.env.MONGO_URI;
