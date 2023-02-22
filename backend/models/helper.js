@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
 const Listing = require('../models/listingModel');
+const services = require('./services.js');
 const validator = require('validator');
 
 async function login(user) {
@@ -77,24 +78,27 @@ async function getUserData(queryObj) {
 }
 
 // Function to create new listing
-async function createProjectListing(listing, homeowner_id) {
-    const { title, description, city, state, zip_code, services } = listing;
-
-    if (!title || !description || !city || !state || !zip_code || !services) {
+async function createProjectListing(listing, ownerId) {
+    const { title, description, city, state, zip_code, serviceId } = listing;
+    if (!title || !description || !city || !state || !zip_code || !serviceId) {
         throw Error("All fields must be filled");
     }
 
-    const owner = await exists({ _id: homeowner_id }, Homeowner);
+    const service = services.find(s => s.id === serviceId);
+    if (!service) {
+        throw new Error('Invalid service ID');
+    }
 
+    const owner = await exists({ _id: ownerId }, Homeowner);
     if (!owner) {
         throw Error('Owner does not exist');
     }
 
-    const createdListing = await Listing.create({ title, description, city, state, zip_code, services, homeowner_id });
+    const createdListing = await Listing.create({ title, description, city, state, zip_code, serviceId, ownerId });
 
     /*the line of code below is adding the ID of the newly created Listing document to the
     listings array of the Homeowner document with the specified homeowner_id.*/
-    await Homeowner.updateOne({ _id: homeowner_id }, { $push: { listings: createdListing._id } });
+    await Homeowner.updateOne({ _id: ownerId }, { $push: { listings: createdListing._id } });
 
     return createdListing;
 }

@@ -28,14 +28,10 @@ const listingSchema = new Schema({
         required: false
     },
     // The services applicable to this listing
-    services: {
+    service: {
         type: [String],
-        required: true,
-        // TODO: figure out how services will be checked on backend
-        validate: {
-            validator: services.validateServices,
-            message: () => "Invalid service type specified!"
-        }
+        enum: services.getServices(),
+        required: true
     },
     // ObjectId of the homeowner who created this listing
     homeowner_id: {

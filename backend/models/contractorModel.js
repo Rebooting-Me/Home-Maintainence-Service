@@ -26,14 +26,10 @@ const contractorSchema = new Schema({
     required: false
   },
   // The services that this contractor provides
-  // TODO: figure out how services will be checked on backend
-  services: {
+  service: {
     type: [String],
-    required: false,
-    validate: {
-      validator: services.validateServices,
-      message: () => "Invalid service type specified!"
-    }
+    enum: services,
+    required: false
   }
 });
 
