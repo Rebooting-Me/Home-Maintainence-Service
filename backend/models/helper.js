@@ -3,6 +3,7 @@ const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
 const Listing = require('../models/listingModel');
 const validator = require('validator');
+const contractorModel = require('../models/contractorModel');
 
 async function login(user) {
     const { email, password } = user;
@@ -76,6 +77,11 @@ async function getUserData(queryObj) {
     return userInfo;
 }
 
+async function getContractorData(contractorId) {
+    const contractor = await contractorModel.findById(contractorId).lean();
+    return contractor;
+}
+
 // Function to create new listing
 async function createProjectListing(listing, homeowner_id) {
     const { title, description, city, state, zip_code, services } = listing;
@@ -100,4 +106,4 @@ async function createProjectListing(listing, homeowner_id) {
 }
 
 
-module.exports = { login, signup, exists, storeUser, getUserData, createProjectListing }
+module.exports = { login, signup, exists, storeUser, getUserData, getContractorData, createProjectListing }
