@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const services = require('./services');
 
 const Schema = mongoose.Schema;
-const binData = mongoose.Types.binData;
 
 const contractorSchema = new Schema({
   name: {
@@ -23,10 +22,11 @@ const contractorSchema = new Schema({
   },
   // Can't exceed 16 MB!
   profile_image: {
-    type: binData,
+    type: mongoose.Schema.Types.Buffer,
     required: false
   },
   // The services that this contractor provides
+  // TODO: figure out how services will be checked on backend
   services: {
     type: [String],
     required: false,

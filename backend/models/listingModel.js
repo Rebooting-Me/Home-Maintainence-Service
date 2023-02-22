@@ -31,6 +31,7 @@ const listingSchema = new Schema({
     services: {
         type: [String],
         required: true,
+        // TODO: figure out how services will be checked on backend
         validate: {
             validator: services.validateServices,
             message: () => "Invalid service type specified!"
