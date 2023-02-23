@@ -4,7 +4,6 @@
 
 // These 3 lines of code avoid the following error described here:
 // https://github.com/inrupt/solid-client-authn-js/issues/1676
-require('@testing-library/jest-dom');
-const { TextEncoder } = require('util');
-
+const { TextEncoder, TextDecoder } = require('util');
 global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
