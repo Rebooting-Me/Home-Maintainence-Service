@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 const { login, signup } = require('../models/helper');
 const jwt = require('jsonwebtoken');
