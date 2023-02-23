@@ -16,3 +16,4 @@ async function authenticateHomeowner(email, password) {
     return homeowner;
   }
   
+  module.exports = { authenticateHomeowner };
