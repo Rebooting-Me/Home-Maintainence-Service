@@ -6,11 +6,13 @@ const request = require("supertest");
 const app = require("../app");
 const Homeowner = require('../models/homeownerModel');
 
+const JEST_TIMEOUT = 5000;
 
 require("dotenv").config();
 
 // Connecting to the database before each test.
 beforeEach(async () => {
+    setTimeout(JEST_TIMEOUT);
     await mongoose.connect(process.env.MONGODB_URI);
     // Delete all existing collections before each test in case there was
     // some leftover data from a previous test.
@@ -22,6 +24,7 @@ beforeEach(async () => {
 
 // Closing database connection after each test. 
 afterEach(async () => {
+    setTimeout(JEST_TIMEOUT);
     // Delete all existing collections after each test so that
     // tests don't persist stored data.
     const collections = await mongoose.connection.db.collections();
