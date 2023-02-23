@@ -4,6 +4,8 @@
 const mongoose = require("mongoose");
 const request = require("supertest");
 const app = require("../app");
+const Homeowner = require('../models/homeownerModel');
+
 
 require("dotenv").config();
 
@@ -24,13 +26,21 @@ afterEach(async () => {
 });
 
 describe('POST /api/user/signup (homeowner)', () => {
-    it('should create an account for the homeowner.', async () => {
-        const res = await request(app).post('/api/user/signup').send({
+    it('should create an account in the database for the homeowner.', async () => {
+        const email = 'testhomeowner@email.com'
+        const homeownerJson = {
             name: "Test Homeowner Name",
-            email: "testhomeowner@email.com",
+            email: email,
             password: "UCSD_23_Tritons_CSE",
             userType: "Homeowner"
-        });
+        }
+        // Verify the response code
+        const res = await request(app).post('/api/user/signup').send(homeownerJson);
         expect(res.statusCode).toBe(200);
+
+        // Verify homeowner fields were set.
+        const data = await Homeowner.findOne({ email }).lean();
+        expect(data.name).toEqual(homeownerJson.name);
+        expect(data.email).toEqual(homeownerJson.email);
     });
 });
