@@ -8,6 +8,8 @@ const app = require("../app");
 const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
 
+const MONGODB_URI = "mongodb://localhost:27017"
+
 // Timeout used to prevent test suite from failing when running GitHub actions
 const JEST_TIMEOUT = 5000;
 
@@ -55,7 +57,7 @@ require("dotenv").config();
 // Connecting to the database before each test.
 beforeEach(async () => {
     jest.setTimeout(JEST_TIMEOUT);
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(MONGODB_URI);
     // Delete all existing collections before each test in case there was
     // some leftover data from a previous test.
     const collections = await mongoose.connection.db.collections();
