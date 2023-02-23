@@ -38,23 +38,24 @@
 // }
 
 // Permitted service types
-const services = {
-    PLUMBING: "Plumbing",
-    REMODELING: "Remodeling",
-    PEST_CONTROL: "Pest_Control",
-    LANDSCAPING: "Landscaping",
-    ELECTRICAL: "Electrical",
-    ROOFING: "Roofing"
-};
+const services = [
+  "Plumbing",
+  "Remodeling",
+  "Pest_Control",
+  "Landscaping",
+  "Electrical",
+  "Roofing"
+];
 
 function getServices() {
-    return Object.values(services);
-  }
-  
-  module.exports = {
-    services,
-    getServices
-  };
+  return services;
+}
+
+module.exports = {
+  services,
+  getServices
+};
+
 
 
 
