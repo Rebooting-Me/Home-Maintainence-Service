@@ -1,33 +1,18 @@
-require('dotenv').config();
-const { urlencoded } = require('body-parser');
-const bodyParser = require('body-parser');
-const express = require('express');
-const mongoose = require('mongoose');
-const userRoutes = require('./routes/user');
-const contractorRoutes = require('./routes/contractor');
-const otherRoutes = require('./routes/otherRoutes');
+/**
+ * Server definition and database connection via Mongoose.
+ */
 
-//Middleware
-const app = express();
-app.use(
-  urlencoded({
-    extended: false
-  })
-);
-app.use(bodyParser.json());
+const mongoose = require("mongoose");
+const app = require("./app");
+require("dotenv").config();
 
-//Routes
-app.use('/api/user', userRoutes);
-app.use("/api/contractor", contractorRoutes);
-app.use('/api/otherRoutes', otherRoutes);
-
-
-//Database
+// Database
 const db = process.env.MONGO_URI;
 mongoose.connect(db, { useNewUrlParser: true })
   .then(() => {
     console.log("MongoDB is connected");
-    const port = process.env.PORT;
-    app.listen(port, () => console.log(`Server is listening on port ${port} !`))
+    // Use 6000 as the default port if not specified.
+    const port = process.env.PORT || 6000;
+    app.listen(port, () => console.log(`Server is listening on port ${port}!`))
   })
   .catch(error => console.log(error));
