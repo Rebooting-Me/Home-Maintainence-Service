@@ -3,6 +3,7 @@
  */
 const jestConfig = {
     displayName: "backend_jest_tests",
+    testEnvironment: 'node',
     setupFilesAfterEnv: ["./setupTests.js"]
 };
 
