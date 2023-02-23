@@ -1,3 +1,6 @@
+const Homeowner = require('../models/homeownerModel');
+const bcrypt = require('bcrypt');
+
 // This function authenticates only homeowners
 async function authenticateHomeowner(email, password) {
     const homeowner = await Homeowner.findOne({ email });
