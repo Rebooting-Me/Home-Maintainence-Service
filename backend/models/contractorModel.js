@@ -28,7 +28,7 @@ const contractorSchema = new Schema({
   // The services that this contractor provides
   service: {
     type: [String],
-    enum: services,
+    enum: services.getServices(),
     required: false
   }
 });
