@@ -1,7 +1,7 @@
 /**
  * Defines the schema for a homeowner listing.
  */
-const services = require('./services.js');
+const { getServices } = require('./services.js');
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
@@ -29,10 +29,9 @@ const listingSchema = new Schema({
     },
     // The services applicable to this listing
     serviceId: {
-        type: [String],
-        enum: services.getServices(),
-        required: true
-    },
+        name: { type: String, required: false },
+        type: { type: String, enum: getServices(), required: false },
+      },
     // ObjectId of the homeowner who created this listing
     homeowner_id: {
         type: mongoose.Schema.Types.ObjectId,

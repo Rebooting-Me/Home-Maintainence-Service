@@ -2,7 +2,7 @@
  * Defines the schema for a contractor.
  */
 const mongoose = require('mongoose');
-const services = require('./services');
+const { getServices } = require('./services');
 
 const Schema = mongoose.Schema;
 
@@ -27,9 +27,8 @@ const contractorSchema = new Schema({
   },
   // The services that this contractor provides
   service: {
-    type: [String],
-    enum: services.getServices(),
-    required: false
+    name: { type: String, required: false },
+    type: { type: String, enum: getServices(), required: false },
   }
 });
 
