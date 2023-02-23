@@ -1,8 +1,8 @@
 /**
- * Jest configuration
+ * Jest configuration for backend.
  */
 const jestConfig = {
-    verbose: true,
+    displayName: "backend_jest_tests",
     setupFilesAfterEnv: ["./setupTests.js"]
 };
 
