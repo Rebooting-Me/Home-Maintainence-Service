@@ -26,10 +26,10 @@ const homeownerSchema = new Schema({
   listings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing' }],
 
   // Can't exceed 16 MB!
-  profile_image: {
-    type: mongoose.Schema.Types.Buffer,
-    required: false
-  }
+  // profile_image: {
+  //   type: mongoose.Schema.Types.Buffer,
+  //   required: false
+  // }
 });
 
 module.exports = mongoose.model('Homeowner', homeownerSchema);

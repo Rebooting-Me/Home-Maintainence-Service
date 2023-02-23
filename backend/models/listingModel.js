@@ -28,7 +28,7 @@ const listingSchema = new Schema({
         required: false
     },
     // The services applicable to this listing
-    service: {
+    serviceId: {
         type: [String],
         enum: services.getServices(),
         required: true
@@ -43,3 +43,6 @@ const listingSchema = new Schema({
 });
 
 module.exports = mongoose.model('Listing', listingSchema);
+
+
+// Token= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ZGIzODdmZDBiYzg4MDgwNWRlYjMiLCJpYXQiOjE2NzcxMjY4NjgsImV4cCI6MTY3NzM4NjA2OH0.e3Zp8aFnc0DLFManAYkVNnkvLbcVRuCOMYkb6Yi5j6A

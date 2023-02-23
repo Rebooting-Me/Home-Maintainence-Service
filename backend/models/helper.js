@@ -89,16 +89,20 @@ async function createProjectListing(listing, ownerId) {
         throw new Error('Invalid service ID');
     }
 
-    const owner = await exists({ _id: ownerId }, Homeowner);
-    if (!owner) {
-        throw Error('Owner does not exist');
-    }
+    // const owner = await exists({ _id: ownerId }, Homeowner);
+    // if (!owner) {
+    //     throw Error('Owner does not exist');
+    // }
 
-    const createdListing = await Listing.create({ title, description, city, state, zip_code, serviceId, ownerId });
+    const createdListing = new Listing({ title, description, city, state, zip_code, serviceId, homeowner_id: ownerId });
+    await createdListing.save();
 
+    const owner = await Homeowner.findById(ownerId);
+    owner.listings.push(createdListing);
+    await owner.save();
     /*the line of code below is adding the ID of the newly created Listing document to the
     listings array of the Homeowner document with the specified homeowner_id.*/
-    await Homeowner.updateOne({ _id: ownerId }, { $push: { listings: createdListing._id } });
+    // await Homeowner.updateOne({ _id: ownerId }, { $push: { listings: createdListing._id } });
 
     return createdListing;
 }

@@ -6,8 +6,9 @@ const { createListing } = require('../controllers/newListingController');
 
 //require authentication
 router.use(requireAuth);
+router.use(authenticateHomeowner);
 
 // Create a new listing
-router.post('/newListing', authenticateHomeowner, createListing);
+router.post('/newListing', createListing);
 
 module.exports = router;
