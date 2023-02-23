@@ -27,10 +27,14 @@ jobs:
     # Install package.json dependencies from subdirectories
     working-directory: ./client
     - run: npm ci
+    working-directory: ./client
     - run: npm run build --if-present
+    working-directory: ./client
     - run: npm run jest_test
 
     working-directory: ./backend
     - run: npm ci
+    working-directory: ./backend
     - run: npm run build --if-present
+    working-directory: ./backend
     - run: npm run test
