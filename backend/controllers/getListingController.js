@@ -1,14 +1,15 @@
 const Listing = require('../models/listingModel');
 const Homeowner = require('../models/homeownerModel');
 
+// function to view stand-alone listing [common to HO and CO]
 const getListing= async (req, res) => {
     try {
       // Find the listing by ID
-      const listing = await Listing.findById(req.params.listing_id);
+      const listing = await Listing.findById(req.params.listing_id).select('-homeowner_id');
       if (!listing) {
         return res.status(404).json({ message: 'Listing not found' });
       }
-      // Return the listing details as a JSON object
+      // Return the listing details excluding `homeowner_id` as a JSON object
       return res.json(listing);
     } catch (err) {
       console.error(err.message);
@@ -16,7 +17,7 @@ const getListing= async (req, res) => {
     }
   }
 
-  //allows HO to view their created listings
+  //allows only HO to view their created listings
 const homeownerViewListing = async (req, res) => {
     try {
         // Find the homeowner by ID

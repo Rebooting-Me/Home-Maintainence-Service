@@ -10,7 +10,7 @@ router.use(requireAuth);
 
 router.get('/listings/:listing_id', getListing);
 
-router.use( authenticateHomeowner ); //is used because below req is HO specific
-router.get('/:homeowner_id/listings', homeownerViewListing);
+// router.use( authenticateHomeowner ); //is used because below req is HO specific
+router.get('/:homeowner_id/listings', authenticateHomeowner, homeownerViewListing);
 
 module.exports = router;
