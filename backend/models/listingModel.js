@@ -27,12 +27,11 @@ const listingSchema = new Schema({
         type: String,
         required: true
     },
-    // The services applicable to this listing
     serviceId: {
-        name: { type: [String], required: false },
-        type: { type: [String], enum: getServices(), required: false },
-      },
-    // ObjectId of the homeowner who created this listing
+        type: [String],
+        enum: getServices(),
+        required: false
+    },
     homeowner_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Homeowner',
@@ -42,6 +41,3 @@ const listingSchema = new Schema({
 });
 
 module.exports = mongoose.model('Listing', listingSchema);
-
-
-// Token= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ZGIzODdmZDBiYzg4MDgwNWRlYjMiLCJpYXQiOjE2NzcxMjY4NjgsImV4cCI6MTY3NzM4NjA2OH0.e3Zp8aFnc0DLFManAYkVNnkvLbcVRuCOMYkb6Yi5j6A
