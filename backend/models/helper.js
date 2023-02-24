@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
 const Listing = require('../models/listingModel');
-const services = require('./services.js');
 const validator = require('validator');
 
 async function login(user) {
