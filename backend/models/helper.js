@@ -83,7 +83,7 @@ async function createProjectListing(listing, ownerId) {
     if (!title || !description || !city || !state || !zip_code || !serviceId) {
         throw Error("All fields must be filled");
     }
-
+    //service enum validation
     if (Array.isArray(serviceId)) {
         for (const service of serviceId) {
             if (!getServices().includes(service)) {
@@ -96,27 +96,22 @@ async function createProjectListing(listing, ownerId) {
         }
     }
 
-    // const service = services.find(s => s._id === serviceId);
-    // if (!service) {
-    //     throw new Error('Invalid service ID');
-    // }
-
-    // const owner = await exists({ _id: ownerId }, Homeowner);
-    // if (!owner) {
-    //     throw Error('Owner does not exist');
-    // }
-
     const createdListing = new Listing({ title, description, city, state, zip_code, serviceId, homeowner_id: ownerId });
     await createdListing.save();
 
     const owner = await Homeowner.findById(ownerId);
     owner.listings.push(createdListing._id);
     await owner.save();
-    /*the line of code below is adding the ID of the newly created Listing document to the
-    listings array of the Homeowner document with the specified homeowner_id.*/
-    // await Homeowner.updateOne({ _id: ownerId }, { $push: { listings: createdListing._id } });
-
-    return createdListing;
+    
+    return {
+        title: createdListing.title,
+        description: createdListing.description,
+        city: createdListing.city,
+        state: createdListing.state,
+        zip_code: createdListing.zip_code,
+        serviceId: (Array.isArray(serviceId) ? serviceId : [serviceId]), //serviceId being populated with [String] in response
+        homeowner_id: createdListing.homeowner_id,
+    };
 }
 
 

@@ -29,7 +29,7 @@ const listingSchema = new Schema({
     },
     // The services applicable to this listing
     serviceId: {
-        name: { type: String, required: false },
+        name: { type: [String], required: false },
         type: { type: [String], enum: getServices(), required: false },
       },
     // ObjectId of the homeowner who created this listing
