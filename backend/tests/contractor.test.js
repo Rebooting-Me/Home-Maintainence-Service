@@ -65,7 +65,11 @@ describe('PATCH /api/contractor/profile/:id', () => {
 
         // Next, update some contractor profile fields
         const services = [SERVICE_ROOFING, SERVICE_REMODELING, SERVICE_PLUMBING]
-        const res = await request(app).patch(`/api/contractor/profile/${_id}`).set({ Authorization: authorization }).send({ services: services });
+        const description = 'This is a contractor description';
+        const res = await request(app).patch(`/api/contractor/profile/${_id}`).set({ Authorization: authorization }).send({
+            description: description,
+            services: services
+        });
         expect(res.statusCode).toBe(200);
         expect(res.body.services).toEqual(services);
 

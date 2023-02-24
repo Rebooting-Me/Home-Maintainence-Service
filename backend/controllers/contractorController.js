@@ -38,6 +38,7 @@ const getContractorProfile = async (req, res) => {
         res.status(200).json({
             name: contractor.name,
             email: contractor.email,
+            description: contractor.description,
             services: contractor.services
         });
     }
@@ -57,8 +58,10 @@ const updateContractorProfile = async (req, res) => {
     try {
         const contractorId = req.params.contractor_id;
         // Get the fields we want to update
+        const description = req.body.description;
         const services = req.body.services;
         const updateQuery = {
+            description: description,
             services: services
         }
         // Send back the updated fields

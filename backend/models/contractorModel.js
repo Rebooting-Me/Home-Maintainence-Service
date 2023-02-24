@@ -25,6 +25,10 @@ const contractorSchema = new Schema({
     type: mongoose.Schema.Types.Buffer,
     required: false
   },
+  description: {
+    type: String,
+    required: false
+  },
   // The services that this contractor provides
   // TODO: figure out how services will be checked on backend
   services: {
