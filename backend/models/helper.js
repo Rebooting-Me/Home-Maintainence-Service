@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
+const { getServices } = require('../models/services');
 const Listing = require('../models/listingModel');
 const validator = require('validator');
 const contractorModel = require('../models/contractorModel');
@@ -105,27 +106,28 @@ async function updateContractorData(contractor_id, updateQuery) {
 }
 
 // Function to create new listing
-async function createProjectListing(listing, homeowner_id) {
+async function createProjectListing(listing, ownerId) {
     const { title, description, city, state, zip_code, services } = listing;
-
     if (!title || !description || !city || !state || !zip_code || !services) {
         throw Error("All fields must be filled");
     }
 
-    const owner = await exists({ _id: homeowner_id }, Homeowner);
+    const createdListing = new Listing({ title, description, city, state, zip_code, services, homeowner_id: ownerId });
+    await createdListing.save();
 
-    if (!owner) {
-        throw Error('Owner does not exist');
-    }
+    const owner = await Homeowner.findById(ownerId);
+    owner.listings.push(createdListing._id);
+    await owner.save();
 
-    const createdListing = await Listing.create({ title, description, city, state, zip_code, services, homeowner_id });
-
-    /*the line of code below is adding the ID of the newly created Listing document to the
-    listings array of the Homeowner document with the specified homeowner_id.*/
-    await Homeowner.updateOne({ _id: homeowner_id }, { $push: { listings: createdListing._id } });
-
-    return createdListing;
+    return {
+        title: createdListing.title,
+        description: createdListing.description,
+        city: createdListing.city,
+        state: createdListing.state,
+        zip_code: createdListing.zip_code,
+        services: (Array.isArray(services) ? services : [services]), //serviceId being populated with [String] in response
+        homeowner_id: createdListing.homeowner_id,
+    };
 }
-
 
 module.exports = { login, signup, exists, storeUser, getUserData, getContractorData, updateContractorData, createProjectListing }

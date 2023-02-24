@@ -8,6 +8,7 @@ const app = require("../app");
 const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
 const { HOMEOWNER_USER_TYPE, CONTRACTOR_USER_TYPE, SIGNUP_ROUTE, LOGIN_ROUTE } = require('../constants')
+require('dotenv').config();
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017"
 
@@ -47,7 +48,6 @@ const contractorLogin = {
     password: contractorPassword
 }
 
-require("dotenv").config();
 
 // Connecting to the database before each test.
 beforeEach(async () => {

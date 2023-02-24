@@ -1,9 +1,8 @@
 /**
  * Defines the schema for a contractor.
  */
+const { getServices } = require('../models/services')
 const mongoose = require('mongoose');
-const services = require('./services');
-
 const Schema = mongoose.Schema;
 
 const contractorSchema = new Schema({
@@ -30,14 +29,14 @@ const contractorSchema = new Schema({
     required: false
   },
   // The services that this contractor provides
-  // TODO: figure out how services will be checked on backend
   services: {
-    type: [String],
+    type: [
+      {
+        type: String,
+        enum: getServices()
+      }
+    ],
     required: false,
-    validate: {
-      validator: services.validateServices,
-      message: () => 'Invalid service type specified!'
-    }
   }
 });
 

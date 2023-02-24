@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const userRoutes = require('./routes/user');
 const contractorRoutes = require('./routes/contractor');
+const newListing = require('./routes/newListing.js');
 const otherRoutes = require('./routes/otherRoutes');
 
 //Middleware
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 
 //Routes
 app.use('/api/user', userRoutes);
+app.use('/api/homeowner', newListing);
 app.use("/api/contractor", contractorRoutes);
 app.use('/api/otherRoutes', otherRoutes);
 

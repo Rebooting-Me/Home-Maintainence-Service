@@ -58,8 +58,7 @@ const updateContractorProfile = async (req, res) => {
     try {
         const contractorId = req.params.contractor_id;
         // Get the fields we want to update
-        const description = req.body.description;
-        const services = req.body.services;
+        const { description, services } = req.body;
         const updateQuery = {
             description: description,
             services: services

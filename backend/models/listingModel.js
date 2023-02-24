@@ -1,7 +1,7 @@
 /**
  * Defines the schema for a homeowner listing.
  */
-const services = require('./services.js');
+const { getServices } = require('./services.js');
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
@@ -25,19 +25,18 @@ const listingSchema = new Schema({
     },
     zip_code: {
         type: String,
-        required: false
+        required: true
     },
-    // The services applicable to this listing
+    // The categories of services under which this listing falls
     services: {
-        type: [String],
-        required: true,
-        // TODO: figure out how services will be checked on backend
-        validate: {
-            validator: services.validateServices,
-            message: () => "Invalid service type specified!"
-        }
+        type: [
+            {
+                type: String,
+                enum: getServices()
+            }
+        ],
+        required: false,
     },
-    // ObjectId of the homeowner who created this listing
     homeowner_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Homeowner',
