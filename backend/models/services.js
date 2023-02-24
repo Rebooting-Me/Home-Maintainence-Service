@@ -39,12 +39,12 @@
 
 // Permitted service types
 const services = Object.freeze({
-  PLUMBING: "Plumbing",
-  REMODELING: "Remodeling",
-  PEST_CONTROL: "Pest_Control",
-  LANDSCAPING: "Landscaping",
-  ELECTRICAL: "Electrical",
-  ROOFING: "Roofing"
+  PLUMBING: "plumbing",
+  REMODELING: "remodeling",
+  PEST_CONTROL: "pest_Control",
+  LANDSCAPING: "landscaping",
+  ELECTRICAL: "electrical",
+  ROOFING: "roofing"
 });
 
 function getServices() {
