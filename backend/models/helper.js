@@ -77,8 +77,31 @@ async function getUserData(queryObj) {
     return userInfo;
 }
 
+/**
+ * Returns the contractor JSON with the given id
+ * @param {*} contractorId 
+ * @returns the contractor JSON with the given id
+ */
 async function getContractorData(contractorId) {
     const contractor = await contractorModel.findById(contractorId).lean();
+    return contractor;
+}
+
+/**
+ * Updates and returns the contractor with the given id
+ * @param {*} contractor_id 
+ * @param {*} updateQuery a JSON object indicating which fields to update
+ * @returns the updated contractor JSON
+ */
+async function updateContractorData(contractor_id, updateQuery) {
+    // Choose to return the document after to facilitate testing
+    const options = {
+        returnDocument: "after",
+        new: true,
+        lean: true,
+    }
+    const contractor = await contractorModel.findByIdAndUpdate(contractor_id, updateQuery, options);
+
     return contractor;
 }
 
@@ -106,4 +129,4 @@ async function createProjectListing(listing, homeowner_id) {
 }
 
 
-module.exports = { login, signup, exists, storeUser, getUserData, getContractorData, createProjectListing }
+module.exports = { login, signup, exists, storeUser, getUserData, getContractorData, updateContractorData, createProjectListing }

@@ -1,5 +1,5 @@
 /**
- * Tests for signing in and logging. These don't involve the controllers defined in the "controllers" directory,
+ * Tests for signing in and logging in. These don't involve the controllers defined in the "controllers" directory,
  * as these are considered to be part of the frontend flow.
  */
 const mongoose = require("mongoose");
@@ -7,27 +7,23 @@ const request = require("supertest");
 const app = require("../app");
 const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
+const { HOMEOWNER_USER_TYPE, CONTRACTOR_USER_TYPE, SIGNUP_ROUTE, LOGIN_ROUTE } = require('../constants')
 
-const MONGODB_URI = "mongodb://localhost:27017"
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017"
 
 // Timeout used to prevent test suite from failing when running GitHub actions
 const JEST_TIMEOUT = 5000;
-
-// routes
-const SIGNUP_ROUTE = '/api/user/signup';
-const LOGIN_ROUTE = '/api/user/login';
 
 // Test objects
 const homeownerName = 'Test Homeowner Name';
 const homeownerEmail = 'testhomeowner@email.com'
 const homeownerPassword = 'UCSD_23_Tritons_CSE';
-const homeownerUserType = 'Homeowner';
 
 const homeownerJson = {
     name: homeownerName,
     email: homeownerEmail,
     password: homeownerPassword,
-    userType: homeownerUserType
+    userType: HOMEOWNER_USER_TYPE
 }
 
 const homeownerLogin = {
@@ -38,13 +34,12 @@ const homeownerLogin = {
 const contractorName = "Test Contractor Name";
 const contractorEmail = 'testcontractor@email.com'
 const contractorPassword = "UCSD_23_Tritons_CSE_!";
-const contractorUserType = "Contractor";
 
 const contractorJson = {
     name: contractorName,
     email: contractorEmail,
     password: contractorPassword,
-    userType: contractorUserType
+    userType: CONTRACTOR_USER_TYPE
 }
 
 const contractorLogin = {

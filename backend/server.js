@@ -7,7 +7,7 @@ const app = require("./app");
 require("dotenv").config();
 
 // Database
-const db = process.env.MONGO_URI;
+const db = process.env.MONGODB_URI;
 mongoose.connect(db, { useNewUrlParser: true })
   .then(() => {
     console.log("MongoDB is connected");
