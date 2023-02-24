@@ -2,22 +2,22 @@
  * Tests for signing in and logging in. These don't involve the controllers defined in the "controllers" directory,
  * as these are considered to be part of the frontend flow.
  */
-const mongoose = require("mongoose");
-const request = require("supertest");
+const mongoose = require('mongoose');
+const request = require('supertest');
 const jwt = require('jsonwebtoken');
 
 const app = require("../app");
 const { CONTRACTOR_USER_TYPE, SIGNUP_ROUTE } = require('../constants')
 const { SERVICE_ROOFING, SERVICE_REMODELING, SERVICE_PLUMBING } = require('../models/services')
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017"
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017'
 
 // Timeout used to prevent test suite from failing when running GitHub actions
-const JEST_TIMEOUT = 10000;
+const JEST_TIMEOUT = 5000;
 
-const contractorName = "Test Contractor Name";
+const contractorName = 'Test Contractor Name';
 const contractorEmail = 'testcontractor@email.com'
-const contractorPassword = "UCSD_23_Tritons_CSE_!";
+const contractorPassword = 'UCSD_23_Tritons_CSE_!';
 const contractorJson = {
     name: contractorName,
     email: contractorEmail,
@@ -25,7 +25,7 @@ const contractorJson = {
     userType: CONTRACTOR_USER_TYPE
 }
 
-require("dotenv").config();
+require('dotenv').config();
 
 // Connecting to the database before each test.
 beforeEach(async () => {

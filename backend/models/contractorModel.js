@@ -32,7 +32,7 @@ const contractorSchema = new Schema({
     required: false,
     validate: {
       validator: services.validateServices,
-      message: () => "Invalid service type specified!"
+      message: () => 'Invalid service type specified!'
     }
   }
 });

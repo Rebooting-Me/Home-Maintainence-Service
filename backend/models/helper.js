@@ -96,7 +96,6 @@ async function getContractorData(contractorId) {
 async function updateContractorData(contractor_id, updateQuery) {
     // Choose to return the document after to facilitate testing
     const options = {
-        returnDocument: "after",
         new: true,
         lean: true,
     }
