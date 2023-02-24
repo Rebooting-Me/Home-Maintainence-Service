@@ -7,14 +7,13 @@ const request = require("supertest");
 const jwt = require('jsonwebtoken');
 
 const app = require("../app");
-const Contractor = require('../models/contractorModel');
 const { CONTRACTOR_USER_TYPE, SIGNUP_ROUTE } = require('../constants')
 const { SERVICE_ROOFING, SERVICE_REMODELING, SERVICE_PLUMBING } = require('../models/services')
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017"
 
 // Timeout used to prevent test suite from failing when running GitHub actions
-const JEST_TIMEOUT = 5000;
+const JEST_TIMEOUT = 10000;
 
 const contractorName = "Test Contractor Name";
 const contractorEmail = 'testcontractor@email.com'

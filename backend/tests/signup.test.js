@@ -12,7 +12,7 @@ const { HOMEOWNER_USER_TYPE, CONTRACTOR_USER_TYPE, SIGNUP_ROUTE, LOGIN_ROUTE } =
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017"
 
 // Timeout used to prevent test suite from failing when running GitHub actions
-const JEST_TIMEOUT = 5000;
+const JEST_TIMEOUT = 10000;
 
 // Test objects
 const homeownerName = 'Test Homeowner Name';
