@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
-const { getServices } = require('../models/services');
 const Listing = require('../models/listingModel');
 const validator = require('validator');
 const contractorModel = require('../models/contractorModel');
