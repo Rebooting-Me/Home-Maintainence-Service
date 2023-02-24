@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 //Routes
 app.use('/api/user', userRoutes);
 app.use('/api/otherRoutes', otherRoutes);
-app.use('/api/newListing', newListing);
+app.use('/api/homeowner', newListing);
 
 //Database
 const db = process.env.MONGO_URI;

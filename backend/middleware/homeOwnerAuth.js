@@ -1,19 +1,13 @@
-const Homeowner = require('../models/homeownerModel');
-const bcrypt = require('bcrypt');
+const HOMEOWNER_USER_TYPE = "Homeowner";
 
 // This function authenticates only homeowners
-async function authenticateHomeowner(email, password) {
-    const homeowner = await Homeowner.findOne({ email });
-    if (!homeowner) {
-      throw new Error('Invalid email or password');
+async function authenticateHomeowner(req, res, next) {
+    const userType = req.user.userType;
+    if (userType === HOMEOWNER_USER_TYPE) {
+        next();
+    } else {
+        res.status(401).json({ error: 'Request is not authorized' });
     }
-  
-    const passwordMatch = await bcrypt.compare(password, homeowner.password);
-    if (!passwordMatch) {
-      throw new Error('Invalid email or password');
-    }
-  
-    return homeowner;
   }
-  
-  module.exports = { authenticateHomeowner };
+
+module.exports = { authenticateHomeowner };

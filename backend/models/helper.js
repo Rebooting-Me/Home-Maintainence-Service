@@ -84,10 +84,10 @@ async function createProjectListing(listing, ownerId) {
         throw Error("All fields must be filled");
     }
 
-    const service = services.find(s => s.id === serviceId);
-    if (!service) {
-        throw new Error('Invalid service ID');
-    }
+    // const service = services.find(s => s.id === serviceId);
+    // if (!service) {
+    //     throw new Error('Invalid service ID');
+    // }
 
     // const owner = await exists({ _id: ownerId }, Homeowner);
     // if (!owner) {
@@ -98,7 +98,7 @@ async function createProjectListing(listing, ownerId) {
     await createdListing.save();
 
     const owner = await Homeowner.findById(ownerId);
-    owner.listings.push(createdListing);
+    owner.listings.push(createdListing._id);
     await owner.save();
     /*the line of code below is adding the ID of the newly created Listing document to the
     listings array of the Homeowner document with the specified homeowner_id.*/
