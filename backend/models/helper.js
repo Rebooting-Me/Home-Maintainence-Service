@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
+const { getServices } = require('../models/services');
 const Listing = require('../models/listingModel');
 const validator = require('validator');
 
@@ -83,7 +84,19 @@ async function createProjectListing(listing, ownerId) {
         throw Error("All fields must be filled");
     }
 
-    // const service = services.find(s => s.id === serviceId);
+    if (Array.isArray(serviceId)) {
+        for (const service of serviceId) {
+            if (!getServices().includes(service)) {
+                throw Error(`Invalid service type: ${service}`);
+            }
+        }
+    } else {
+        if (!getServices().includes(serviceId)) {
+            throw Error(`Invalid service type: ${serviceId}`);
+        }
+    }
+
+    // const service = services.find(s => s._id === serviceId);
     // if (!service) {
     //     throw new Error('Invalid service ID');
     // }

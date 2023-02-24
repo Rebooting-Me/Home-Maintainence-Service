@@ -25,12 +25,12 @@ const listingSchema = new Schema({
     },
     zip_code: {
         type: String,
-        required: false
+        required: true
     },
     // The services applicable to this listing
     serviceId: {
         name: { type: String, required: false },
-        type: { type: String, enum: getServices(), required: false },
+        type: { type: [String], enum: getServices(), required: false },
       },
     // ObjectId of the homeowner who created this listing
     homeowner_id: {
