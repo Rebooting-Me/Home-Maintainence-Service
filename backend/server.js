@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
 const otherRoutes = require('./routes/otherRoutes');
 const newListing = require('./routes/newListing.js');
+const getListings  = require('./routes/getListing');
 
 //Middleware
 const app = express();
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 app.use('/api/user', userRoutes);
 app.use('/api/otherRoutes', otherRoutes);
 app.use('/api/homeowner', newListing);
+app.use('/api/homeowner', getListings);
 
 //Database
 const db = process.env.MONGO_URI;

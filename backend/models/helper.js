@@ -20,7 +20,6 @@ async function login(user) {
     return userInfo;
 }
 
-
 async function signup(user) {
     const { email, password, name, userType } = user;
     //validate
