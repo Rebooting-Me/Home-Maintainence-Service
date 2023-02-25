@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const requireAuth = require('../middleware/requireAuth');
-const { authenticateHomeowner } = require('../middleware/homeOwnerAuth');
+const { authorizeHomeowner } = require('../middleware/requireAuthorization');
 const { createListing } = require('../controllers/newListingController');
 
-//require authentication
+// require authentication
 router.use(requireAuth);
-router.use(authenticateHomeowner);
+// require authorization
+router.use(authorizeHomeowner);
 
 // Create a new listing
 router.post('/newListing', createListing);

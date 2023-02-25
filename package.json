@@ -1,11 +1,15 @@
 {
+  "name": "root",
   "dependencies": {
     "body-parser": "^1.20.1",
     "express": "^4.18.2",
-    "mongoose": "^6.9.1"
+    "mongoose": "^6.9.1",
+    "supertest": "^6.3.3"
   },
   "scripts": {
-    "test": "jest --env=jsdom",
+    "test_frontend": "jest --env=jsdom --config ./client/jest.config.js",
+    "test_backend": "jest --config ./backend/jest.config.js",
+    "test": "jest --env=jsdom --config ./client/jest.config.js && jest --config ./backend/jest.config.js",
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\" "
   },
   "devDependencies": {
@@ -33,11 +37,5 @@
     "request": "^2.88.2",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    }
   }
 }

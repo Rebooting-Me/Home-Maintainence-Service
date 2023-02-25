@@ -1,9 +1,8 @@
 /**
  * Defines the schema for a contractor.
  */
+const { getServices } = require('../models/services')
 const mongoose = require('mongoose');
-const { getServices } = require('./services');
-
 const Schema = mongoose.Schema;
 
 const contractorSchema = new Schema({
@@ -25,16 +24,20 @@ const contractorSchema = new Schema({
     type: mongoose.Schema.Types.Buffer,
     required: false
   },
+  description: {
+    type: String,
+    required: false
+  },
   // The services that this contractor provides
   services: {
     type: [
-    {
-    type: String,
-    enum: getServices()
-    }
+      {
+        type: String,
+        enum: getServices()
+      }
     ],
     required: false,
-    }
+  }
 });
 
 module.exports = mongoose.model('Contractor', contractorSchema);

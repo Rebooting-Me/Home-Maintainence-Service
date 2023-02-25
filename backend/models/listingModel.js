@@ -27,10 +27,15 @@ const listingSchema = new Schema({
         type: String,
         required: true
     },
-    serviceId: {
-        type: [String],
-        enum: getServices(),
-        required: false
+    // The categories of services under which this listing falls
+    services: {
+        type: [
+            {
+                type: String,
+                enum: getServices()
+            }
+        ],
+        required: false,
     },
     homeowner_id: {
         type: mongoose.Schema.Types.ObjectId,

@@ -1,9 +1,9 @@
 const bcrypt = require('bcrypt');
 const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
-const { getServices } = require('../models/services');
 const Listing = require('../models/listingModel');
 const validator = require('validator');
+const contractorModel = require('../models/contractorModel');
 
 async function login(user) {
     const { email, password } = user;
@@ -76,42 +76,57 @@ async function getUserData(queryObj) {
     return userInfo;
 }
 
+/**
+ * Returns the contractor JSON with the given id
+ * @param {*} contractorId 
+ * @returns the contractor JSON with the given id
+ */
+async function getContractorData(contractorId) {
+    const contractor = await contractorModel.findById(contractorId).lean();
+    return contractor;
+}
+
+/**
+ * Updates and returns the contractor with the given id
+ * @param {*} contractor_id 
+ * @param {*} updateQuery a JSON object indicating which fields to update
+ * @returns the updated contractor JSON
+ */
+async function updateContractorData(contractor_id, updateQuery) {
+    // Choose to return the document after to facilitate testing
+    const options = {
+        new: true,
+        lean: true,
+    }
+    const contractor = await contractorModel.findByIdAndUpdate(contractor_id, updateQuery, options);
+
+    return contractor;
+}
+
 // Function to create new listing
 async function createProjectListing(listing, ownerId) {
-    const { title, description, city, state, zip_code, serviceId } = listing;
-    if (!title || !description || !city || !state || !zip_code || !serviceId) {
+    const { title, description, city, state, zip_code, services } = listing;
+    if (!title || !description || !city || !state || !zip_code || !services) {
         throw Error("All fields must be filled");
     }
-    //service enum validation
-    if (Array.isArray(serviceId)) {
-        for (const service of serviceId) {
-            if (!getServices().includes(service)) {
-                throw Error(`Invalid service type: ${service}`);
-            }
-        }
-    } else {
-        if (!getServices().includes(serviceId)) {
-            throw Error(`Invalid service type: ${serviceId}`);
-        }
-    }
 
-    const createdListing = new Listing({ title, description, city, state, zip_code, serviceId, homeowner_id: ownerId });
-    await createdListing.save();
+    // Insert the listing into the Listing database
+    const createdListing = await Listing.create({ title, description, city, state, zip_code, services, homeowner_id: ownerId })
 
-    const owner = await Homeowner.findById(ownerId);
-    owner.listings.push(createdListing._id);
-    await owner.save();
-    
+    // Update the homeowner's listings
+    await Homeowner.findByIdAndUpdate(ownerId,
+        { $push: { listings: createdListing._id } }
+    );
+
     return {
         title: createdListing.title,
         description: createdListing.description,
         city: createdListing.city,
         state: createdListing.state,
         zip_code: createdListing.zip_code,
-        serviceId: (Array.isArray(serviceId) ? serviceId : [serviceId]), //serviceId being populated with [String] in response
+        services: (Array.isArray(services) ? services : [services]), //serviceId being populated with [String] in response
         homeowner_id: createdListing.homeowner_id,
     };
 }
 
-
-module.exports = { login, signup, exists, storeUser, getUserData, createProjectListing }
+module.exports = { login, signup, exists, storeUser, getUserData, getContractorData, updateContractorData, createProjectListing }
