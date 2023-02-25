@@ -13,7 +13,7 @@ const { services } = require('../models/services')
 
 require('dotenv').config();
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017"
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017'
 
 // Timeout used to prevent test suite from failing when running GitHub actions
 const JEST_TIMEOUT = 5000;
@@ -42,10 +42,10 @@ const listingInvalidServices = [services.ELECTRICAL, 'some invalid service strin
 beforeEach(async () => {
     jest.setTimeout(JEST_TIMEOUT);
     await mongoose.connect(MONGODB_URI);
-    // Delete all existing collections before each test in case there was
+    // Delete all existing documents before each test in case there was
     // some leftover data from a previous test.
     const collections = await mongoose.connection.db.collections();
-    for (const collection of collections) {
+    for (let collection of collections) {
         await collection.deleteMany({});
     }
 });
@@ -53,10 +53,10 @@ beforeEach(async () => {
 // Closing database connection after each test. 
 afterEach(async () => {
     jest.setTimeout(JEST_TIMEOUT);
-    // Delete all existing collections after each test so that
+    // Delete all existing documents after each test so that
     // tests don't persist stored data.
     const collections = await mongoose.connection.db.collections();
-    for (const collection of collections) {
+    for (let collection of collections) {
         await collection.deleteMany({});
     }
     await mongoose.connection.close();

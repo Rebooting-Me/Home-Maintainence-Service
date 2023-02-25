@@ -2,12 +2,12 @@
  * Server and database connection via Mongoose.
  */
 const mongoose = require('mongoose');
-const app = require("./app");
+const app = require('./app');
 require('dotenv').config();
 
 // Database
-const db = process.env.MONGODB_URI;
-mongoose.connect(db, { useNewUrlParser: true })
+const databaseUri = process.env.MONGODB_URI;
+mongoose.connect(databaseUri, { useNewUrlParser: true })
   .then(() => {
     console.log("MongoDB is connected");
     // Use 6000 as the default port

@@ -20,7 +20,6 @@ async function login(user) {
     return userInfo;
 }
 
-
 async function signup(user) {
     const { email, password, name, userType } = user;
     //validate
@@ -111,12 +110,13 @@ async function createProjectListing(listing, ownerId) {
         throw Error("All fields must be filled");
     }
 
-    const createdListing = new Listing({ title, description, city, state, zip_code, services, homeowner_id: ownerId });
-    await createdListing.save();
+    // Insert the listing into the Listing database
+    const createdListing = await Listing.create({ title, description, city, state, zip_code, services, homeowner_id: ownerId })
 
-    const owner = await Homeowner.findById(ownerId);
-    owner.listings.push(createdListing._id);
-    await owner.save();
+    // Update the homeowner's listings
+    await Homeowner.findByIdAndUpdate(ownerId,
+        { $push: { listings: createdListing._id } }
+    );
 
     return {
         title: createdListing.title,

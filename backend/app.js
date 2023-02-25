@@ -7,9 +7,10 @@ const express = require('express');
 const userRoutes = require('./routes/user');
 const contractorRoutes = require('./routes/contractor');
 const newListing = require('./routes/newListing.js');
+const getListings = require('./routes/getListing');
 const otherRoutes = require('./routes/otherRoutes');
 
-//Middleware
+// Middleware
 const app = express();
 app.use(
     urlencoded({
@@ -18,10 +19,11 @@ app.use(
 );
 app.use(bodyParser.json());
 
-//Routes
+// Routes
 app.use('/api/user', userRoutes);
 app.use('/api/homeowner', newListing);
 app.use("/api/contractor", contractorRoutes);
 app.use('/api/otherRoutes', otherRoutes);
+app.use('/api/user', getListings); //fetches stand-alone listing irrespective of userType
 
 module.exports = app;
