@@ -5,18 +5,17 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "jest": "^27.3.1",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.1",
-    "supertest": "^6.3.3",
     "validator": "^13.9.0"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --testTimeout=5000",
+    "test": "mocha --require test/rootHooks.js",
     "start": "node server.js",
     "server": "nodemon server.js"
   },
   "devDependencies": {
+    "chai": "^4.3.7",
     "eslint": "^8.34.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-standard": "^17.0.0",
@@ -25,6 +24,8 @@
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
-    "nodemon": "^2.0.20"
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.3"
   }
 }
