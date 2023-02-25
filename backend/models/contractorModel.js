@@ -27,9 +27,10 @@ const contractorSchema = new Schema({
   },
   // The services that this contractor provides
   service: {
-    name: { type: String, required: false },
-    type: { type: String, enum: getServices(), required: false },
-  }
+    type: [String],
+    enum: getServices(),
+    required: false
+  },
 });
 
 module.exports = mongoose.model('Contractor', contractorSchema);
