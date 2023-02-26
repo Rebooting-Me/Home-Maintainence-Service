@@ -11,7 +11,7 @@ const Listing = require('../models/listingModel');
  */
 const getContractorDashboard = async (req, res) => {
     try {
-        const contractorId = req.contractor_id;
+        const contractorId = req.params.contractor_id;
         const contractor = await getContractorData(contractorId);
         // Currently only returning the contractor's name to the frontend
         res.status(200).json({ name: contractor.name });
@@ -33,7 +33,7 @@ const getContractorDashboard = async (req, res) => {
  */
 const getContractorProfile = async (req, res) => {
     try {
-        const contractorId = req.contractor_id;
+        const contractorId = req.params.contractor_id;
         const contractor = await getContractorData(contractorId);
 
         res.status(200).json({
