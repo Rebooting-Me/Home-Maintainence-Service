@@ -21,7 +21,7 @@ router.get('/profile/:contractor_id', getContractorProfile);
 router.use(authorizeContractor);
 
 // routes
-router.get("/listings", viewMultipleListings );
+router.post("/listings", viewMultipleListings );
 // Allows updating the contractor's information 
 router.patch('/profile/:contractor_id', updateContractorProfile);
 // Get dashboard info

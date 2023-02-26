@@ -76,8 +76,25 @@ const updateContractorProfile = async (req, res) => {
 
 const viewMultipleListings = async (req, res) => {
     try {
-      // Find all listings in the database
-      const listings = await Listing.find().select('-homeowner_id');
+        const { state, city, zip_code, services } = req.body;
+        const filter = {};
+
+        //filter feature for contractor to filter out 4 properties
+        if (state) {
+        filter.state = state;
+        }
+        if (city) {
+        filter.city = city;
+        }
+        if (zip_code) {
+        filter.zip_code = zip_code;
+        }
+        if (services) {
+        filter.services = { $in: services };
+        }
+
+      // Find all filtered listings in the database
+      const listings = await Listing.find(filter).select('-homeowner_id');
   
       // Return the array of listings as a JSON response (except HO id)
       return res.json(listings);
