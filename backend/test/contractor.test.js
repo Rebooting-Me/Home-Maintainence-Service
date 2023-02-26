@@ -28,6 +28,73 @@ const contractorJson = {
 }
 
 /**
+ * Tests successful get of a contractor dashboard.
+ */
+describe('GET /api/contractor/dashboard/:contractor_id', () => {
+    it('should return the dashboard information for the contractor with the given contractor_id.', async () => {
+        let res;
+        // Sign in.
+        res = await request(app).post(SIGNUP_ROUTE).send(contractorJson);
+        expect(res.statusCode).to.equal(200);
+
+        // Get the contractor's id.
+        const token = res.body.token;
+        const authorization = getAuthorizationHeaderValue(token);
+        const { _id } = jwt.verify(token, process.env.SECRET);
+
+        res = await request(app).get(`/api/contractor/dashboard/${_id}`)
+            .set({ Authorization: authorization });
+
+        expect(res.statusCode).to.equal(200);
+
+        // Verify that the contractor name was returned in the response.
+        expect(res.body.name).to.equal(contractorName);
+
+
+    });
+});
+
+/**
+ * Tests successful get of a contractor profile.
+ */
+describe('GET /api/contractor/profile/:contractor_id', () => {
+    it('should return the profile information for the contractor with the given contractor_id.', async () => {
+        let res;
+        // Sign in.
+        res = await request(app).post(SIGNUP_ROUTE).send(contractorJson);
+        expect(res.statusCode).to.equal(200);
+
+        // Get the contractor's id.
+        const token = res.body.token;
+        const authorization = getAuthorizationHeaderValue(token);
+        const { _id } = jwt.verify(token, process.env.SECRET);
+
+        // Next, update contractor profile fields.
+        const contractorServices = [services.PLUMBING, services.REMODELING, services.PEST_CONTROL]
+        const description = 'This is a contractor description';
+        res = await request(app).patch(`/api/contractor/profile/${_id}`)
+            .set({ Authorization: authorization })
+            .send({
+                description: description,
+                services: contractorServices
+            });
+        expect(res.statusCode).to.equal(200);
+
+        // Get the contractor profile information
+        res = await request(app).get(`/api/contractor/profile/${_id}`)
+            .set({ Authorization: authorization });
+
+        expect(res.statusCode).to.equal(200);
+
+        // Verify that the correct fields were returned in the response.
+        expect(res.body.name).to.equal(contractorName);
+        expect(res.body.email).to.equal(contractorEmail);
+        expect(res.body.description).to.equal(description);
+        expect(res.body.services).to.eql(contractorServices);
+    });
+});
+
+/**
  * Tests successful updating of a contractor profile.
  */
 describe('PATCH /api/contractor/profile/:contractor_id', () => {
