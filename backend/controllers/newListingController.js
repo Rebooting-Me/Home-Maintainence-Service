@@ -8,7 +8,7 @@ const createListing = async (req, res) => {
     res.status(201).json(createdListing);
   } catch (error) {
     // Uncomment this line to see the error message
-    console.error(error);
+    // console.error(error);
     res.status(400).json({ error: error.message });
   }
 };

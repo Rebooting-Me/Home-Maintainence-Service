@@ -7,9 +7,6 @@
     "supertest": "^6.3.3"
   },
   "scripts": {
-    "test_frontend": "jest --env=jsdom --config ./client/jest.config.js",
-    "test_backend": "jest --config ./backend/jest.config.js",
-    "test": "jest --env=jsdom --config ./client/jest.config.js && jest --config ./backend/jest.config.js",
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\" "
   },
   "devDependencies": {
