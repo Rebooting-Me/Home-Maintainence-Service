@@ -4,7 +4,7 @@
 const express = require('express');
 const requireAuth = require('../middleware/requireAuth');
 const { authorizeContractor } = require('../middleware/requireAuthorization');
-const { getContractorDashboard, getContractorProfile, updateContractorProfile } = require('../controllers/contractorController');
+const { getContractorDashboard, getContractorProfile, updateContractorProfile, viewMultipleListings } = require('../controllers/contractorController');
 
 const router = express.Router();
 
@@ -21,6 +21,7 @@ router.get('/profile/:contractor_id', getContractorProfile);
 router.use(authorizeContractor);
 
 // routes
+router.get("/listings", viewMultipleListings );
 // Allows updating the contractor's information 
 router.patch('/profile/:contractor_id', updateContractorProfile);
 // Get dashboard info

@@ -2,6 +2,7 @@
  * Functions for retrieving contractor information.
  */
 const { getContractorData, updateContractorData } = require('../models/helper');
+const Listing = require('../models/listingModel');
 
 /**
  * Retrieves the dashboard information for the contractor with the given contractor_id.
@@ -73,4 +74,17 @@ const updateContractorProfile = async (req, res) => {
     }
 }
 
-module.exports = { getContractorDashboard, getContractorProfile, updateContractorProfile };
+const viewMultipleListings = async (req, res) => {
+    try {
+      // Find all listings in the database
+      const listings = await Listing.find().select('-homeowner_id');
+  
+      // Return the array of listings as a JSON response (except HO id)
+      return res.json(listings);
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).json({ message: 'Server error' });
+    }
+  }
+
+module.exports = { getContractorDashboard, getContractorProfile, updateContractorProfile, viewMultipleListings };
