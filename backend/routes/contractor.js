@@ -21,6 +21,8 @@ router.get('/profile/:contractor_id', getContractorProfile);
 router.use(authorizeContractor);
 
 // routes
+
+// Allows CO to view all listings in database (Filter feature included)
 router.post("/listings", viewMultipleListings );
 // Allows updating the contractor's information 
 router.patch('/profile/:contractor_id', updateContractorProfile);
