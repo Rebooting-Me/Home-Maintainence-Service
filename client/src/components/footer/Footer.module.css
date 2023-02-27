@@ -1,8 +1,9 @@
 .footerWrapper {
   width: 100%;
-  height: min(14vh, 150px);
+  height: min(15vh, 150px);
   position: relative;
   background: #e7eaee;
+  bottom: 0;
 }
 
 .footerColumn {

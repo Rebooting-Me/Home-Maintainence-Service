@@ -10,6 +10,7 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "request": "^2.88.2",
+    "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -36,5 +37,5 @@
     "react-router-dom": "^6.8.1",
     "typescript": "^4.9.5"
   },
-  "proxy": "http://localhost:4000"
-}
+  "proxy": "http://localhost:3000"
+} 

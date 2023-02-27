@@ -34,3 +34,31 @@
   width: 680px;
   justify-content: flex-end;
 }
+
+button {
+  border: 2px solid #F93059;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: #000000;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 22px;
+  background-color: #e7eaee;
+}
+
+button:hover {
+  color: #f93059;
+}
+
+.nav {
+  font-weight: 400;
+  font-size: 22px;
+  margin: 0 15px;
+  color: #000000;
+  cursor: pointer;
+  float: right;
+}
+
+.nav:hover {
+  color: #f93059;
+}

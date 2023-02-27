@@ -1,0 +1,17 @@
+.pageWrapper {
+    display: flex;
+    flex-direction: row;
+    top: 12.5vh;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+}
+
+.sidebar {
+    width: 15%;
+}
+
+.tab {
+    width: 85%;
+    padding: 30px;
+}
