@@ -6,8 +6,8 @@ const app = require('./app');
 require('dotenv').config();
 
 // Database
-const db = process.env.MONGO_URI;
-mongoose.connect(db, { useNewUrlParser: true })
+const databaseUri = process.env.MONGODB_URI;
+mongoose.connect(databaseUri, { useNewUrlParser: true })
   .then(() => {
     console.log("MongoDB is connected");
     // Use 3000 as the default port
