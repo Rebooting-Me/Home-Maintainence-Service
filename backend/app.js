@@ -24,6 +24,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/homeowner', newListing);
 app.use("/api/contractor", contractorRoutes);
 app.use('/api/otherRoutes', otherRoutes);
+app.use('/api/homeowner', getListings);
 app.use('/api/user', getListings); //fetches stand-alone listing irrespective of userType
 
 module.exports = app;
