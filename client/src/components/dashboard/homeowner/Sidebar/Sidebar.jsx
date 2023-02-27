@@ -37,7 +37,7 @@ const Sidebar = (props) => {
     return (
         <nav className={`${styles.sidebarWrapper}`}>
             <div className={`${styles.sidebarInner}`}>
-                <p>Hi {user.name}!</p>
+                <p className={`${styles.welcomeName}`}>Hi {user.name}!</p>
                 <div className={`${styles.sidebarLinksWrapper}`}>
                         <button id='sidebar-your-projects' className={`${styles.nav}`} onClick={(e) => handleClick('sidebar-your-projects', e)} >
                             <img src={List} />
