@@ -25,12 +25,23 @@
     background-color: #E7EAEE;
 }
 
-input:focus{
-.projectsSearch input:focus{
+.projectsSearch input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    border-radius: inherit;
+    text-align: left;
+    text-indent: 22px;
+    overflow: visible;
+    font-size: 22px;
+}
+
+.projectsSearch input:focus {
     outline: none;
 }
 
-.searchButton{
+.searchButton {
     height: 65%;
     width: 40px;
     background-color: transparent;
@@ -48,7 +59,7 @@ input:focus{
 }
 
 .newProject {
-    padding-left: 3% ;
+    padding-left: 3%;
     width: 20%;
     height: 100%;
 }
