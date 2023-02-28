@@ -35,16 +35,14 @@ async function signup(user) {
         throw Error('Password is not strong enough')
     }
 
-    const existsInHomeowner = await exists({ email }, Homeowner);
-    const existsInContractor = await exists({ email }, Contractor);
-
-    if (existsInHomeowner || existsInContractor) {
+    const userInfo = await getUserData({ email });
+    if (userInfo) {
         throw Error("Email is already in use");
     }
 
     return (userType === "Homeowner")
-        ? storeUser(email, password, name, Homeowner)
-        : storeUser(email, password, name, Contractor);
+        ? storeUser(email, password, name, userType, Homeowner)
+        : storeUser(email, password, name, userType, Contractor);
 
 }
 
@@ -53,14 +51,19 @@ async function exists(queryObj, model) {
     return data;
 }
 
-async function storeUser(email, password, name, model) {
+async function storeUser(email, password, name, userType, model) {
     //hash password
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
     //store in DB
-    const user = await model.create({ email, password: hash, name });
-
-    return user;
+    const userInfo = await model.create({ email, password: hash, name })
+                                .then(result => {
+                                    return result;
+                                })
+    if (userInfo) {
+        userInfo.userType = userType;
+    }
+    return userInfo;
 }
 
 async function getUserData(queryObj) {
