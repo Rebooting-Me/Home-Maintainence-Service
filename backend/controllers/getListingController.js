@@ -21,7 +21,7 @@ const getListing = async (req, res) => {
 const homeownerViewListing = async (req, res) => {
   try {
     // Find the homeowner by ID
-    const homeownerId = req.params.homeowner_id;
+    const homeownerId = req.user._id;
     const homeowner = await Homeowner.findById(homeownerId);
     if (!homeowner) {
       return res.status(404).json({ message: 'Homeowner not found' });
