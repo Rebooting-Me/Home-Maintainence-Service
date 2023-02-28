@@ -33,7 +33,7 @@ const getContractorDashboard = async (req, res) => {
  */
 const getContractorProfile = async (req, res) => {
     try {
-        const contractorId = req.params.contractor_id;
+        const contractorId = req.user._id;
         const contractor = await getContractorData(contractorId);
 
         res.status(200).json({
