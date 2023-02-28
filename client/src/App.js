@@ -1,4 +1,4 @@
-import React , {useEffect} from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Signup from './pages/Signup';
@@ -10,7 +10,6 @@ import { useAuthContext } from './hooks/useAuthContext';
 function App() {
 
   const { user } = useAuthContext();
-  console.log("App: ",user);
   
   return (
     <BrowserRouter>
