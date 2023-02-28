@@ -1,0 +1,69 @@
+.sidebarWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #E7EAEE;
+    height: 100%;
+}
+
+.sidebarInner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    margin-top: 30%;
+    flex: 1;
+}
+
+.welcomeName {
+    font-family: 'Inter';
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 3rem;
+    font-weight: 800;
+}
+
+.sidebarLinksWrapper {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    font-size: 22px;
+    flex:0.5;
+    margin: 5rem;
+    width: 80%;
+  }
+  
+.nav {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 5%;
+    border: 0;
+}
+
+.nav:hover img {
+    filter: invert(31%) sepia(72%) saturate(2290%) hue-rotate(328deg) brightness(95%) contrast(105%);
+}
+.nav:hover {
+    color: #F93059;
+}
+
+.nav a {
+    margin-left: 5%;
+}
+
+.nav img {
+    width: 25px;
+    height: 25px;
+    filter: invert(0%) sepia(2%) saturate(0%) hue-rotate(253deg) brightness(100%) contrast(100%);
+}
+
+
+
+
+

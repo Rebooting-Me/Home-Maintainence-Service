@@ -2,8 +2,16 @@ import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import Logo from '../../../assets/logo.svg';
+import { useSignout } from '../../../hooks/useSignout';
+import { useAuthContext } from '../../../hooks/useAuthContext';
 
 const Navbar = () => {
+  const { signout } = useSignout();
+  const { user } = useAuthContext();
+  const handleClick = () => {
+    signout();
+  } 
+
   return (
     <nav className={`${styles.navbarWrapper} center`}>
       <div className={`${styles.navbarInner} center`}>
@@ -18,17 +26,25 @@ const Navbar = () => {
               About
             </a>
             <a href="/" className={`${styles.nav} center`}>
-              Listings
-            </a>
-            <a href="/" className={`${styles.nav} center`}>
               Contact
             </a>
-            <Link to="/signin" className={`${styles.nav} center`}>
-              Sign In
+            {user && (
+            <Link to="/dashboard" className={`${styles.nav} center`}>
+              Dashboard
             </Link>
-            <Link to="/signup" className={`${styles.nav} center`}>
-              Sign Up
-            </Link>
+            )}
+            {!user && 
+              (<Link to="/signin" className={`${styles.nav} center`}>
+                Sign In
+              </Link>)}
+            {!user && 
+              (<Link to="/signup" className={`${styles.nav} center`}>
+                Sign Up
+              </Link>)}
+            {user && (
+            <button onClick={handleClick}>Log out</button>
+            )}
+            
             {/* <div>
                         <a href='/' className={`${styles.login} center`}>Log In</a>
                         <a href='/' className={`${styles.signup} center`}>Sign Up</a>

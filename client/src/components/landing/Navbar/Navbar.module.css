@@ -51,3 +51,17 @@
 /* .login{}
 
 .signup{} */
+button {
+  border: 2px solid #F93059;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: #000000;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 22px;
+  background-color: #e7eaee;
+}
+
+button:hover {
+  color: #f93059;
+}
