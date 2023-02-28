@@ -10,7 +10,6 @@ import { useAuthContext } from './hooks/useAuthContext';
 function App() {
 
   const { user } = useAuthContext();
-  console.log("App: ",user);
   
   return (
     <BrowserRouter>
