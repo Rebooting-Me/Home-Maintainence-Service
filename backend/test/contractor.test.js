@@ -30,8 +30,8 @@ const contractorJson = {
 /**
  * Tests successful get of a contractor dashboard.
  */
-describe('GET /api/contractor/dashboard/:contractor_id', () => {
-    it('should return the dashboard information for the contractor with the given contractor_id.', async () => {
+describe('GET /api/contractor/dashboard/', () => {
+    it('should return the dashboard information for the contractor', async () => {
         let res;
         // Sign in.
         res = await request(app).post(SIGNUP_ROUTE).send(contractorJson);
@@ -40,9 +40,8 @@ describe('GET /api/contractor/dashboard/:contractor_id', () => {
         // Get the contractor's id.
         const token = res.body.token;
         const authorization = getAuthorizationHeaderValue(token);
-        const { _id } = jwt.verify(token, process.env.SECRET);
 
-        res = await request(app).get(`/api/contractor/dashboard/${_id}`)
+        res = await request(app).get('/api/contractor/dashboard/')
             .set({ Authorization: authorization });
 
         expect(res.statusCode).to.equal(200);
@@ -57,8 +56,8 @@ describe('GET /api/contractor/dashboard/:contractor_id', () => {
 /**
  * Tests successful get of a contractor profile.
  */
-describe('GET /api/contractor/profile/:contractor_id', () => {
-    it('should return the profile information for the contractor with the given contractor_id.', async () => {
+describe('GET /api/contractor/profile/', () => {
+    it('should return the profile information for the contractor', async () => {
         let res;
         // Sign in.
         res = await request(app).post(SIGNUP_ROUTE).send(contractorJson);
@@ -67,12 +66,11 @@ describe('GET /api/contractor/profile/:contractor_id', () => {
         // Get the contractor's id.
         const token = res.body.token;
         const authorization = getAuthorizationHeaderValue(token);
-        const { _id } = jwt.verify(token, process.env.SECRET);
 
         // Next, update contractor profile fields.
         const contractorServices = [services.PLUMBING, services.REMODELING, services.PEST_CONTROL]
         const description = 'This is a contractor description';
-        res = await request(app).patch(`/api/contractor/profile/${_id}`)
+        res = await request(app).patch('/api/contractor/profile/')
             .set({ Authorization: authorization })
             .send({
                 description: description,
@@ -81,7 +79,7 @@ describe('GET /api/contractor/profile/:contractor_id', () => {
         expect(res.statusCode).to.equal(200);
 
         // Get the contractor profile information
-        res = await request(app).get(`/api/contractor/profile/${_id}`)
+        res = await request(app).get('/api/contractor/profile/')
             .set({ Authorization: authorization });
 
         expect(res.statusCode).to.equal(200);
@@ -97,8 +95,8 @@ describe('GET /api/contractor/profile/:contractor_id', () => {
 /**
  * Tests successful updating of a contractor profile.
  */
-describe('PATCH /api/contractor/profile/:contractor_id', () => {
-    it('should update the profile for the contractor with the given contractor_id.', async () => {
+describe('PATCH /api/contractor/profile/', () => {
+    it('should update the profile for the contractor', async () => {
         let res;
         // Sign in.
         res = await request(app).post(SIGNUP_ROUTE).send(contractorJson);
@@ -107,14 +105,13 @@ describe('PATCH /api/contractor/profile/:contractor_id', () => {
         // Get the contractor's id.
         const token = res.body.token;
         const authorization = getAuthorizationHeaderValue(token);
-        const { _id } = jwt.verify(token, process.env.SECRET);
 
         // Next, update contractor profile fields.
         const contractorServices = [services.PLUMBING, services.REMODELING, services.PEST_CONTROL]
         const description = 'This is a contractor description';
 
         // The response should contain the updated contractor.
-        res = await request(app).patch(`/api/contractor/profile/${_id}`)
+        res = await request(app).patch('/api/contractor/profile/')
             .set({ Authorization: authorization })
             .send({
                 description: description,
@@ -124,6 +121,7 @@ describe('PATCH /api/contractor/profile/:contractor_id', () => {
 
 
         // Verify that the contractor was updated.
+        const { _id } = jwt.verify(token, process.env.SECRET);
         const contractor = await Contractor.findById(_id).lean();
         expect(contractor.services).to.eql(contractorServices);
 

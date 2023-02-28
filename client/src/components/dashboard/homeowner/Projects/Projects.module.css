@@ -37,11 +37,11 @@
     font-size: 22px;
 }
 
-.projectsSearch input:focus{
+.projectsSearch input:focus {
     outline: none;
 }
 
-.searchButton{
+.searchButton {
     height: 65%;
     width: 40px;
     background-color: transparent;
@@ -59,7 +59,7 @@
 }
 
 .newProject {
-    padding-left: 3% ;
+    padding-left: 3%;
     width: 20%;
     height: 100%;
 }
