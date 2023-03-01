@@ -5,7 +5,8 @@ const { getContractorData, updateContractorData } = require('../models/helper');
 const Listing = require('../models/listingModel');
 
 /**
- * Retrieves the dashboard information for the contractor with the given contractor_id.
+ * Retrieves the dashboard information for the contractor whose ID is provided in
+ * the request body. 
  * @param {*} req 
  * @param {*} res 
  */
@@ -23,11 +24,18 @@ const getContractorDashboard = async (req, res) => {
 
 
 /**
- * Retrieves the profile information for the contractor with the given contractor_id.
+ * Retrieves the profile information for the contractor whose ID is provided in
+ * the request body. 
+ * 
  * The profile information consists of the followng:
  * - Name
  * - Email
  * - Services offered
+ * 
+ * WARNING: We are assuming that because the profile that is retrieved is based an ID in the
+ * user body, a contractor would not be able to view other contractors' profiles
+ * unless they knew the other contractors' IDs.
+ * 
  * @param {*} req 
  * @param {*} res 
  */
@@ -49,8 +57,10 @@ const getContractorProfile = async (req, res) => {
 }
 
 /**
- * Updates the profile information for the contractor with the given contractor_id.
+ * Updates the profile information for the contractor whose ID is provided in
+ * the request body. 
  * The following fields can be currently edited:
+ * - Description
  * - Services offered
  * @param {*} req 
  * @param {*} res 
@@ -74,6 +84,14 @@ const updateContractorProfile = async (req, res) => {
     }
 }
 
+/**
+ * Returns all of the listings in the Listing database that satisfy the filter criteria specified
+ * in the request. The homeowner ID is excluded from each listing.
+ * @param {*} req 
+ * @param {*} res 
+ * @returns all of the listings in the Listing database that satisfy the filter criteria specified
+ * in the request.
+ */
 const viewMultipleListings = async (req, res) => {
     try {
         const { state, city, zip_code, services } = req.body;
