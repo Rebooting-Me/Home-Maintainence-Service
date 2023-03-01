@@ -68,9 +68,12 @@ const contractorJson = {
 
 /**
  * Tests successful homeowner viewing of their listings.
+ * Tests a contractor being able to view all homeowner listings.
  */
-describe('GET /api/homeowner/listings', () => {
-    it('should return all the listings of the homeowner and only for that homeowner.', async () => {
+describe('Homeowners create and query for listings; then contractor queries for listings.', function () {
+    // This test requires more time to finish
+    this.timeout(3000);
+    it('should return homeowner-specific listings to a homeowner and all listings to a contractor.', async () => {
         let res;
 
         // Create the first homeowner's data.
@@ -82,7 +85,6 @@ describe('GET /api/homeowner/listings', () => {
         const token1 = res.body.token;
         const authorization1 = getAuthorizationHeaderValue(token1);
         const id1 = jwt.verify(token1, process.env.SECRET)._id;
-
 
         res = await request(app).post('/api/homeowner/newListing')
             .set({ Authorization: authorization1 })
@@ -135,6 +137,18 @@ describe('GET /api/homeowner/listings', () => {
             delete listingObject['_id'];
         }
         expect(secondHomeownerListings).eql([expectedSecondHomeownerListingJson]);
+
+        // Create a contractor.
+        res = await request(app).post(SIGNUP_ROUTE).send(contractorJson);
+        expect(res.statusCode).to.equal(200);
+        const token = res.body.token;
+        const authorization = getAuthorizationHeaderValue(token);
+        // Query for listings.
+        const filters = {}
+        res = await request(app).post('/api/contractor/listings').set({ Authorization: authorization }).send(filters);
+        expect(res.statusCode).to.equal(200);
+        const listings = res.body;
+        expect(listings.length).to.equal(3);
     });
 });
 
@@ -142,7 +156,7 @@ describe('GET /api/homeowner/listings', () => {
  * Tests unsuccessful contractor viewing of a specific homeowner's listings.
  */
 describe('Contractor does GET /api/homeowner/listings', () => {
-    it('should return an authorization error.', async () => {
+    it('should fail if a contractor tries to view the listings of a specific homeowner.', async () => {
         let res;
 
         // Create the first homeowner's data.

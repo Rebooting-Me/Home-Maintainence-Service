@@ -84,13 +84,8 @@ describe('POST /api/homeowner/newListing', () => {
         expect(homeowner.listings).to.exist;
         expect(homeowner.listings[0]).to.eql(listing._id);
     });
-});
 
-/**
- * Tests unsuccessful homeowner listing creation.
- */
-describe('POST /api/homeowner/newListing with invalid services', () => {
-    it('should raise an exception.', async () => {
+    it('should fail if invalid service types are specified.', async () => {
         let res;
 
         // Sign in.

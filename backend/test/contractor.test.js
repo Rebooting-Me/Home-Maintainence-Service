@@ -12,19 +12,29 @@ const jwt = require('jsonwebtoken');
 
 const app = require('../app');
 const Contractor = require('../models/contractorModel');
-const { CONTRACTOR_USER_TYPE, SIGNUP_ROUTE } = require('../constants')
+const { HOMEOWNER_USER_TYPE, CONTRACTOR_USER_TYPE, SIGNUP_ROUTE } = require('../constants')
 const { services } = require('../models/services')
 const { getAuthorizationHeaderValue } = require('./testUtils');
 
-
-const contractorName = 'Test Contractor Name';
-const contractorEmail = 'testcontractor@email.com'
-const contractorPassword = 'UCSD_23_Tritons_CSE_!';
 const contractorJson = {
-    name: contractorName,
-    email: contractorEmail,
-    password: contractorPassword,
+    name: 'Test Contractor Name',
+    email: 'testcontractor@email.com',
+    password: 'UCSD_23_Tritons_CSE_!',
     userType: CONTRACTOR_USER_TYPE
+}
+
+const secondContractorJson = {
+    name: 'Second Contractor Name',
+    email: 'secondcontractor@email.com',
+    password: 'Second_UCSD_23_Tritons_CSE_!',
+    userType: CONTRACTOR_USER_TYPE
+}
+
+const homeownerJson = {
+    name: 'Test Homeowner Name',
+    email: 'testhomeowner@email.com',
+    password: 'UCSD_23_Tritons_CSE',
+    userType: HOMEOWNER_USER_TYPE
 }
 
 /**
@@ -47,9 +57,7 @@ describe('GET /api/contractor/dashboard/', () => {
         expect(res.statusCode).to.equal(200);
 
         // Verify that the contractor name was returned in the response.
-        expect(res.body.name).to.equal(contractorName);
-
-
+        expect(res.body.name).to.equal(contractorJson.name);
     });
 });
 
@@ -85,8 +93,8 @@ describe('GET /api/contractor/profile/', () => {
         expect(res.statusCode).to.equal(200);
 
         // Verify that the correct fields were returned in the response.
-        expect(res.body.name).to.equal(contractorName);
-        expect(res.body.email).to.equal(contractorEmail);
+        expect(res.body.name).to.equal(contractorJson.name);
+        expect(res.body.email).to.equal(contractorJson.email);
         expect(res.body.description).to.equal(description);
         expect(res.body.services).to.eql(contractorServices);
     });
@@ -125,5 +133,35 @@ describe('PATCH /api/contractor/profile/', () => {
         const contractor = await Contractor.findById(_id).lean();
         expect(contractor.services).to.eql(contractorServices);
 
+    });
+});
+
+/**
+ * Tests a homeowner being able to view contractor listings.
+ */
+describe('GET /api/homeowner/contractors/', () => {
+    it('should return all contractors for the homeowner to inspect.', async () => {
+        let res;
+
+        // Create some contractors:
+        // First contractor
+        res = await request(app).post(SIGNUP_ROUTE).send(contractorJson);
+        expect(res.statusCode).to.equal(200);
+        // Second contractor
+        res = await request(app).post(SIGNUP_ROUTE).send(secondContractorJson);
+        expect(res.statusCode).to.equal(200);
+
+        // Create homeowner. 
+        res = await request(app).post(SIGNUP_ROUTE).send(homeownerJson);
+        expect(res.statusCode).to.equal(200);
+        const token = res.body.token;
+        const authorization = getAuthorizationHeaderValue(token);
+
+        // Homeowner attempts to view contractors
+        res = await request(app).get('/api/homeowner/contractors')
+            .set({ Authorization: authorization });
+        expect(res.statusCode).to.equal(200);
+        const contractors = res.body;
+        expect(contractors.length).to.equal(2);
     });
 });
