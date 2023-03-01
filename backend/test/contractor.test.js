@@ -12,7 +12,7 @@ const jwt = require('jsonwebtoken');
 
 const app = require('../app');
 const Contractor = require('../models/contractorModel');
-const { HOMEOWNER_USER_TYPE, CONTRACTOR_USER_TYPE, SIGNUP_ROUTE } = require('../constants')
+const { HOMEOWNER_USER_TYPE, CONTRACTOR_USER_TYPE, SIGNUP_ROUTE, JWT_SECRET } = require('../constants')
 const { services } = require('../models/services')
 const { getAuthorizationHeaderValue } = require('./testUtils');
 
@@ -129,7 +129,7 @@ describe('PATCH /api/contractor/profile/', () => {
 
 
         // Verify that the contractor was updated.
-        const { _id } = jwt.verify(token, process.env.SECRET);
+        const { _id } = jwt.verify(token, process.env.SECRET || JWT_SECRET);
         const contractor = await Contractor.findById(_id).lean();
         expect(contractor.services).to.eql(contractorServices);
 

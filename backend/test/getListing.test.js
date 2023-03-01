@@ -9,6 +9,7 @@ chai.config.includeStack = true;
 const expect = require('chai').expect;
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('../constants')
 
 const app = require('../app');
 
@@ -84,7 +85,7 @@ describe('Homeowners create and query for listings; then contractor queries for 
         // Create some listings.
         const token1 = res.body.token;
         const authorization1 = getAuthorizationHeaderValue(token1);
-        const id1 = jwt.verify(token1, process.env.SECRET)._id;
+        const id1 = jwt.verify(token1, process.env.SECRET || JWT_SECRET)._id;
 
         res = await request(app).post('/api/homeowner/newListing')
             .set({ Authorization: authorization1 })
@@ -108,7 +109,7 @@ describe('Homeowners create and query for listings; then contractor queries for 
         // Create a listing.
         const token2 = res.body.token;
         const authorization2 = getAuthorizationHeaderValue(token2);
-        const id2 = jwt.verify(token2, process.env.SECRET)._id;
+        const id2 = jwt.verify(token2, process.env.SECRET || JWT_SECRET)._id;
 
         res = await request(app).post('/api/homeowner/newListing')
             .set({ Authorization: authorization2 })

@@ -9,12 +9,13 @@ chai.config.includeStack = true;
 const expect = require('chai').expect;
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('../constants')
 
 const app = require('../app');
 const Homeowner = require('../models/homeownerModel');
 const Listing = require('../models/listingModel');
 
-const { HOMEOWNER_USER_TYPE, SIGNUP_ROUTE } = require('../constants')
+const { HOMEOWNER_USER_TYPE, SIGNUP_ROUTE, JWT_SECRET } = require('../constants')
 const { services } = require('../models/services')
 const { getAuthorizationHeaderValue } = require('./testUtils');
 
@@ -51,7 +52,7 @@ describe('POST /api/homeowner/newListing', () => {
         // Get the homeowner's id.
         const token = res.body.token;
         const authorization = getAuthorizationHeaderValue(token);
-        const { _id } = jwt.verify(token, process.env.SECRET);
+        const { _id } = jwt.verify(token, process.env.SECRET || JWT_SECRET);
 
         // Create a new listing.
         let listingJson = {

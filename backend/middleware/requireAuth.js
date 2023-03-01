@@ -3,6 +3,7 @@
  */
 const { getUserData } = require('../models/helper');
 const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('../constants')
 
 const requireAuth = async (req, res, next) => {
     const { authorization } = req.headers;
@@ -13,7 +14,7 @@ const requireAuth = async (req, res, next) => {
     const token = authorization.split(' ')[1];
 
     try {
-        const { _id } = jwt.verify(token, process.env.SECRET);
+        const { _id } = jwt.verify(token, process.env.SECRET || JWT_SECRET);
         const userInfo = await getUserData({ _id });
         req.user = {
             _id: userInfo._id,
