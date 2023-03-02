@@ -3,26 +3,180 @@
     width: 100%;
 }
 
-.profileHeaderWrapper{}
+.profileHeaderWrapper{
+    height: 25vh;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+}
 
-.profileImageWrapper{}
+.profileImageWrapper{
+    position: relative;
+    width: 20%;
+    height: 0;
+    margin-bottom: 10%;
+}
 
-.profileInfo{}
+.profileImageWrapper img{
+    width: 90%;
+}
 
-.profileName{}
+.profileInfo{
+    height: 100%;
+    width: 100%;
+}
 
-.profileAddress{}
+.profileName{    
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 58px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5%;
+}
 
-.profileWeb{}
+.profileAddress{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.5%;
+}
 
-.profilePhone{}
+.profileAddress p{
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
 
-.editButtonWrapper{}
+    display: flex;
+    align-items: center;
 
-.profileContentWrapper{}
+    color: #858585;
+    padding-right: 0.5%;
+}
 
-.profileDescription{}
+.profileWeb{
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-decoration-line: underline;
+    margin-bottom: 1.5%;
+}
 
-.profileServices{}
+.profileWeb a:link{
+    color: black;
+}
 
-.service{}
+.profilePhone{
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    color: black;
+    margin-bottom: 1.5%;
+}
+
+.editButtonWrapper{
+    position: absolute;
+    width: 7.5%;
+    height: 4.25vh;
+    right: 3%;
+    top: 2vh;
+}
+
+.editButtonWrapper button{
+    width: 100%;
+    height: 100%;
+
+    background: #F93059;
+    border-radius: 10px;
+    border: 0;
+
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 34px;
+    /* identical to box height */
+
+    color: #FFFFFF;
+}
+
+.profileContentWrapper{
+    height: 70vh;
+    width: 100%;
+}
+
+.profileDescription{
+    margin-bottom: 2.5vh;
+}
+
+.profileDescription h3{
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+    margin-bottom: 1%;
+}
+
+.profileDescription p{
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 44px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.profileServices{
+    margin-bottom: 2.5vh;
+}
+
+.profileServices h3{
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+    margin-bottom: 1%;
+}
+
+.service{
+    width: 17.5%;
+    height: 8.5%;
+    display: flex;
+    flex-direction: row;
+    background: #E7EAEE;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.service img{
+    height: 17.5%;
+    width: 17.5%;
+    padding: 2.5% 0;
+    margin-left: 7.5%;
+}
+
+.service p{
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 29px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #F93059;
+    padding: 0 10%;
+}

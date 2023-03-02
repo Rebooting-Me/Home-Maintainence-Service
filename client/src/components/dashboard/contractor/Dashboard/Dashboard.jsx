@@ -37,7 +37,7 @@ const Dashboard = () => {
             </div>
             <div className={`${styles.tab}`}>
                 {getTab()}
-                <Profile/>
+                {/* <Profile/> */}
             </div>
         </div>
     )

@@ -2,7 +2,7 @@ export const profileHolder = {
     city: 'Holder', 
     state: 'Holder',
     zip: 'Holder',
-    profile_image: '../assets/contractor/carlos.png',
+    profile_image: 'carlos.png',
     profile_name: 'Name Holder',
     website:'https://www.<website_holder>.com',
     phone:'(XXX)XXX-XXXX',
