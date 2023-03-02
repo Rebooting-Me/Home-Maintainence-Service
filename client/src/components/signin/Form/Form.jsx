@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styles from './Form.module.css';
 import { Outlet, Link } from 'react-router-dom';
 import { useSignin } from '../../../hooks/useSignin';
@@ -8,12 +8,12 @@ import Signin from '../../../assets/signin.svg';
 const Form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {signin, isLoading, error} = useSignin();
+  const { signin, isLoading, error } = useSignin();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
     console.log(email, password);
-    
+
     await signin(email, password);
 
   };
@@ -29,16 +29,18 @@ const Form = () => {
         <div className={styles.formInnerWrapper}>
           {error && <div className={styles.error}>{error}</div>}
           <form className={styles.formContainer} onSubmit={handleSignIn}>
-            <label className={styles.inputLabel}>Email</label>
+            <label htmlFor="email-input" className={styles.inputLabel}>Email</label>
             <input
-              onChange={(e) => {setEmail(e.target.value)}}
+              id="email-input"
+              onChange={(e) => { setEmail(e.target.value) }}
               value={email}
               className={styles.input}
               type="email"
             />
-            <label className={styles.inputLabel}>Password</label>
+            <label htmlFor="password-input" className={styles.inputLabel}>Password</label>
             <input
-              onChange={(e) => {setPassword(e.target.value)}}
+              id="password-input"
+              onChange={(e) => { setPassword(e.target.value) }}
               value={password}
               className={styles.input}
               type="password"
