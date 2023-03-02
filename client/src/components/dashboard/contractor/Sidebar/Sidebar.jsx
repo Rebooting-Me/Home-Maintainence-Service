@@ -7,7 +7,7 @@ import Bids from '../../../../assets/bids.svg';
 import Reviews from '../../../../assets/reviews.svg';
 import { useAuthContext } from '../../../../hooks/useAuthContext';
 
-const Sidebar = () => {
+const Sidebar = ({ onSelectTab }) => {
     
     const defaultTabId = 'sidebar-contractor-your-profile';
     const [activeTab, setActiveTab] = useState(defaultTabId);
@@ -17,6 +17,7 @@ const Sidebar = () => {
         buttonRelease(activeTab);
         id ? buttonPressed(id) : buttonPressed(defaultTabId);
         setActiveTab(id);
+        onSelectTab(id); // update the active tab in the Dashboard component
     }
 
     const buttonPressed = (id) => {
