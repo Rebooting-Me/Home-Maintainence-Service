@@ -12,6 +12,9 @@
 }
 
 .tab {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
     width: 85%;
     padding: 30px;
 }
