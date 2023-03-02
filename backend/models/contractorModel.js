@@ -19,12 +19,11 @@ const contractorSchema = new Schema({
     type: String,
     required: true
   },
-  // Can't exceed 16 MB!
-  profile_image: {
-    type: mongoose.Schema.Types.Buffer,
+  description: {
+    type: String,
     required: false
   },
-  description: {
+  phone_number: {
     type: String,
     required: false
   },
@@ -37,7 +36,12 @@ const contractorSchema = new Schema({
       }
     ],
     required: false,
-  }
+  },
+  // Can't exceed 16 MB!
+  profile_image: {
+    type: mongoose.Schema.Types.Buffer,
+    required: false
+  },
 });
 
 module.exports = mongoose.model('Contractor', contractorSchema);

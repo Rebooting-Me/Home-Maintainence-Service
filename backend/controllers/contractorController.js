@@ -48,6 +48,7 @@ const getContractorProfile = async (req, res) => {
             name: contractor.name,
             email: contractor.email,
             description: contractor.description,
+            phone_number: contractor.phone_number,
             services: contractor.services
         });
     }
@@ -61,6 +62,7 @@ const getContractorProfile = async (req, res) => {
  * the request body. 
  * The following fields can be currently edited:
  * - Description
+ * - Phone number
  * - Services offered
  * @param {*} req 
  * @param {*} res 
@@ -69,9 +71,10 @@ const updateContractorProfile = async (req, res) => {
     try {
         const contractorId = req.user._id;
         // Get the fields we want to update
-        const { description, services } = req.body;
+        const { description, services, phone_number } = req.body;
         const updateQuery = {
             description: description,
+            phone_number: phone_number,
             services: services
         }
         // Send back the updated fields

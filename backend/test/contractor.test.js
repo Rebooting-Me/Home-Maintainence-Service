@@ -76,12 +76,14 @@ describe('GET /api/contractor/profile/', () => {
         const authorization = getAuthorizationHeaderValue(token);
 
         // Next, update contractor profile fields.
-        const contractorServices = [services.PLUMBING, services.REMODELING, services.PEST_CONTROL]
         const description = 'This is a contractor description';
+        const phoneNumber = '(123) 456-7890'
+        const contractorServices = [services.PLUMBING, services.REMODELING, services.PEST_CONTROL]
         res = await request(app).patch('/api/contractor/profile/')
             .set({ Authorization: authorization })
             .send({
                 description: description,
+                phone_number: phoneNumber,
                 services: contractorServices
             });
         expect(res.statusCode).to.equal(200);
@@ -96,6 +98,7 @@ describe('GET /api/contractor/profile/', () => {
         expect(res.body.name).to.equal(contractorJson.name);
         expect(res.body.email).to.equal(contractorJson.email);
         expect(res.body.description).to.equal(description);
+        expect(res.body.phone_number).to.equal(phoneNumber);
         expect(res.body.services).to.eql(contractorServices);
     });
 });
