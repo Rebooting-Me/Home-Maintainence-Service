@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import styles from './Projects.module.css';
 import NewProjectForm from "./NewProjectForm/NewProjectForm";
+import StandaloneListingView from "../../../StandaloneListingView/StandaloneListingView";
 
 const Projects = () => {
 
     const [projectFormOn, setProjectFormOn] = useState(false);
+    const [currentProjectId, setCurrentProjectId] = useState(null);
 
     const search = () => {
     }
 
     return (
         <div className={`${styles.outerTab}`}>
-            { !projectFormOn && (
+            { !projectFormOn && !currentProjectId && (
                 <div className={`${styles.projectsTop}`}>
                     <div className={`${styles.projectsSearch}`}>
                         <input placeholder="Search your projects" 
@@ -24,8 +26,14 @@ const Projects = () => {
                 </div>
             )}
             { projectFormOn && (
-                    <NewProjectForm 
-                        showForm={setProjectFormOn} />
+                 <NewProjectForm 
+                    showForm={setProjectFormOn}
+                    setCurrentProjectId={setCurrentProjectId} />
+            )}
+            { currentProjectId && (
+                <StandaloneListingView
+                    projectId={currentProjectId}
+                    setCurrentProjectId={setCurrentProjectId} />
             )}
 
         </div>

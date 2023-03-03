@@ -5,7 +5,7 @@ import styles from './NewProjectForm.module.css';
 
 
 const NewProjectForm = (props) => {
-    const { showForm } = props;
+    const { showForm, setCurrentProjectId } = props;
     const [state, setState] = useState({
         title: "",
         description: "",
@@ -18,10 +18,12 @@ const NewProjectForm = (props) => {
 
     const storeListing = async (e) => {
         e.preventDefault();
-        await createProject(state);
+        //should only be the id
+        const newProject = await createProject(state);
         if(!error) {
             showForm(false);
         }
+        setCurrentProjectId(newProject.listing_id);
         //reroute to standalone listing
     }
 
@@ -37,7 +39,7 @@ const NewProjectForm = (props) => {
             {
                 isLoading ? 
                         (
-                            <div>Loading...</div> 
+                            (<div className={styles.isLoading}>Loading</div>) 
                         ) 
                         : 
                         (
@@ -92,7 +94,7 @@ const NewProjectForm = (props) => {
                                             </div>
 
                                             <div className={`${styles.simpleInputSet}`}>
-                                                <label>Service Type</label>
+                                                <label>Service Types</label>
                                                 <ServicesButtonGroup 
                                                     setServices={setFieldInState}
                                                     selectedServices={state.services}

@@ -1,36 +1,33 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 
-export const useCreateProject = () =>{
+export const useGetProjectDetails = () =>{
+    const { user } = useAuthContext();
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(null);
-    const { user } = useAuthContext();
 
-    const createProject = async (project) =>{
+    const getProjectDetails = async (listing_id) =>{
         setIsLoading(true);
         setError(null);
-
-        const response = await fetch('api/homeowner/newListing', {
-            method: "POST",
+        const response = await fetch('api/homeowner/listings/'+listing_id, {
+            method: "GET",
             headers: {
-                "Authorization": `Bearer ${user.token}`, 
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(project)
+                "Authorization": `Bearer ${user.token}`
+            }
         });
 
         const json = await response.json();
 
-        if(!response.ok){
+        if(!response.ok) {
             setIsLoading(false);
             setError(json.error);
         }
-
+        
         if(response.ok) {
             setIsLoading(false);
             return json;
         }
-        
     }
-    return { createProject, isLoading, error }
+
+    return { getProjectDetails, isLoading, error };
 }

@@ -122,6 +122,7 @@ async function createProjectListing(listing, ownerId) {
     );
 
     return {
+        listing_id: createdListing._id,
         title: createdListing.title,
         description: createdListing.description,
         city: createdListing.city,

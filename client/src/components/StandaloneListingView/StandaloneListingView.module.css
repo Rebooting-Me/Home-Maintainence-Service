@@ -1,0 +1,372 @@
+.projectWrapper{
+    height: 100%;
+    width: 100%;
+}
+
+.projectInnerWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.goBackButton {
+    border: none;
+    background-color: transparent;
+    justify-self: left ;
+    margin-bottom: 40px;
+    font-size: 20px;
+    color: #F93059;
+}
+
+.goBackButton:hover {
+    font-size: 22px;
+}
+
+.isLoading{
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 34px;
+    position: relative;
+    color: #858585;
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.projectHeaderWrapper{
+    height: 25vh;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+}
+
+.projectImageWrapper{
+    position: relative;
+    width: 20%;
+    height: 0;
+    margin-bottom: 10%;
+}
+
+.projectImageWrapper img{
+    width: 90%;
+}
+
+.projectInfo{
+    height: 100%;
+    width: 100%;
+}
+
+.projectName{    
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 58px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5%;
+}
+
+.projectAddress{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.5%;
+}
+
+.projectAddress p{
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+    display: flex;
+    align-items: center;
+
+    color: #858585;
+    padding-right: 0.5%;
+}
+
+.projectWeb{
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-decoration-line: underline;
+    margin-bottom: 1.5%;
+}
+
+.projectWeb a:link{
+    color: black;
+}
+
+.projectPhone{
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    color: black;
+    margin-bottom: 1.5%;
+}
+
+.editButtonWrapper{
+    position: absolute;
+    width: 7.5%;
+    height: 4.25vh;
+    right: 5%;
+    top: 60px;
+}
+
+.editButtonWrapper button{
+    width: 100%;
+    height: 100%;
+
+    background: #F93059;
+    border-radius: 10px;
+    border: 0;
+
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 34px;
+    /* identical to box height */
+
+    color: #FFFFFF;
+}
+
+.projectContentWrapper{
+    height: 70vh;
+    width: 100%;
+}
+
+.projectDescription{
+    margin-bottom: 2.5vh;
+}
+
+.projectDescription h3{
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+    margin-bottom: 1%;
+}
+
+.projectDescription p{
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 44px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.projectServices{
+    margin-bottom: 2.5vh;
+}
+
+.projectServices h3{
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+    margin-bottom: 1%;
+}
+
+.projectServiceCards{
+    display: flex;
+    flex-direction: row;
+}
+
+.service{
+    width: 17.5%;
+    height: 6vh;
+    display: flex;
+    flex-direction: row;
+    background: #E7EAEE;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1%;
+}
+
+.service img{
+    max-height: 5.5vh;
+    max-width: 17.5%;
+    padding: 2.5% 0;
+    margin-left: 7.5%;
+}
+
+.service p{
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 29px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #F93059;
+    padding: 0 10%;
+}
+
+.projectForm{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.inputLabel{
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.address{
+    flex-direction: row;
+    margin: 1% 1% 1% 0;
+}
+
+.input{
+    width: 35%;
+    height: 5vh;
+    padding: 1%;
+    margin: 1% 1% 1% 0;
+    background: #D9D9D9;
+    border-radius: 10px;
+    border: 0;
+
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.address input{
+    width: 20%;
+    margin: 0 1% 0 0;
+}
+
+.services{
+    width: 80%;
+    height: 16vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 1%;
+}
+
+.card{
+    width: 25%;
+    height: 40%;
+    margin: 1%;
+}
+
+.services label{
+    width: 100%;
+    height: 6vh;
+    display: flex;
+    flex-direction: row;
+    background: #E7EAEE;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-right: 1%;
+    opacity: 0.6;
+}
+
+.services input[type=checkbox]{
+    display: none;
+}
+
+.services label img{
+    position: relative;
+    left: 8%;
+    top: 0;     
+    max-height: 45px;
+    max-width: 45px;
+}
+
+.services label p{
+    position: relative;
+    left: 15%;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 29px;
+    text-align: center;
+
+    color: #F93059;
+}
+
+.services input:checked + label {
+    opacity: 1;
+ }
+
+.description{
+    width: 50%;
+    height: 25vh;
+
+    background: #D9D9D9;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1% 1% 1% 0;
+    border: 0;
+    display: flex;
+    align-items: flex-start;
+
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #858585;
+}
+
+.buttons{
+    position: absolute;
+    width: 18%;
+    height: 4.25vh;
+    right: 3%;
+    top: 2vh;
+    flex-direction: row;
+}
+
+.buttons button{
+    width: 45%;
+    margin-right: 2%;
+    height: 100%;
+    border-radius: 10px;
+    border: 0;
+
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 34px;
+    color: #FFFFFF;
+}
+
+.save{
+    background: #F93059;
+}
+
+.cancel{
+    background: #858585;
+}
