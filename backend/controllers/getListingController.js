@@ -1,5 +1,6 @@
 const Listing = require('../models/listingModel');
 const Homeowner = require('../models/homeownerModel');
+const Contractor = require('../models/contractorModel');
 
 // function to view stand-alone listing [common to HO and CO]
 const getListing = async (req, res) => {
@@ -36,4 +37,20 @@ const homeownerViewListing = async (req, res) => {
   }
 }
 
-module.exports = { getListing, homeownerViewListing };
+/**
+ * Returns all of the contractor profiles in the Contractor database.
+ * @param {*} req 
+ * @param {*} res 
+ */
+const getContractorProfiles = async (req, res) => {
+  try {
+    const contractors = await Contractor.find().lean();
+    return res.status(200).json(contractors);
+  } catch (err) {
+    // Uncomment this line to see the error message. DO NOT leave uncommented in production!
+    // console.error(err.message);
+    return res.status(500).json({ message: 'Server error' });
+  }
+}
+
+module.exports = { getListing, homeownerViewListing, getContractorProfiles };

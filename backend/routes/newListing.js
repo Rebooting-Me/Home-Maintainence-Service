@@ -1,3 +1,6 @@
+/**
+ * Routes for a homeowner to create a new Listing.
+ */
 const express = require('express');
 const router = express.Router();
 const requireAuth = require('../middleware/requireAuth');

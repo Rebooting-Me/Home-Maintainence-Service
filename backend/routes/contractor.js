@@ -12,9 +12,7 @@ const router = express.Router();
 router.use(requireAuth);
 
 // The contractor profile does not require authorization to view.
-// That is, either a homeowner or contractor can view the profile.
-// We might want to restrict a contractor from viewing other contractor's
-// profiles, but for now, we allow viewing for simplicity.
+// That is, a homeowner can view the profile.
 router.get('/profile/', getContractorProfile);
 
 // require authorization on all routes declared below this line.
@@ -23,10 +21,10 @@ router.use(authorizeContractor);
 // routes
 
 // Allows CO to view all listings in database (Filter feature included)
-router.post("/listings", viewMultipleListings);
+router.post('/listings', viewMultipleListings);
 // Allows updating the contractor's information 
 router.patch('/profile/', updateContractorProfile);
-// Get dashboard info
+// Get contractor dashboard info
 router.get('/dashboard/', getContractorDashboard);
 
 module.exports = router;
