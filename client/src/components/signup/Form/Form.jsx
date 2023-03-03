@@ -8,6 +8,11 @@ import Mailbox from '../../../assets/mailbox.svg';
 import Homeowner from '../../../assets/homeowner.svg';
 import Contractor from '../../../assets/contractor.svg';
 
+import {
+  signupNameInputTestId, signupEmailInputTestId,
+  signupPasswordInputTestId, signupCheckboxTestId, signupHomeownerButtonTestId
+} from '../../../constants/testingConstants'
+
 
 const Form = () => {
   const location = useLocation();
@@ -46,7 +51,9 @@ const Form = () => {
               onChange={(e) => { setName(e.target.value) }}
               value={name}
               className={styles.input}
-              type="text" />
+              type="text"
+              data-testid={signupNameInputTestId}
+            />
             <label htmlFor="email-input" className={styles.inputLabel}>Email</label>
             <input
               id="email-input"
@@ -54,6 +61,8 @@ const Form = () => {
               value={email}
               className={styles.input}
               type="email"
+              data-testid={signupEmailInputTestId}
+
             />
             <label htmlFor="password-input" className={styles.inputLabel}>Password</label>
             <input
@@ -63,9 +72,10 @@ const Form = () => {
               className={styles.input}
               placeholder="Enter an 8-digit password"
               type="password"
+              data-testid={signupPasswordInputTestId}
             />
             <div className={styles.checkboxWrapper}>
-              <input onChange={handleCheckbox} type="checkbox" />
+              <input onChange={handleCheckbox} type="checkbox" data-testid={signupCheckboxTestId} />
               <p>I&apos;ve read and agree with&nbsp;</p>{' '}
               <a href="/">Terms of Service</a>
               <p>&nbsp;and our&nbsp;</p>
@@ -77,6 +87,7 @@ const Form = () => {
                 onClick={() => { setUserType("Homeowner") }}
                 className={styles.btn}
                 type="submit"
+                data-testid={signupHomeownerButtonTestId}
               >
                 <p>As a Homeowner</p>
                 <img src={Homeowner} alt="" />
