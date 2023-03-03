@@ -1,24 +1,49 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styles from './Profile.module.css'
 import { useAuthContext } from '../../../../hooks/useAuthContext';
 
 const ProfileEdit = (props) => {
-    const user = useAuthContext();
-    const {onClickView, profile} = props;
-    const [profile_name, setProfileName] = useState(profile?.profile_name? profile.profile_name:'');
-    const [city, setCity] = useState(profile?.city? profile.city:'');
-    const [state, setState] = useState(profile?.state? profile.state:'');
-    const [zip_code, setZip] = useState(profile?.zip_code? profile.zip_code:'');
-    const [website_url, setWebsite] = useState(profile?.website_url? profile.website_url:'');
-    const [phone_number, setPhone] = useState(profile?.phone_number? profile.phone_number:'');
-    const [services, setServices] = useState(profile?.services? profile.services:'');
-    const [description, setDescription] = useState(profile?.description? profile.description:'');
+    const {user} = useAuthContext();
+    const {onClickView} = props;
+    const [profile_name, setProfileName] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zip_code, setZip] = useState('');
+    const [website_url, setWebsite] = useState('');
+    const [phone_number, setPhone] = useState('');
+    const [services, setServices] = useState([]);
+    const [description, setDescription] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    useEffect(()=>{
+        const getProfile = async () => {
+            setIsLoading(true);
+            const response = await fetch('api/contractor/profile', {
+                headers:{'Authorization': `Bearer ${user.token}`}
+            });
+
+            const json = await response.json();
+            console.log(user.token);
+            console.log(json);
+            setProfileName(json.profile_name? json.profile_name:'');
+            setCity(json.city? json.city:'');
+            setState(json.state? json.state:'');
+            setZip(json.zip_code? json.zip_code:'');
+            setWebsite(json.website_url? json.website_url:'');
+            setPhone(json.phone_number? json.phone_number:'');
+            setServices(json.services? json.services:[]);
+            setDescription(json.description? json.description:'');
+            setIsLoading(false);
+            console.log(json.phone_number)
+        };
+        getProfile()
+    }, []);
+
     const services_provided = ["plumbing","remodeling","pest_control","landscaping","electrical","roofing"];
 
-    const updateProfile = async (profile) =>{
+    const updateProfile = async (profile_name, city, state, zip_code, website_url, phone_number, services, description) =>{
+        console.log(JSON.stringify({profile_name, city, state, zip_code, website_url, phone_number, services, description}))
 
         const response = await fetch('api/contractor/profile', {
             method: "PATCH",
@@ -26,7 +51,7 @@ const ProfileEdit = (props) => {
                 "Authorization": `Bearer ${user.token}`, 
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(profile)
+            body: JSON.stringify({profile_name, city, state, zip_code, website_url, phone_number, services, description})
         });
 
         const json = await response.json();
@@ -40,18 +65,7 @@ const ProfileEdit = (props) => {
 
     const handleSave = async (e) => {
         e.preventDefault();
-        const newProfile = {
-            profile_name: profile_name, 
-            city: city, 
-            state: state, 
-            zip_code: zip_code, 
-            website_url: website_url, 
-            phone_number: phone_number, 
-            services: services, 
-            description: description
-        };
-        console.log(newProfile)
-        updateProfile(newProfile);
+        updateProfile(profile_name, city, state, zip_code, website_url, phone_number, services, description);
         onClickView(); 
       };
 

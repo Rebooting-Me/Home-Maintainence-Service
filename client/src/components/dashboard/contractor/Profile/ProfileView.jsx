@@ -1,12 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
 import styles from './Profile.module.css'
 import {profileHolder} from '../../../../constants/profileHolder'
+import { useAuthContext } from '../../../../hooks/useAuthContext'
 
 const ProfileView = (props) => {
-    const { onClickEdit, profile } = props;
+    const { onClickEdit } = props;
+    const {user} = useAuthContext();
+    const [isLoading, setIsLoading] = useState(false);
+    const [profile, setProfile] = useState({});
+
+
+    useEffect(()=>{
+        const getProfile = async () => {
+            setIsLoading(true);
+            const response = await fetch('api/contractor/profile', {
+                headers:{'Authorization': `Bearer ${user.token}`}
+            });
+
+            const json = await response.json();
+            console.log(user.token);
+            console.log(json);
+            setProfile({...json});
+            setIsLoading(false);
+        };
+        getProfile()
+    }, []);
 
   return (
     <div className={styles.profileWrapper}>
+        {isLoading ? (<div>Loading</div>) : 
+        (
         <div>
             <div className={styles.profileHeaderWrapper}>
             <div className={styles.profileImageWrapper}>
@@ -40,7 +64,8 @@ const ProfileView = (props) => {
                 </div>
                 <div className={styles.profileServices}>
                     <h3>Services offered</h3>
-                    {(profile?.services? ((profile.services.map((service)=>{
+                    <div className={styles.profileServiceCards}>
+                    {(profile?.services? ((profile.services?.map((service)=>{
                         const imgsvg = require(`../../../../assets/${service}.svg`);
                         return (
                             <div key={service} className={styles.service}>
@@ -62,9 +87,11 @@ const ProfileView = (props) => {
                             </div>
                         );
                     })))}
+                    </div>
                 </div>
             </div>
         </div>
+        )}
     </div>
   )
 }

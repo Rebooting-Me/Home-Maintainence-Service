@@ -150,20 +150,26 @@
     margin-bottom: 1%;
 }
 
+.profileServiceCards{
+    display: flex;
+    flex-direction: row;
+}
+
 .service{
     width: 17.5%;
-    height: 8.5%;
+    height: 6vh;
     display: flex;
     flex-direction: row;
     background: #E7EAEE;
     border-radius: 10px;
     align-items: center;
     justify-content: center;
+    margin-right: 1%;
 }
 
 .service img{
-    height: 17.5%;
-    width: 17.5%;
+    max-height: 5.5vh;
+    max-width: 17.5%;
     padding: 2.5% 0;
     margin-left: 7.5%;
 }
