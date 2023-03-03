@@ -12,8 +12,6 @@ const Form = () => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    console.log(email, password);
-    
     await signin(email, password);
 
   };

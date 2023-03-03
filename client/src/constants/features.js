@@ -9,7 +9,7 @@ export const features = [
     feature: 'Pest Control',
     description:
       "Say goodbye to pests with safe and effective pest control services from CasaCare®'s professionals.",
-    image: 'assets/pest.svg',
+    image: 'assets/pest_control.svg',
   },
   {
     feature: 'Remodeling',

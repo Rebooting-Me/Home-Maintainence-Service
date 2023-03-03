@@ -11,7 +11,7 @@ const Listing = require('../models/listingModel');
  */
 const getContractorDashboard = async (req, res) => {
     try {
-        const contractorId = req.params.contractor_id;
+        const contractorId = req.user._id;
         const contractor = await getContractorData(contractorId);
         // Currently only returning the contractor's name to the frontend
         res.status(200).json({ name: contractor.name });
@@ -57,7 +57,7 @@ const getContractorProfile = async (req, res) => {
  */
 const updateContractorProfile = async (req, res) => {
     try {
-        const contractorId = req.params.contractor_id;
+        const contractorId = req.user._id;
         // Get the fields we want to update
         const { description, services } = req.body;
         const updateQuery = {
@@ -81,27 +81,27 @@ const viewMultipleListings = async (req, res) => {
 
         //filter feature for contractor to filter out 4 properties
         if (state) {
-        filter.state = state;
+            filter.state = state;
         }
         if (city) {
-        filter.city = city;
+            filter.city = city;
         }
         if (zip_code) {
-        filter.zip_code = zip_code;
+            filter.zip_code = zip_code;
         }
         if (services) {
-        filter.services = { $in: services };
+            filter.services = { $in: services };
         }
 
-      // Find all filtered listings in the database
-      const listings = await Listing.find(filter).select('-homeowner_id');
-  
-      // Return the array of listings as a JSON response (except HO id)
-      return res.json(listings);
+        // Find all filtered listings in the database
+        const listings = await Listing.find(filter).select('-homeowner_id');
+
+        // Return the array of listings as a JSON response (except HO id)
+        return res.json(listings);
     } catch (err) {
-      console.error(err.message);
-      return res.status(500).json({ message: 'Server error' });
+        console.error(err.message);
+        return res.status(500).json({ message: 'Server error' });
     }
-  }
+}
 
 module.exports = { getContractorDashboard, getContractorProfile, updateContractorProfile, viewMultipleListings };

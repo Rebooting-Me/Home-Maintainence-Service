@@ -36,8 +36,6 @@ const Sidebar = (props) => {
         element.firstChild.style.filter = "invert(0%) sepia(2%) saturate(0%) hue-rotate(253deg) brightness(100%) contrast(100%)";
     }
 
-    // const { user } = useAuthContext();
-    console.log('Refresh: ', )
     return (
         <nav className={`${styles.sidebarWrapper}`}>
             <div className={`${styles.sidebarInner}`}>

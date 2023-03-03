@@ -1,11 +1,11 @@
 export const profileHolder = {
-    city: 'Holder', 
-    state: 'Holder',
-    zip: 'Holder',
+    city: 'City', 
+    state: 'State',
+    zip_code: 'Zip code',
     profile_image: 'carlos.png',
-    profile_name: 'Name Holder',
-    website:'https://www.<website_holder>.com',
-    phone:'(XXX)XXX-XXXX',
+    profile_name: 'Your Production Name',
+    website_url:'Your website',
+    phone_number:'(XXX)XXX-XXXX',
     description:'Place description here.',
-    services:['roofing']
+    services:[]
 }
