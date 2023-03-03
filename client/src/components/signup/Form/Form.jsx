@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Form.module.css';
 import { Outlet, Link } from 'react-router-dom';
-import {useSignup} from '../../../hooks/useSignup';
+import { useSignup } from '../../../hooks/useSignup';
 import { useLocation } from 'react-router-dom';
 
 import Mailbox from '../../../assets/mailbox.svg';
@@ -16,13 +16,15 @@ const Form = () => {
   const [password, setPassword] = useState('');
   const [agree, setAgree] = useState('');
   const [userType, setUserType] = useState('');
-  const {signup, isLoading, error} = useSignup();
+  const { signup, isLoading, error } = useSignup();
 
   const handleCheckbox = (e) => {
     setAgree(e.target.checked);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(name, email, password, userType);
+
     await signup(name, email, password, userType);
 
   };
@@ -38,22 +40,25 @@ const Form = () => {
         <div className={styles.formInnerWrapper}>
           {error && <div className={styles.error}>{error}</div>}
           <form className={styles.formContainer} onSubmit={handleSubmit}>
-            <label className={styles.inputLabel}>Name</label>
-            <input 
-              onChange={(e) => {setName(e.target.value)}}
-              value={name} 
-              className={styles.input} 
-              type="text" />
-            <label className={styles.inputLabel}>Email</label>
+            <label htmlFor="name-input" className={styles.inputLabel}>Name</label>
             <input
-              onChange={(e) => {setEmail(e.target.value)}}
+              id="name-input"
+              onChange={(e) => { setName(e.target.value) }}
+              value={name}
+              className={styles.input}
+              type="text" />
+            <label htmlFor="email-input" className={styles.inputLabel}>Email</label>
+            <input
+              id="email-input"
+              onChange={(e) => { setEmail(e.target.value) }}
               value={email}
               className={styles.input}
               type="email"
             />
-            <label className={styles.inputLabel}>Password</label>
+            <label htmlFor="password-input" className={styles.inputLabel}>Password</label>
             <input
-              onChange={(e) => {setPassword(e.target.value)}}
+              id="password-input"
+              onChange={(e) => { setPassword(e.target.value) }}
               value={password}
               className={styles.input}
               placeholder="Enter an 8-digit password"
@@ -69,7 +74,7 @@ const Form = () => {
             <div className={`${styles.buttonWrapper} center`}>
               <button
                 disabled={(!agree) || isLoading}
-                onClick={() => {setUserType("Homeowner")}}
+                onClick={() => { setUserType("Homeowner") }}
                 className={styles.btn}
                 type="submit"
               >
@@ -78,7 +83,7 @@ const Form = () => {
               </button>
               <button
                 disabled={(!agree) || isLoading}
-                onClick={() => {setUserType("Contractor")}}
+                onClick={() => { setUserType("Contractor") }}
                 className={styles.btn}
                 type="submit"
               >

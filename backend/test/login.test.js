@@ -42,9 +42,9 @@ const contractorLogin = {
 }
 
 /**
- * Tests successful login for a homeowner.
+ * Tests successful login for a homeowner and contractor.
  */
-describe(`Existing homeowner does POST ${LOGIN_ROUTE}`, () => {
+describe('Existing user logs in', () => {
     it('should login the homeowner.', async () => {
         let res;
 
@@ -56,13 +56,7 @@ describe(`Existing homeowner does POST ${LOGIN_ROUTE}`, () => {
         res = await request(app).post(LOGIN_ROUTE).send(homeownerLogin);
         expect(res.statusCode).to.equal(200);
     });
-});
-
-/**
- * Tests successful login for a contractor.
- */
-describe(`Existing contractor does POST ${LOGIN_ROUTE}`, () => {
-    it('should login a signed-up contractor.', async () => {
+    it('should login a contractor.', async () => {
         let res;
 
         // First, sign up so the user exists.
