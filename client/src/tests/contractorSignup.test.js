@@ -20,25 +20,20 @@ import { AuthContextProvider } from '../context/AuthContext';
 
 import {
     signupNameInputTestId, signupEmailInputTestId, signupPasswordInputTestId,
-    signupCheckboxTestId, signupHomeownerButtonTestId
+    signupCheckboxTestId, signupContractorButtonTestId
 } from '../constants/testingConstants'
 
-describe.only('Clicking As a Homeowner on Sign In from the landing page', function () {
+
+describe('Attempting to sign up as a contractor', function () {
 
     let originalFetch;
 
     beforeEach(() => {
+        // Save global fetch
         originalFetch = global.fetch;
-        // global.fetch = jest.fn(() => Promise.resolve({
-        //     ok: true,
-        //     status: 200,
-        //     json: () => Promise.resolve({
-        //         name: 'User name!',
-        //         userType: HOMEOWNER_USER_TYPE,
-        //         token: createToken('dummy_token_id')
-        //     })
-        // }));
-        global.fetch = jest.fn(() => new Promise((resolve) => {
+
+        // Mock global fetch
+        const mockFetch = jest.fn(() => new Promise((resolve) => {
             resolve({
                 ok: true, status: 200, json: () => {
                     return Promise.resolve({
@@ -49,14 +44,17 @@ describe.only('Clicking As a Homeowner on Sign In from the landing page', functi
                 }
             });
         }));
+        global.fetch = mockFetch;
+
     });
 
     afterEach(() => {
+        // Restore fetch
         global.fetch = originalFetch;
     })
 
 
-    it('should sign up the user.', async function () {
+    it('should sign up a contractor user.', async function () {
         // Do userEvent setup before rendering any components.
         const user = userEvent.setup();
         render(
@@ -70,8 +68,8 @@ describe.only('Clicking As a Homeowner on Sign In from the landing page', functi
         const signUpElement = screen.getByRole('link', { name: 'Sign up' });
         await user.click(signUpElement);
 
-        // Check that the sign up as a homeowner button is disabled
-        expect(screen.getByTestId(signupHomeownerButtonTestId)).toBeDisabled();
+        // Check that the sign up as a contractor button is disabled
+        expect(screen.getByTestId(signupContractorButtonTestId)).toBeDisabled();
 
         // Fill in the sign-up form fields
         const name = 'User name';
@@ -94,16 +92,14 @@ describe.only('Clicking As a Homeowner on Sign In from the landing page', functi
         await user.click(checkbox);
         expect(screen.getByTestId(signupCheckboxTestId)).toBeChecked();
 
-        // The homeowner button should now be enabled
-        const homeownerButton = screen.getByTestId(signupHomeownerButtonTestId);
-        expect(homeownerButton).toBeEnabled();
+        // The contractor button should now be enabled
+        const contractorButton = screen.getByTestId(signupContractorButtonTestId);
+        expect(contractorButton).toBeEnabled();
 
         // Attempt to sign up
-        await user.click(homeownerButton);
-
+        await user.click(contractorButton);
         // User should be redirected to their dashboard
-        // expect(screen.getByText('Projects')).toBeInTheDocument();
-
-
+        // expect(screen.getByText('Homeowner Projects')).toBeInTheDocument();
     });
 });
+

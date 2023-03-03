@@ -10,7 +10,7 @@ import Contractor from '../../../assets/contractor.svg';
 
 import {
   signupNameInputTestId, signupEmailInputTestId,
-  signupPasswordInputTestId, signupCheckboxTestId, signupHomeownerButtonTestId
+  signupPasswordInputTestId, signupCheckboxTestId, signupHomeownerButtonTestId, signupContractorButtonTestId
 } from '../../../constants/testingConstants'
 
 
@@ -97,6 +97,7 @@ const Form = () => {
                 onClick={() => { setUserType("Contractor") }}
                 className={styles.btn}
                 type="submit"
+                data-testid={signupContractorButtonTestId}
               >
                 <p>As a Contractor</p>
                 <img src={Contractor} alt="" />
