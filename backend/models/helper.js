@@ -57,9 +57,9 @@ async function storeUser(email, password, name, userType, model) {
     const hash = await bcrypt.hash(password, salt);
     //store in DB
     const userInfo = await model.create({ email, password: hash, name })
-                                .then(result => {
-                                    return result;
-                                })
+        .then(result => {
+            return result;
+        })
     if (userInfo) {
         userInfo.userType = userType;
     }
@@ -80,12 +80,12 @@ async function getUserData(queryObj) {
 }
 
 /**
- * Returns the contractor JSON with the given id
+ * Returns the contractor JSON with the given id. Excludes the password.
  * @param {*} contractorId 
  * @returns the contractor JSON with the given id
  */
 async function getContractorData(contractorId) {
-    const contractor = await contractorModel.findById(contractorId).lean();
+    const contractor = await contractorModel.findById(contractorId).lean().select('-password');
     return contractor;
 }
 
@@ -101,7 +101,8 @@ async function updateContractorData(contractor_id, updateQuery) {
         new: true,
         lean: true,
     }
-    const contractor = await contractorModel.findByIdAndUpdate(contractor_id, updateQuery, options);
+    const contractor = await contractorModel.findByIdAndUpdate(contractor_id,
+        updateQuery, options).select('-password');
 
     return contractor;
 }

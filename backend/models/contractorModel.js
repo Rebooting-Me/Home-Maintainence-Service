@@ -21,11 +21,33 @@ const contractorSchema = new Schema({
   },
   description: {
     type: String,
-    required: false
+    required: false,
+    default: ''
   },
   phone_number: {
     type: String,
-    required: false
+    required: false,
+    default: ''
+  },
+  city: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  state: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  zip_code: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  website_url: {
+    type: String,
+    required: false,
+    default: ''
   },
   // The services that this contractor provides
   services: {

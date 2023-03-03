@@ -22,7 +22,8 @@ const homeownerSchema = new Schema({
 
   phone_number: {
     type: String,
-    required: false
+    required: false,
+    default: ''
   },
 
   /* The projects field is defined as an array of ObjectId references to the Listing model.
