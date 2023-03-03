@@ -15,6 +15,7 @@ const getContractorDashboard = async (req, res) => {
         const contractorId = req.user._id;
         const contractor = await getContractorData(contractorId);
         // Currently only returning the contractor's name to the frontend
+        // An extension is to also return the contractor's profile image
         res.status(200).json({ name: contractor.name });
     }
     catch (error) {
@@ -30,6 +31,12 @@ const getContractorDashboard = async (req, res) => {
  * The profile information consists of the followng:
  * - Name
  * - Email
+ * - Description
+ * - Phone number
+ * - City
+ * - State
+ * - Zip code
+ * - Website URL
  * - Services offered
  * 
  * WARNING: We are assuming that because the profile that is retrieved is based an ID in the
@@ -49,6 +56,10 @@ const getContractorProfile = async (req, res) => {
             email: contractor.email,
             description: contractor.description,
             phone_number: contractor.phone_number,
+            city: contractor.city,
+            state: contractor.state,
+            zip_code: contractor.zip_code,
+            website_url: contractor.website_url,
             services: contractor.services
         });
     }
@@ -63,6 +74,10 @@ const getContractorProfile = async (req, res) => {
  * The following fields can be currently edited:
  * - Description
  * - Phone number
+ * - City
+ * - State
+ * - Zip code
+ * - Website URL
  * - Services offered
  * @param {*} req 
  * @param {*} res 
@@ -71,15 +86,19 @@ const updateContractorProfile = async (req, res) => {
     try {
         const contractorId = req.user._id;
         // Get the fields we want to update
-        const { description, services, phone_number } = req.body;
+        const { description, phone_number, city, state, zip_code, website_url, services } = req.body;
         const updateQuery = {
             description: description,
             phone_number: phone_number,
+            city: city,
+            state: state,
+            zip_code: zip_code,
+            website_url: website_url,
             services: services
         }
-        // Send back the updated fields
+        // Send back the contractor profile data, excluding password.
         const updatedContractor = await updateContractorData(contractorId, updateQuery);
-        res.status(200).json({ services: updatedContractor.services });
+        res.status(200).json(updatedContractor);
     }
     catch (error) {
         console.log(error.message);
