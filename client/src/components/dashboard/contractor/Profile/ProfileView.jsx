@@ -29,7 +29,7 @@ const ProfileView = (props) => {
 
   return (
     <div className={styles.profileWrapper}>
-        {isLoading ? (<div>Loading</div>) : 
+        {isLoading ? (<div className={styles.isLoading}>Loading</div>) : 
         (
         <div>
             <div className={styles.profileHeaderWrapper}>

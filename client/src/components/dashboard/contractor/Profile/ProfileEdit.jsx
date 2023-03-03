@@ -96,6 +96,7 @@ const ProfileEdit = (props) => {
                     placeholder="Name"
                     type="text" />
                 <label className={styles.inputLabel}>Address</label>
+                <div className={styles.address}>
                 <input 
                     onChange={(e) => {setCity(e.target.value)}}
                     value={city} 
@@ -114,6 +115,7 @@ const ProfileEdit = (props) => {
                     className={styles.input} 
                     placeholder="Zip code"
                     type="text" />
+                </div>
                 <label className={styles.inputLabel}>Website</label>
                 <input 
                     onChange={(e) => {setWebsite(e.target.value)}}
@@ -129,17 +131,20 @@ const ProfileEdit = (props) => {
                     placeholder="(XXX)XXX-XXXX"
                     type="tel" />
                 <label className={styles.inputLabel}>Service Offered</label>
+                <div className={styles.services}>
                 {services_provided.map(
                     (service, index)=>{
                         const imgsvg = require(`../../../../assets/${service}.svg`);
                         return (
-                            <div key={service + index} >
+                            <div key={service + index} className={styles.card}>
                             <input 
+                            id={service}
                             key={index} 
                             type="checkbox" 
                             checked={services.includes(service)}
                             onChange={()=>{handleCheckbox(index)}}
                             />
+                            <label htmlFor={service}>
                             <img src={imgsvg} alt=''/>
                             <p>
                                 {service.toLowerCase()
@@ -147,31 +152,37 @@ const ProfileEdit = (props) => {
                                 .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
                                 .join(' ')}
                             </p>
+                            </label>
                             </div>
                         )
                     }
                 )}
+                </div>
                 <label className={styles.inputLabel}>Description</label>
-                <input 
+                <textarea 
                     onChange={(e) => {setDescription(e.target.value)}}
                     value={description} 
-                    className={styles.input} 
+                    className={styles.description} 
                     placeholder="Give a brief introduction here."
-                    type="text" />
+                    rows={15}
+                    cols={35} 
+                />
+                <div className={styles.buttons}>
                 <button
-                    className={styles.btn}
-                    onClick={handleSave}
-                    type="submit"
-                >
-                    <p>Save</p>
-                </button>
-                <button
-                    className={styles.btn}
+                    className={styles.cancel}
                     onClick={handleCancel}
                     type="submit"
                 >
                     <p>Cancel</p>
                 </button>
+                <button
+                    className={styles.save}
+                    onClick={handleSave}
+                    type="submit"
+                >
+                    <p>Save</p>
+                </button>
+                </div>
             </form>
     </div>
   )
