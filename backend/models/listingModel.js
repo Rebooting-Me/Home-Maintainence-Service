@@ -21,7 +21,7 @@ const listingSchema = new Schema({
     },
     state: {
         type: String,
-        required: false,
+        required: true,
         default: ''
     },
     zip_code: {
