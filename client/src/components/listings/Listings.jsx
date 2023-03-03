@@ -87,20 +87,22 @@ const ListingFilters = ({ setFilter }) => {
 
 const ListingCard = ({ title, description, services }) => {
   return (
-    <div className={styles.listingCard}>
-        <div className={styles.listingImageWrapper}>
-            <img src={imageUrl} alt={title} className={styles.listingImage} />
+    <a className={styles.container}>
+        <div className={styles.listingCard}>
+            <div className={styles.listingImageWrapper}>
+                <img src={imageUrl} alt={title} className={styles.listingImage} />
+            </div>
+            <div className={styles.listingDetails }>
+                <h1>{title}</h1>
+                <ul>
+                    {services.map(service => (
+                        <li key={service}><ServiceIcon service={service} />{service}</li>
+                    ))}
+                </ul>
+                <p>{description} <span>... more</span></p>
+            </div>
         </div>
-        <div className={styles.listingDetails }>
-            <h1>{title}</h1>
-            <ul>
-                {services.map(service => (
-                    <li key={service}><ServiceIcon service={service} />{service}</li>
-                ))}
-            </ul>
-            <p>{description} <span>... more</span></p>
-        </div>
-    </div>
+    </a>
   );
 };
 
