@@ -34,6 +34,11 @@ const contractorSchema = new Schema({
     required: false,
     default: ''
   },
+  state: {
+    type: String,
+    required: false,
+    default: ''
+  },
   zip_code: {
     type: String,
     required: false,
