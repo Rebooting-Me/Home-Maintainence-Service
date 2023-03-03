@@ -25,6 +25,8 @@ export const useCreateProject = () =>{
             setIsLoading(false);
             setError(json.error);
         }
+
+        console.log(json);
         
     }
     return { createProject, isLoading, error }

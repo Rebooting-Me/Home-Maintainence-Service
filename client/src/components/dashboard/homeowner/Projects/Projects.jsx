@@ -24,10 +24,8 @@ const Projects = () => {
                 </div>
             )}
             { projectFormOn && (
-                <div>
                     <NewProjectForm 
                         showForm={setProjectFormOn} />
-                </div>
             )}
 
         </div>
