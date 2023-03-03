@@ -8,6 +8,7 @@ const userRoutes = require('./routes/user');
 const contractorRoutes = require('./routes/contractor');
 const newListing = require('./routes/newListing.js');
 const getListings = require('./routes/getListing');
+const sendServices = require('./routes/getServices');
 const otherRoutes = require('./routes/otherRoutes');
 
 // Middleware
@@ -26,5 +27,6 @@ app.use("/api/contractor", contractorRoutes);
 app.use('/api/otherRoutes', otherRoutes);
 app.use('/api/homeowner', getListings);
 app.use('/api/user', getListings); //fetches stand-alone listing irrespective of userType
+app.use('/api/services', sendServices);
 
 module.exports = app;

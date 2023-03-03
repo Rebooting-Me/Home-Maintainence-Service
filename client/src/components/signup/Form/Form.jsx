@@ -23,8 +23,6 @@ const Form = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, email, password, userType);
-    
     await signup(name, email, password, userType);
 
   };

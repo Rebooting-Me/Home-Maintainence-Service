@@ -36,7 +36,6 @@ const Sidebar = () => {
     }
 
     const { user } = useAuthContext();
-    console.log('Refresh: ', )
     return (
         <nav className={`${styles.sidebarWrapper}`}>
             <div className={`${styles.sidebarInner}`}>
