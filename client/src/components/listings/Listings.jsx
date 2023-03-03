@@ -39,6 +39,8 @@ const Listings = () => {
           title={listing.title}
           description={listing.description}
           services={listing.services}
+          city={listing.city}
+          state={listing.state}
         />
       ))}
     </div>
@@ -85,7 +87,7 @@ const ListingFilters = ({ setFilter }) => {
   );
 };
 
-const ListingCard = ({ title, description, services }) => {
+const ListingCard = ({ title, description, services, city , state }) => {
   return (
     <a className={styles.container}>
         <div className={styles.listingCard}>
@@ -93,6 +95,9 @@ const ListingCard = ({ title, description, services }) => {
                 <img src={imageUrl} alt={title} className={styles.listingImage} />
             </div>
             <div className={styles.listingDetails }>
+                <div className={styles.location}>
+                  {city}, {state}
+                </div>
                 <h1>{title}</h1>
                 <ul>
                     {services.map(service => (

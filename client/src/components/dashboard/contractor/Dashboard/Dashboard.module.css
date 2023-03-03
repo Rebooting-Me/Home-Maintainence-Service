@@ -9,7 +9,7 @@
 
 .sidebar {
     position: fixed;
-  height: 100vh;
+  height: 87.5vh;
   overflow-y: auto;
     width: 15%;
 }

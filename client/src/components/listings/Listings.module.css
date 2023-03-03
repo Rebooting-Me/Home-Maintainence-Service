@@ -30,13 +30,26 @@
 }
 
 .listingDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 70%;
   float: left;
   padding-left: 3rem;
+  position: relative;
 }
 
 .listingDetails h1 {
   margin-top: 0;
+}
+
+.location {
+  align-self: flex-end;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 50%;
+  font-size: 1rem;
+  position: absolute;
 }
 
 .listingDetails ul {
