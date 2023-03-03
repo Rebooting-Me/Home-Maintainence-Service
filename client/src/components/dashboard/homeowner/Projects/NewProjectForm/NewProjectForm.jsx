@@ -45,6 +45,7 @@ const NewProjectForm = (props) => {
                                     <div className="simpleInputSet"> 
                                         <label>Project Name</label>
                                         <input 
+                                            type="text"
                                             onChange={(e) => {setFieldInState("title", e.target.value)}}
                                             value={state.title}
                                         />
@@ -60,15 +61,21 @@ const NewProjectForm = (props) => {
                                     
                                     <div className="addressInput">
                                         <label>Project Address</label>
-                                        <input placeholder="City" 
+                                        <input 
+                                            type="text"
+                                            placeholder="City" 
                                             onChange={(e) => {setFieldInState("city", e.target.value)}}
                                             value={state.city}
                                         />
-                                        <input placeholder="State" 
+                                        <input
+                                            type="text"
+                                            placeholder="State" 
                                             onChange={(e) => {setFieldInState("state", e.target.value)}}
                                             value={state.state}
                                         />
-                                        <input placeholder="Zip code" 
+                                        <input
+                                            type="text" 
+                                            placeholder="Zip code" 
                                             onChange={(e) => {setFieldInState("zip_code", e.target.value)}}
                                             value={state.zip_code}
                                         />
@@ -85,6 +92,8 @@ const NewProjectForm = (props) => {
                                     <div className="simpleInputSet">
                                         <label>Project Description</label>
                                         <input 
+                                            maxLength="300"
+                                            type="text"
                                             onChange={(e) => {setFieldInState("description", e.target.value)}}
                                             value={state.description}
                                         />
