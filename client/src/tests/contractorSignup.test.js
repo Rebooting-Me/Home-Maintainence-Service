@@ -6,11 +6,8 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom'
 
-
-import jwt from 'jsonwebtoken';
-const MOCK_JWT_SECRET = 'mock_secret';
 const createToken = (_id) => {
-    return jwt.sign({ _id }, MOCK_JWT_SECRET, { expiresIn: '3d' });
+    return _id;
 }
 const HOMEOWNER_USER_TYPE = 'HOMEOWNER';
 
