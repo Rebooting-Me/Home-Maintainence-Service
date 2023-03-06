@@ -41,7 +41,7 @@ const NewProjectForm = (props) => {
                         (
                             <div>
                                 {error && <div>{error}</div>}
-                                <form id="create-project-form" onSubmit={storeListing} on>
+                                <form id="create-project-form" onSubmit={storeListing}>
                                     <div className="simpleInputSet"> 
                                         <label>Project Name</label>
                                         <input 
