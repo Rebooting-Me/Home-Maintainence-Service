@@ -6,6 +6,7 @@ import Profile from '../../../../assets/profile.svg';
 import Bids from '../../../../assets/bids.svg';
 import Reviews from '../../../../assets/reviews.svg';
 
+
 const Sidebar = (props) => {
     const { onSelectTab, user, defaultTabId } = props;
     // const defaultTabId = 'sidebar-contractor-your-profile';
@@ -17,6 +18,7 @@ const Sidebar = (props) => {
         buttonRelease(activeTab);
         id ? buttonPressed(id) : buttonPressed(defaultTabId);
         setActiveTab(id);
+        onSelectTab(id); // update the active tab in the Dashboard component
     }
 
     const buttonPressed = (id) => {
