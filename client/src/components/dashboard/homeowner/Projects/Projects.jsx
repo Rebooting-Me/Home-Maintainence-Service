@@ -1,28 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from './Projects.module.css';
+import NewProjectForm from "./NewProjectForm/NewProjectForm";
 
 const Projects = () => {
 
-    const createProject = () => {
-
-    }
+    const [projectFormOn, setProjectFormOn] = useState(false);
 
     const search = () => {
-
     }
 
     return (
         <div className={`${styles.outerTab}`}>
-            <div className={`${styles.projectsTop}`}>
-                <div className={`${styles.projectsSearch}`}>
-                    <input placeholder="Search your projects" 
-                        onChange={(e) => search(e.target.value)} size="50"/>
-                    <button className={`${styles.searchButton}`} type="submit">Search</button>
+            { !projectFormOn && (
+                <div className={`${styles.projectsTop}`}>
+                    <div className={`${styles.projectsSearch}`}>
+                        <input placeholder="Search your projects" 
+                            onChange={(e) => search(e.target.value)} size="50"/>
+                        <button className={`${styles.searchButton}`} type="submit">Search</button>
+                    </div>
+                    <div className={`${styles.newProject}`}>
+                        <button onClick={() => setProjectFormOn(true)}>New Project</button>
+                    </div>
                 </div>
-                <div className={`${styles.newProject}`}>
-                    <button onClick={createProject}>New Project</button>
+            )}
+            { projectFormOn && (
+                <div>
+                    <NewProjectForm 
+                        showForm={setProjectFormOn} />
                 </div>
-            </div>
+            )}
+
         </div>
     )
 }

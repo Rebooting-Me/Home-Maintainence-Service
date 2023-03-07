@@ -54,6 +54,7 @@ const getContractorProfile = async (req, res) => {
         res.status(200).json({
             name: contractor.name,
             email: contractor.email,
+            profile_name: contractor.profile_name,
             description: contractor.description,
             phone_number: contractor.phone_number,
             city: contractor.city,
@@ -86,8 +87,9 @@ const updateContractorProfile = async (req, res) => {
     try {
         const contractorId = req.user._id;
         // Get the fields we want to update
-        const { description, phone_number, city, state, zip_code, website_url, services } = req.body;
+        const { description, phone_number, city, state, zip_code, website_url, services, profile_name } = req.body;
         const updateQuery = {
+            profile_name: profile_name,
             description: description,
             phone_number: phone_number,
             city: city,
