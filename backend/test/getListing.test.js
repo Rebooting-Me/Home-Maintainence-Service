@@ -8,8 +8,6 @@ chai.config.includeStack = true;
 
 const expect = require('chai').expect;
 const request = require('supertest');
-const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../constants')
 
 const app = require('../app');
 
