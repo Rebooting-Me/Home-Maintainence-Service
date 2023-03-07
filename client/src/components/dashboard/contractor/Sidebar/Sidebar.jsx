@@ -5,18 +5,20 @@ import List from '../../../../assets/list.svg';
 import Profile from '../../../../assets/profile.svg';
 import Bids from '../../../../assets/bids.svg';
 import Reviews from '../../../../assets/reviews.svg';
-import { useAuthContext } from '../../../../hooks/useAuthContext';
 
-const Sidebar = () => {
-    
-    const defaultTabId = 'sidebar-contractor-your-profile';
+
+const Sidebar = (props) => {
+    const { onSelectTab, user, defaultTabId } = props;
+    // const defaultTabId = 'sidebar-contractor-your-profile';
     const [activeTab, setActiveTab] = useState(defaultTabId);
 
     const handleClick = (id,  e) => {
         e.preventDefault();
+        onSelectTab(id);
         buttonRelease(activeTab);
         id ? buttonPressed(id) : buttonPressed(defaultTabId);
         setActiveTab(id);
+        onSelectTab(id); // update the active tab in the Dashboard component
     }
 
     const buttonPressed = (id) => {
@@ -26,6 +28,7 @@ const Sidebar = () => {
     } 
 
     useEffect(() => {
+        onSelectTab(defaultTabId);
         buttonPressed(defaultTabId);
     }, []);
 
@@ -35,8 +38,6 @@ const Sidebar = () => {
         element.firstChild.style.filter = "invert(0%) sepia(2%) saturate(0%) hue-rotate(253deg) brightness(100%) contrast(100%)";
     }
 
-    const { user } = useAuthContext();
-    console.log('Refresh: ', )
     return (
         <nav className={`${styles.sidebarWrapper}`}>
             <div className={`${styles.sidebarInner}`}>

@@ -1,7 +1,0 @@
-import React from "react";
-
-const Profile = () => {
-    return (<p>Implement profile here</p>)
-}
-
-export default Profile;
