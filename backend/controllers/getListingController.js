@@ -1,5 +1,6 @@
 const Listing = require('../models/listingModel');
 const Contractor = require('../models/contractorModel');
+const Homeowner = require('../models/homeownerModel');
 
 // function to view stand-alone listing [common to HO and CO]
 const getListing = async (req, res) => {
@@ -24,6 +25,13 @@ const homeownerViewListing = async (req, res) => {
     const { state, city, zip_code, services } = req.body;
     const filter = {};
 
+    // Find the homeowner by ID
+    const homeownerId = req.user._id;
+    const homeowner = await Homeowner.findById(homeownerId);
+    if (!homeowner) {
+      return res.status(404).json({ message: 'Homeowner not found' });
+    }
+
     //filter feature for HO to filter out 4 properties
     if (state) {
       filter.state = state;
@@ -37,6 +45,7 @@ const homeownerViewListing = async (req, res) => {
     if (services) {
       filter.services = { $in: services };
     }
+    filter.homeowner_id = homeownerId;
 
     // Find all filtered listings in the database
     const listings = await Listing.find(filter).select("-homeowner_id");

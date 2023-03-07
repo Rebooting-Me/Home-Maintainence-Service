@@ -85,20 +85,19 @@ describe('Homeowners create and query for listings; then contractor queries for 
         // Create some listings.
         const token1 = res.body.token;
         const authorization1 = getAuthorizationHeaderValue(token1);
-        const id1 = jwt.verify(token1, process.env.SECRET || JWT_SECRET)._id;
 
         res = await request(app).post('/api/homeowner/newListing')
             .set({ Authorization: authorization1 })
             .send(homeownerListingJson);
         expect(res.statusCode).to.equal(201);
-        const expectedListingJson = { ...homeownerListingJson, homeowner_id: id1 };
+        const expectedListingJson = { ...homeownerListingJson };
         expect(res.body).to.eql(expectedListingJson);
 
         res = await request(app).post('/api/homeowner/newListing')
             .set({ Authorization: authorization1 })
             .send(homeownerListingJson2);
         expect(res.statusCode).to.equal(201);
-        const expectedListingJson2 = { ...homeownerListingJson2, homeowner_id: id1 };
+        const expectedListingJson2 = { ...homeownerListingJson2 };
         expect(res.body).to.eql(expectedListingJson2);
 
         // Create the second homeowner's data.
@@ -109,17 +108,18 @@ describe('Homeowners create and query for listings; then contractor queries for 
         // Create a listing.
         const token2 = res.body.token;
         const authorization2 = getAuthorizationHeaderValue(token2);
-        const id2 = jwt.verify(token2, process.env.SECRET || JWT_SECRET)._id;
 
         res = await request(app).post('/api/homeowner/newListing')
             .set({ Authorization: authorization2 })
             .send(secondHomeownerListingJson);
         expect(res.statusCode).to.equal(201);
-        const expectedSecondHomeownerListingJson = { ...secondHomeownerListingJson, homeowner_id: id2 };
+        const expectedSecondHomeownerListingJson = { ...secondHomeownerListingJson };
         expect(res.body).to.eql(expectedSecondHomeownerListingJson);
 
         // Check that only a homeowner's listings are returned for that homeowner
-        res = await request(app).get('/api/homeowner/listings').set({ Authorization: authorization1 });
+        res = await request(app).post('/api/homeowner/listings').set({ Authorization: authorization1 });
+        expect(res.statusCode).to.equal(200);
+
         const firstHomeownerListings = res.body;
 
         // The returned object contains some book-keeping fields added by the database that
@@ -131,7 +131,7 @@ describe('Homeowners create and query for listings; then contractor queries for 
         }
         expect(firstHomeownerListings).eql([expectedListingJson, expectedListingJson2]);
 
-        res = await request(app).get('/api/homeowner/listings').set({ Authorization: authorization2 });
+        res = await request(app).post('/api/homeowner/listings').set({ Authorization: authorization2 });
         const secondHomeownerListings = res.body;
         for (const listingObject of secondHomeownerListings) {
             delete listingObject['__v'];
