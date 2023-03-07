@@ -4,12 +4,6 @@ import styles from './Listings.module.css';
 import imageUrl from './image.svg';
 import Filter from './Filter.svg'
 import ServiceIcon from './ServiceIcon';
-// import plumbing from '../../assets/plumbing.svg';
-// import electrical from '../../assets/electrical.svg';
-// import landscaping from '../../assets/landscaping.svg';
-// import roofing from '../../assets/roofing.svg';
-// import pest from '../../assets/pest.svg';
-// import remodeling from '../../assets/remodeling.svg';
 
 const Listings = () => {
   const [listings, setListings] = useState([]);
@@ -17,13 +11,20 @@ const Listings = () => {
   const [filter, setFilter] = useState({});
 
   useEffect(() => {
-    fetch('/api/contractor/listings', {
-      method: 'POST',
+    let url = '/api/contractor/listings';
+    let method = 'POST';
+    if (user.userType === 'Homeowner') {
+      url = `/api/homeowner/listings/`;
+      method = 'GET';
+    }
+    console.log(user.userType);
+    fetch(url, {
+      method,
       headers: {
         'Authorization': `Bearer ${user.token}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(filter)
+      body: method === 'POST' ? JSON.stringify(filter) : null
     })
     .then(response => response.json())
     .then(data => setListings(data))
