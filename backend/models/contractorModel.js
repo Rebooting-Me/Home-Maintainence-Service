@@ -44,6 +44,11 @@ const contractorSchema = new Schema({
     required: false,
     default: ''
   },
+  profile_name: {
+    type: String,
+    required: false,
+    default: ''
+  },
   website_url: {
     type: String,
     required: false,
