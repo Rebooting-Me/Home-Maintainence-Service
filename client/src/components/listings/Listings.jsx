@@ -5,25 +5,33 @@ import imageUrl from './image.svg';
 import Filter from './Filter.svg'
 import ServiceIcon from './ServiceIcon';
 
-const Listings = () => {
+const Listings = (props) => {
   const [listings, setListings] = useState([]);
   const { user } = useAuthContext();
   const [filter, setFilter] = useState({});
+  const {setCurrentProjectId} = props;
+
+  const handleProjectClick = (projectId) => {
+    setCurrentProjectId(projectId);
+    console.log(projectId)
+  };
 
   useEffect(() => {
+    console.log('filter:', filter);
     let url = '/api/contractor/listings';
-    let method = 'POST';
     if (user.userType === 'Homeowner') {
       url = `/api/homeowner/listings/`;
-      method = 'GET';
     }
+
+    console.log(filter);
+
     fetch(url, {
-      method,
+      method : 'POST',
       headers: {
         'Authorization': `Bearer ${user.token}`,
         'Content-Type': 'application/json'
       },
-      body: method === 'POST' ? JSON.stringify(filter) : null
+      body: JSON.stringify(filter)
     })
     .then(response => response.json())
     .then(data => setListings(data))
@@ -41,6 +49,8 @@ const Listings = () => {
           services={listing.services}
           city={listing.city}
           state={listing.state}
+          id={listing._id}
+          onClick={handleProjectClick} // Pass the handleProjectClick function as a prop
         />
       ))}
     </div>
@@ -54,6 +64,11 @@ const ListingFilters = ({ setFilter }) => {
   const [services, setServices] = useState('');
 
   const handleSubmit = e => {
+    console.log('state:', state);
+console.log('city:', city);
+console.log('zip:', zip);
+console.log('services:', services);
+
     e.preventDefault();
     const filter = {};
 
@@ -73,6 +88,8 @@ const ListingFilters = ({ setFilter }) => {
       filter.services = services.split(',').map(service => service.trim());
     }
 
+    console.log(filter);
+
     setFilter(filter);
   };
 
@@ -87,9 +104,9 @@ const ListingFilters = ({ setFilter }) => {
   );
 };
 
-const ListingCard = ({ title, description, services, city , state }) => {
+const ListingCard = ({ id , title, description, services, city , state, onClick }) => {
   return (
-    <a className={styles.container}>
+    <a className={styles.container} onClick = { () => {onClick(id)} }>
         <div className={styles.listingCard}>
             <div className={styles.listingImageWrapper}>
                 <img src={imageUrl} alt={title} className={styles.listingImage} />

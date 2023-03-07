@@ -84,9 +84,10 @@
 
 .filter {
     display: flex;
-    justify-content: center;
+    justify-content: flex start;
     gap: 1rem;
     margin-bottom: 2rem;
+    margin-top: 1rem;
 }
 
 .filter input {

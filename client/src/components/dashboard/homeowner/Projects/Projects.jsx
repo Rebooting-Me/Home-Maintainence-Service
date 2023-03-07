@@ -6,38 +6,43 @@ import Listings from "../../../listings/Listings";
 const Projects = () => {
 
     const [projectFormOn, setProjectFormOn] = useState(false);
-
-    const search = () => {
-    }
-
+    const [currentProjectId, setCurrentProjectId] = useState(null);
     return (
         <div className={`${styles.outerTab}`}>
-            { !projectFormOn && (
+            { !projectFormOn && !currentProjectId && (
                 <div className={`${styles.projectsTop}`}>
                     <div className={`${styles.projectsSearch}`}>
-                        <input placeholder="Search your projects" 
-                            onChange={(e) => search(e.target.value)} size="50"/>
-                        <button className={`${styles.searchButton}`} type="submit">Search</button>
+                        
                     </div>
                     <div className={`${styles.newProject}`}>
                         <button onClick={() => setProjectFormOn(true)}>New Project</button>
                     </div>
                 </div>
+                
             )}
+            {!projectFormOn && !currentProjectId &&(
+                <div>
+                    <Listings setCurrentProjectId={setCurrentProjectId} />
+                </div>
+            )}
+            
             { projectFormOn && (
                 <div>
                     <NewProjectForm 
-                        showForm={setProjectFormOn} />
+                        showForm={setProjectFormOn}
+                        setCurrentProjectId={setCurrentProjectId} />
                 </div>
             )}
-            { !projectFormOn && (
+            {/* { !projectFormOn && (
                 <div>
-                    <Listings />
+                    <Listings setCurrentProjectId={setCurrentProjectId} />
+                    
                 </div>
-            )}
+            )} */}
 
         </div>
     )
 }
+
 
 export default Projects;
