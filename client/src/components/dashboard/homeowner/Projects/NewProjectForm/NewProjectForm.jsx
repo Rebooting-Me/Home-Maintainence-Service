@@ -5,14 +5,15 @@ import styles from './NewProjectForm.module.css';
 
 
 const NewProjectForm = (props) => {
-    const { showForm, setCurrentProjectId } = props;
+    const { showForm, setCurrentProjectId, projectFormValues, setProjectFormValues } = props;
+    console.log(projectFormValues)
     const [state, setState] = useState({
-        title: "",
-        description: "",
-        city: "",
-        state: "",
-        zip_code: "",
-        services: []
+        title: projectFormValues.title || "" ,
+        description: projectFormValues.description || "",
+        city: projectFormValues.city || "",
+        state: projectFormValues.state || "",
+        zip_code: projectFormValues.zip_code || "",
+        services: projectFormValues.services || []
     });
     const { createProject, isLoading, error } = useCreateProject();
 
@@ -27,11 +28,25 @@ const NewProjectForm = (props) => {
         //reroute to standalone listing
     }
 
+    const updateListing = async (e) => {
+        e.preventDefault();
+        //updatelisting
+        if(!error) {
+            showForm(false);
+        }
+        //setCurrentProjectId(newProject.listing_id);
+    }
+
     const setFieldInState = (field, value) => {
         setState({
             ...state,
             [field]: value
         });
+    }
+
+    const handleCancel = () => {
+        setProjectFormValues({});
+        showForm(false);
     }
 
     return (
@@ -45,7 +60,7 @@ const NewProjectForm = (props) => {
                         (
                             <div className={`${styles.outerWrapper}`}>
                                 {error && <div className={`${styles.error}`}>Error</div>}
-                                <form id="create-project-form" onSubmit={storeListing}>
+                                <form id="create-project-form" onSubmit={(projectFormValues.title)?updateListing:storeListing}>
                                     <div className={`${styles.outerFormWrapper}`}>
                                         <div className={`${styles.inputWrapper}`}>
                                             <div className={`${styles.simpleInputSet}`}> 
@@ -57,13 +72,15 @@ const NewProjectForm = (props) => {
                                                 />
                                             </div>
                                             
-                                            {/* <div className="simpleInputSet">
+                                            <div className={`${styles.simpleInputSet}`}>
                                                 <label>Phone</label>
                                                 <input 
                                                     onChange={(e) => {setFieldInState("phone", e.target.value)}}
                                                     value={state.phone}
+                                                    placeholder="(XXX)XXX-XXXX"
+                                                    type="tel"
                                                 />
-                                            </div> */}
+                                            </div>
                                             
                                             <div className={`${styles.addressInputSet}`}>
                                                 <label>Project Address</label>
@@ -116,7 +133,7 @@ const NewProjectForm = (props) => {
                                         </div>
 
                                         <div className={`${styles.formButtonGroup}`}>
-                                            <button onClick={() => showForm(false)}>Cancel</button>
+                                            <button onClick={handleCancel}>Cancel</button>
                                             <button 
                                                 disabled={isLoading}
                                                 type="submit"> Save </button>

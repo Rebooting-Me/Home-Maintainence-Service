@@ -1,25 +1,6 @@
-.projectWrapper{
+.profileWrapper{
     height: 100%;
     width: 100%;
-}
-
-.projectInnerWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.goBackButton {
-    border: none;
-    background-color: transparent;
-    justify-self: left ;
-    margin-bottom: 40px;
-    font-size: 20px;
-    color: #F93059;
-}
-
-.goBackButton:hover {
-    font-size: 22px;
 }
 
 .isLoading{
@@ -34,29 +15,30 @@
     height: 100%;
 }
 
-.projectHeaderWrapper{
+.profileHeaderWrapper{
     height: 25vh;
     width: 100%;
     display: flex;
     flex-flow: row;
 }
 
-.projectImageWrapper{
-    width: 30%;
+.profileImageWrapper{
+    position: relative;
+    width: 20%;
     height: 0;
-    
+    margin-bottom: 20%;
 }
 
-.projectImageWrapper img{
+.profileImageWrapper img{
     width: 90%;
 }
 
-.projectInfo{
+.profileInfo{
     height: 100%;
     width: 100%;
 }
 
-.projectName{    
+.profileName{    
     font-weight: 400;
     font-size: 36px;
     line-height: 58px;
@@ -65,13 +47,13 @@
     margin-bottom: 1.5%;
 }
 
-.projectAddress{
+.profileAddress{
     display: flex;
     flex-direction: row;
     margin-bottom: 1.5%;
 }
 
-.projectAddress p{
+.profileAddress p{
     font-weight: 400;
     font-size: 24px;
     line-height: 29px;
@@ -83,7 +65,7 @@
     padding-right: 0.5%;
 }
 
-.projectWeb{
+.profileWeb{
     font-size: 24px;
     line-height: 29px;
     display: flex;
@@ -92,11 +74,11 @@
     margin-bottom: 1.5%;
 }
 
-.projectWeb a:link{
+.profileWeb a:link{
     color: black;
 }
 
-.projectPhone{
+.profilePhone{
     font-size: 24px;
     line-height: 29px;
     display: flex;
@@ -109,8 +91,8 @@
     position: absolute;
     width: 7.5%;
     height: 4.25vh;
-    right: 5%;
-    top: 60px;
+    right: 3%;
+    top: 2vh;
 }
 
 .editButtonWrapper button{
@@ -129,16 +111,16 @@
     color: #FFFFFF;
 }
 
-.projectContentWrapper{
+.profileContentWrapper{
     height: 70vh;
     width: 100%;
 }
 
-.projectDescription{
+.profileDescription{
     margin-bottom: 2.5vh;
 }
 
-.projectDescription h3{
+.profileDescription h3{
     font-weight: 400;
     font-size: 40px;
     line-height: 44px;
@@ -151,7 +133,7 @@
     margin-bottom: 1%;
 }
 
-.projectDescription p{
+.profileDescription p{
     font-weight: 400;
     font-size: 24px;
     line-height: 44px;
@@ -163,20 +145,11 @@
     color: #000000;
 }
 
-.projectPhone{
-    font-size: 24px;
-    line-height: 29px;
-    display: flex;
-    align-items: center;
-    color: black;
-    margin-bottom: 1.5%;
-}
-
-.projectServices{
+.profileServices{
     margin-bottom: 2.5vh;
 }
 
-.projectServices h3{
+.profileServices h3{
     font-weight: 400;
     font-size: 40px;
     line-height: 44px;
@@ -189,7 +162,7 @@
     margin-bottom: 1%;
 }
 
-.projectServiceCards{
+.profileServiceCards{
     display: flex;
     flex-direction: row;
 }
@@ -226,7 +199,7 @@
     padding: 0 10%;
 }
 
-.projectForm{
+.profileForm{
     height: 100%;
     width: 100%;
     display: flex;

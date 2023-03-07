@@ -59,7 +59,7 @@ form {
     font-weight: 400;
 }
 
-.simpleInputSet input[type="text"] {
+.simpleInputSet input[type="text"],[type="tel"] {
     background-color: #D9D9D9;
     border-radius: 10px;
     height: 70px;
@@ -141,6 +141,7 @@ form {
     background-color: #858585;
     color: white;
     border: none;
+    font-size: 22px;
 }
 
 .formButtonGroup button[type="submit"] {
@@ -154,13 +155,17 @@ form {
 }
 
 .simpleInputSet input[type="text"]:hover,
+input[type="tel"]:hover,
 textarea:hover,
 .addressInputSet input[type="text"]:hover {
     opacity: 100%;
 }
 
 .simpleInputSet input[type="text"]:focus,
+input[type="tel"]:focus,
 textarea:focus,
 .addressInputSet input[type="text"]:focus {
     opacity: 100%;
+    border: none;
 }
+

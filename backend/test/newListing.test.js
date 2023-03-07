@@ -14,7 +14,7 @@ const app = require('../app');
 const Homeowner = require('../models/homeownerModel');
 const Listing = require('../models/listingModel');
 
-const { HOMEOWNER_USER_TYPE, SIGNUP_ROUTE } = require('../constants')
+const { HOMEOWNER_USER_TYPE, SIGNUP_ROUTE, JWT_SECRET } = require('../constants')
 const { services } = require('../models/services')
 const { getAuthorizationHeaderValue } = require('./testUtils');
 
@@ -51,7 +51,7 @@ describe('POST /api/homeowner/newListing', () => {
         // Get the homeowner's id.
         const token = res.body.token;
         const authorization = getAuthorizationHeaderValue(token);
-        const { _id } = jwt.verify(token, process.env.SECRET);
+        const { _id } = jwt.verify(token, process.env.SECRET || JWT_SECRET);
 
         // Create a new listing.
         let listingJson = {
@@ -84,13 +84,8 @@ describe('POST /api/homeowner/newListing', () => {
         expect(homeowner.listings).to.exist;
         expect(homeowner.listings[0]).to.eql(listing._id);
     });
-});
 
-/**
- * Tests unsuccessful homeowner listing creation.
- */
-describe('POST /api/homeowner/newListing with invalid services', () => {
-    it('should raise an exception.', async () => {
+    it('should fail if invalid service types are specified.', async () => {
         let res;
 
         // Sign in.

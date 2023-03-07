@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import styles from './StandaloneListingView.module.css'
 import { useGetProjectDetails } from '../../hooks/useGetProjectDetails'
 import { projectHolder } from '../../constants/projectHolder'
-import { Outlet, Link } from 'react-router-dom';
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 const StandaloneListingView = (props) => {
-    const { projectId, setCurrentProjectId} = props
+    const { projectId, setCurrentProjectId, prepopulateForm, showForm } = props
     const { getProjectDetails, isLoading, error } = useGetProjectDetails();
     const [project, setProject] = useState({});
+    const { user } = useAuthContext();
 
     useEffect(() => {
         const getProject = async () => {
@@ -16,6 +17,11 @@ const StandaloneListingView = (props) => {
         }
         getProject();
     }, [])
+
+    const editForm = () => {
+        prepopulateForm(project);
+        showForm(true);
+    }
 
   return (
     <div className={styles.projectWrapper}>
@@ -36,16 +42,18 @@ const StandaloneListingView = (props) => {
                         <p>{project?.state? (project.state) : (projectHolder.state)}</p>
                         <p>{project?.zip_code? (project.zip_code) : (projectHolder.zip_code)}</p>
                     </div>
-                    {/*
+                    
                     <div className={styles.projectPhone}>
                         <p>{project?.phone_number? (project.phone_number) : (projectHolder.phone_number)}</p>
                     </div>
-                    */}
+                    
                 </div>
             </div>
-            <div className={styles.editButtonWrapper}>
-                <button >Edit</button>
-            </div>
+            { user.userType=="Homeowner" && 
+                (<div className={styles.editButtonWrapper}>
+                    <button onClick={editForm}>Edit</button>
+                </div>)
+            }
             <div className={styles.projectContentWrapper}>
                 {/* <div className={styles.projectImageWrapper}>
                     <img src={project?.project_image?(require(`${project.project_image}`)):(require(`../../assets/${projectHolder.project_image}`))} alt=''/>

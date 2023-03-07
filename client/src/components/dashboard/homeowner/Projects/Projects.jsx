@@ -8,6 +8,7 @@ const Projects = () => {
 
     const [projectFormOn, setProjectFormOn] = useState(false);
     const [currentProjectId, setCurrentProjectId] = useState(null);
+    const [projectFormValues, setProjectFormValues] = useState({});
 
     const search = () => {
     }
@@ -29,12 +30,16 @@ const Projects = () => {
             { projectFormOn && (
                  <NewProjectForm 
                     showForm={setProjectFormOn}
-                    setCurrentProjectId={setCurrentProjectId} />
+                    setCurrentProjectId={setCurrentProjectId}
+                    projectFormValues={projectFormValues}
+                    setProjectFormValues={setProjectFormValues} />
             )}
-            { currentProjectId && (
+            { currentProjectId && !projectFormOn && (
                 <StandaloneListingView
                     projectId={currentProjectId}
-                    setCurrentProjectId={setCurrentProjectId} />
+                    setCurrentProjectId={setCurrentProjectId}
+                    prepopulateForm={setProjectFormValues}
+                    showForm={setProjectFormOn} />
             )}
             { /* TODO:
                 <Listings 
