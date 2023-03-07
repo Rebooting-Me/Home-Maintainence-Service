@@ -17,7 +17,6 @@ const Listings = () => {
       url = `/api/homeowner/listings/`;
       method = 'GET';
     }
-    console.log(user.userType);
     fetch(url, {
       method,
       headers: {
