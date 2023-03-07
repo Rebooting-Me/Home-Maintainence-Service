@@ -24,10 +24,10 @@ const StandaloneListingView = (props) => {
         <div className={styles.projectInnerWrapper}>
             <button onClick={() => {setCurrentProjectId(null)}} className={styles.goBackButton}>&#60; View all your projects</button>
             <div className={styles.projectHeaderWrapper}>
-            <div className={styles.projectImageWrapper}>
+            {/* <div className={styles.projectImageWrapper}>
                 <img src={project?.project_image?(require(`${project.project_image}`)):(require(`../../assets/${projectHolder.project_image}`))} alt=''/>
-            </div>
-            <div className={styles.projectInfo}>
+            </div> */}
+                <div className={styles.projectInfo}>
                     <div className={styles.projectName}>
                         <h2>{project?.title?(project.title):(projectHolder.title)}</h2>
                     </div>
@@ -47,6 +47,9 @@ const StandaloneListingView = (props) => {
                 <button >Edit</button>
             </div>
             <div className={styles.projectContentWrapper}>
+                {/* <div className={styles.projectImageWrapper}>
+                    <img src={project?.project_image?(require(`${project.project_image}`)):(require(`../../assets/${projectHolder.project_image}`))} alt=''/>
+                </div> */}
                 <div className={styles.projectServices}>
                     <h3>Service Types</h3>
                     <div className={styles.projectServiceCards}>

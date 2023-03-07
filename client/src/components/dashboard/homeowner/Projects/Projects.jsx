@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from './Projects.module.css';
 import NewProjectForm from "./NewProjectForm/NewProjectForm";
 import StandaloneListingView from "../../../StandaloneListingView/StandaloneListingView";
+// TODO: import Listings
 
 const Projects = () => {
 
@@ -35,6 +36,11 @@ const Projects = () => {
                     projectId={currentProjectId}
                     setCurrentProjectId={setCurrentProjectId} />
             )}
+            { /* TODO:
+                <Listings 
+                    setProjecCurrenttId={setCurrentProjectId} >
+                */
+            }
 
         </div>
     )

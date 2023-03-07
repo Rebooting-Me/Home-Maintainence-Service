@@ -42,10 +42,9 @@
 }
 
 .projectImageWrapper{
-    position: relative;
-    width: 20%;
+    width: 30%;
     height: 0;
-    margin-bottom: 10%;
+    
 }
 
 .projectImageWrapper img{
