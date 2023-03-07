@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from './Projects.module.css';
 import NewProjectForm from "./NewProjectForm/NewProjectForm";
+import Listings from "../../../listings/Listings";
 
 const Projects = () => {
 
@@ -27,6 +28,11 @@ const Projects = () => {
                 <div>
                     <NewProjectForm 
                         showForm={setProjectFormOn} />
+                </div>
+            )}
+            { !projectFormOn && (
+                <div>
+                    <Listings />
                 </div>
             )}
 

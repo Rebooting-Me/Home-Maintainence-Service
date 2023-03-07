@@ -43,10 +43,6 @@ const Sidebar = (props) => {
                             <img src={List} />
                             <a>Your Projects</a>
                         </button>
-
-                        <button id='sidebar-listings' className={`${styles.nav}`} onClick={(e) => handleClick('sidebar-listings', e)}>
-                            <a>Listings</a>
-                        </button>
                     
                         <button id='sidebar-contractors' className={`${styles.nav}`} onClick={(e) => handleClick('sidebar-contractors', e)}>
                             <img src={Contractor} />

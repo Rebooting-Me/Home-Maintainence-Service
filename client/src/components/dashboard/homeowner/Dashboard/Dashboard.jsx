@@ -3,7 +3,6 @@ import Sidebar from "../Sidebar/Sidebar";
 import { useAuthContext } from '../../../../hooks/useAuthContext';
 import Projects from "../Projects/Projects";
 import styles from './Dashboard.module.css';
-import Listings from "../../../listings/Listings";
 
 const Dashboard = () => {
 
@@ -15,10 +14,6 @@ const Dashboard = () => {
         switch (activeTab) {
             case 'sidebar-your-projects':
                 return <Projects />;
-            case 'sidebar-listings':
-                return <Listings />;
-            default:
-                return null;
         }
     }
     
