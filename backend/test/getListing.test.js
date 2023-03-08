@@ -88,7 +88,11 @@ describe('Homeowners create and query for listings; then contractor queries for 
             .set({ Authorization: authorization1 })
             .send(homeownerListingJson);
         expect(res.statusCode).to.equal(201);
+
+        // We don't have the listing id, so delete it from the response JSON.
         const expectedListingJson = { ...homeownerListingJson };
+        const receivedListingJson = res.body;
+        delete receivedListingJson['listing_id'];
         expect(res.body).to.eql(expectedListingJson);
 
         res = await request(app).post('/api/homeowner/newListing')
