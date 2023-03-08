@@ -1,7 +1,50 @@
 /**
- * Functions for updating homeowner project listing information.
+ * Functions for modifying homeowner project listings.
  */
-const { updateProjectListing, deleteProjectListing } = require('../models/helper');
+const { createProjectListing, updateProjectListing, deleteProjectListing } = require('../models/helper');
+const Listing = require('../models/listingModel');
+
+/**
+ * Creates a new listing. The request body must contain a "user._id" field corresponding to the id of
+ * the homeowner for whom the project listing is being created. The request body must also contain
+ * the fields with which to initialize the project listing.
+ * @param {*} req 
+ * @param {*} res 
+ */
+const createListing = async (req, res) => {
+    try {
+        const { title, description, city, state, zip_code, services } = req.body;
+        const ownerId = req.user._id;
+        const createdListing = await createProjectListing({ title, description, city, state, zip_code, services }, ownerId);
+        res.status(201).json(createdListing);
+    } catch (error) {
+        // Uncomment this line to see the error message
+        // console.error(error);
+        res.status(400).json({ error: error.message });
+    }
+};
+
+/**
+ * Returns the details of a specific, stand-alone listing. The request parameters must contain the "listing_id" of 
+ * the listing.
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+const getListing = async (req, res) => {
+    try {
+        // Find the listing by ID
+        const listing = await Listing.findById(req.params.listing_id).select('-homeowner_id');
+        if (!listing) {
+            return res.status(404).json({ message: 'Listing not found' });
+        }
+        // Return the listing details excluding `homeowner_id` as a JSON object
+        return res.json(listing);
+    } catch (err) {
+        console.error(err.message);
+        return res.status(500).json({ message: 'Server error' });
+    }
+}
 
 /**
  * Updates an existing project listing. The request parameters must contain a "listing_id".
@@ -54,4 +97,4 @@ const deleteListing = async (req, res) => {
     }
 };
 
-module.exports = { updateListing, deleteListing };
+module.exports = { createListing, getListing, updateListing, deleteListing };

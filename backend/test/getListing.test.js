@@ -11,7 +11,8 @@ const request = require('supertest');
 
 const app = require('../app');
 
-const { HOMEOWNER_USER_TYPE, SIGNUP_ROUTE, CONTRACTOR_USER_TYPE } = require('../constants')
+const { CONTRACTOR_USER_TYPE, HOMEOWNER_USER_TYPE, SIGNUP_ROUTE, NEW_PROJECT_LISTING_ROUTE,
+    HOMEOWNER_SPECIFIC_LISTINGS_ROUTE, CONTRACTOR_HOMEOWNER_LISTINGS_ROUTE } = require('../constants')
 const { services } = require('../models/services')
 const { getAuthorizationHeaderValue } = require('./testUtils');
 
@@ -84,7 +85,7 @@ describe('Homeowners create and query for listings; then contractor queries for 
         const token1 = res.body.token;
         const authorization1 = getAuthorizationHeaderValue(token1);
 
-        res = await request(app).post('/api/homeowner/newListing')
+        res = await request(app).post(NEW_PROJECT_LISTING_ROUTE)
             .set({ Authorization: authorization1 })
             .send(homeownerListingJson);
         expect(res.statusCode).to.equal(201);
@@ -95,7 +96,7 @@ describe('Homeowners create and query for listings; then contractor queries for 
         delete receivedListingJson['listing_id'];
         expect(receivedListingJson).to.eql(expectedListingJson);
 
-        res = await request(app).post('/api/homeowner/newListing')
+        res = await request(app).post(NEW_PROJECT_LISTING_ROUTE)
             .set({ Authorization: authorization1 })
             .send(homeownerListingJson2);
         expect(res.statusCode).to.equal(201);
@@ -115,7 +116,7 @@ describe('Homeowners create and query for listings; then contractor queries for 
         const token2 = res.body.token;
         const authorization2 = getAuthorizationHeaderValue(token2);
 
-        res = await request(app).post('/api/homeowner/newListing')
+        res = await request(app).post(NEW_PROJECT_LISTING_ROUTE)
             .set({ Authorization: authorization2 })
             .send(secondHomeownerListingJson);
         expect(res.statusCode).to.equal(201);
@@ -127,7 +128,7 @@ describe('Homeowners create and query for listings; then contractor queries for 
         expect(secondHomeownerReceivedListingJson).to.eql(expectedSecondHomeownerListingJson);
 
         // Check that only a homeowner's listings are returned for that homeowner
-        res = await request(app).post('/api/homeowner/listings').set({ Authorization: authorization1 });
+        res = await request(app).post(HOMEOWNER_SPECIFIC_LISTINGS_ROUTE).set({ Authorization: authorization1 });
         expect(res.statusCode).to.equal(200);
 
         const firstHomeownerListings = res.body;
@@ -142,7 +143,7 @@ describe('Homeowners create and query for listings; then contractor queries for 
         }
         expect(firstHomeownerListings).eql([expectedListingJson, expectedListingJson2]);
 
-        res = await request(app).post('/api/homeowner/listings').set({ Authorization: authorization2 });
+        res = await request(app).post(HOMEOWNER_SPECIFIC_LISTINGS_ROUTE).set({ Authorization: authorization2 });
         const secondHomeownerListings = res.body;
         for (const listingObject of secondHomeownerListings) {
             delete listingObject['__v'];
@@ -158,7 +159,9 @@ describe('Homeowners create and query for listings; then contractor queries for 
         const authorization = getAuthorizationHeaderValue(token);
         // Query for listings.
         const filters = {}
-        res = await request(app).post('/api/contractor/listings').set({ Authorization: authorization }).send(filters);
+        res = await request(app).post(CONTRACTOR_HOMEOWNER_LISTINGS_ROUTE)
+            .set({ Authorization: authorization })
+            .send(filters);
         expect(res.statusCode).to.equal(200);
         const listings = res.body;
         expect(listings.length).to.equal(3);
@@ -168,7 +171,7 @@ describe('Homeowners create and query for listings; then contractor queries for 
 /**
  * Tests unsuccessful contractor viewing of a specific homeowner's listings.
  */
-describe('Contractor does GET /api/homeowner/listings', () => {
+describe('Contractor viewing homeowner listings', () => {
     it('should fail if a contractor tries to view the listings of a specific homeowner.', async () => {
         let res;
 
@@ -181,7 +184,7 @@ describe('Contractor does GET /api/homeowner/listings', () => {
         const authorization = getAuthorizationHeaderValue(token);
 
         // Attempt to view a specific homeowner's listings
-        res = await request(app).get('/api/homeowner/listings').set({ Authorization: authorization });
+        res = await request(app).get(HOMEOWNER_SPECIFIC_LISTINGS_ROUTE).set({ Authorization: authorization });
         expect(res.statusCode).to.equal(401);
     });
 });

@@ -14,7 +14,6 @@ router.use(requireAuth);
 
 router.get('/listings/:listing_id', getListing);
 
-// router.use( authenticateHomeowner ); //is used because below req is HO specific
 router.post('/listings', authorizeHomeowner, homeownerViewListing);
 
 router.get('/contractors', authorizeHomeowner, getContractorProfiles);

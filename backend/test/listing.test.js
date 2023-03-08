@@ -35,6 +35,84 @@ const listingCity = 'Listing city';
 const listingState = 'Listing state';
 const listingZipCode = 'Listing zip code';
 const listingValidServices = [services.ELECTRICAL, services.PEST_CONTROL, services.REMODELING]
+const listingInvalidServices = [services.ELECTRICAL, 'some invalid service string']
+
+/**
+ * Tests successful homeowner listing creation.
+ */
+describe('POST /api/homeowner/newListing', () => {
+    it('should create a new listing and update the homeowner.', async () => {
+        let res;
+
+        // Sign in.
+        res = await request(app).post(SIGNUP_ROUTE).send(homeownerJson);
+        expect(res.statusCode).to.equal(200);
+
+        // Get the homeowner's id.
+        const token = res.body.token;
+        const authorization = getAuthorizationHeaderValue(token);
+        const { _id } = jwt.verify(token, process.env.SECRET || JWT_SECRET);
+
+        // Create a new listing.
+        let listingJson = {
+            title: listingTitle,
+            description: listingDescription,
+            city: listingCity,
+            state: listingState,
+            zip_code: listingZipCode,
+            services: listingValidServices
+        };
+        res = await request(app).post(NEW_PROJECT_LISTING_ROUTE)
+            .set({ Authorization: authorization })
+            .send(listingJson);
+        expect(res.statusCode).to.equal(201);
+
+        // Get the listing we just created from the database so we can access its id.
+        // NOTE: We assume that there were no existing listings, so the only listing
+        // is the one we just created.
+        const listings = await Listing.find().lean();
+        expect(listings).to.exist;
+        const listing = listings[0];
+
+        // Check that the homeowner's listings were updated.
+        const homeowner = await Homeowner.findById(_id).lean();
+        expect(homeowner).to.exist;
+        expect(homeowner.listings).to.exist;
+
+        // We should be able to query for the listing we just created using the listing id from the homeowner.
+        const listingId = (homeowner.listings[0]);
+        const queriedListing = await Listing.findById(listingId).lean();
+        expect(listing).to.eql(queriedListing);
+    });
+
+    it('should fail if invalid service types are specified.', async () => {
+        let res;
+
+        // Sign in.
+        res = await request(app).post(SIGNUP_ROUTE).send(homeownerJson);
+        expect(res.statusCode).to.equal(200);
+
+        // Get the token.
+        const token = res.body.token;
+        const authorization = getAuthorizationHeaderValue(token);
+
+        // Create a new listing.
+        let listingJson = {
+            title: listingTitle,
+            description: listingDescription,
+            city: listingCity,
+            state: listingState,
+            zip_code: listingZipCode,
+            services: listingInvalidServices
+        };
+        res = await request(app).post(NEW_PROJECT_LISTING_ROUTE)
+            .set({ Authorization: authorization })
+            .send(listingJson);
+
+        // Check for error
+        expect(res.statusCode).to.equal(400);
+    });
+});
 
 /**
  * Tests successful homeowner listing edit.
