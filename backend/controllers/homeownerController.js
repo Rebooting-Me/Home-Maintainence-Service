@@ -2,23 +2,13 @@ const Listing = require('../models/listingModel');
 const Contractor = require('../models/contractorModel');
 const Homeowner = require('../models/homeownerModel');
 
-// function to view stand-alone listing [common to HO and CO]
-const getListing = async (req, res) => {
-  try {
-    // Find the listing by ID
-    const listing = await Listing.findById(req.params.listing_id).select('-homeowner_id');
-    if (!listing) {
-      return res.status(404).json({ message: 'Listing not found' });
-    }
-    // Return the listing details excluding `homeowner_id` as a JSON object
-    return res.json(listing);
-  } catch (err) {
-    console.error(err.message);
-    return res.status(500).json({ message: 'Server error' });
-  }
-}
-
-//allows only HO to view their created listings
+/**
+ * Returns all of the project listings for a specific homeowner. The request body must contain
+ * a "req.user._id" corresponding to the homeowner's id.
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 const homeownerViewListing = async (req, res) => {
   // 
   try {
@@ -74,4 +64,4 @@ const getContractorProfiles = async (req, res) => {
   }
 }
 
-module.exports = { getListing, homeownerViewListing, getContractorProfiles };
+module.exports = { homeownerViewListing, getContractorProfiles };

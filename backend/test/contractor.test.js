@@ -12,7 +12,9 @@ const jwt = require('jsonwebtoken');
 
 const app = require('../app');
 const Contractor = require('../models/contractorModel');
-const { HOMEOWNER_USER_TYPE, CONTRACTOR_USER_TYPE, SIGNUP_ROUTE, JWT_SECRET } = require('../constants')
+const { HOMEOWNER_USER_TYPE, CONTRACTOR_USER_TYPE, SIGNUP_ROUTE,
+    CONTRACTOR_DASHBOARD_ROUTE, CONTRACTOR_PROFILE_ROUTE,
+    ALL_CONTRACTOR_PROFILES_ROUTE, JWT_SECRET } = require('../constants')
 const { services } = require('../models/services')
 const { getAuthorizationHeaderValue } = require('./testUtils');
 
@@ -40,7 +42,7 @@ const homeownerJson = {
 /**
  * Tests successful get of a contractor dashboard.
  */
-describe('GET /api/contractor/dashboard/', () => {
+describe(`GET ${CONTRACTOR_DASHBOARD_ROUTE}`, () => {
     it('should return the dashboard information for the contractor', async () => {
         let res;
         // Sign in.
@@ -51,7 +53,7 @@ describe('GET /api/contractor/dashboard/', () => {
         const token = res.body.token;
         const authorization = getAuthorizationHeaderValue(token);
 
-        res = await request(app).get('/api/contractor/dashboard/')
+        res = await request(app).get(CONTRACTOR_DASHBOARD_ROUTE)
             .set({ Authorization: authorization });
 
         expect(res.statusCode).to.equal(200);
@@ -64,7 +66,7 @@ describe('GET /api/contractor/dashboard/', () => {
 /**
  * Tests successful get of a contractor profile.
  */
-describe('GET /api/contractor/profile/', () => {
+describe(`GET ${CONTRACTOR_PROFILE_ROUTE}`, () => {
     it('should return the profile information for the contractor', async () => {
         let res;
         // Sign in.
@@ -81,7 +83,9 @@ describe('GET /api/contractor/profile/', () => {
         const zipCode = '92093';
         const websiteUrl = 'Some website URL';
         const contractorServices = [services.PLUMBING, services.REMODELING, services.PEST_CONTROL]
-        res = await request(app).patch('/api/contractor/profile/')
+
+        // Patch to endpoint
+        res = await request(app).patch(CONTRACTOR_PROFILE_ROUTE)
             .set({ Authorization: authorization })
             .send({
                 description: description,
@@ -95,7 +99,7 @@ describe('GET /api/contractor/profile/', () => {
         expect(res.statusCode).to.equal(200);
 
         // Get the contractor profile information
-        res = await request(app).get('/api/contractor/profile/')
+        res = await request(app).get(CONTRACTOR_PROFILE_ROUTE)
             .set({ Authorization: authorization });
 
         expect(res.statusCode).to.equal(200);
@@ -117,7 +121,7 @@ describe('GET /api/contractor/profile/', () => {
 /**
  * Tests successful updating of a contractor profile.
  */
-describe('PATCH /api/contractor/profile/', () => {
+describe(`PATCH ${CONTRACTOR_PROFILE_ROUTE}`, () => {
     it('should update the profile for the contractor', async () => {
         let res;
         // Sign in.
@@ -133,7 +137,7 @@ describe('PATCH /api/contractor/profile/', () => {
         const description = 'This is a contractor description';
 
         // The response should contain the updated contractor.
-        res = await request(app).patch('/api/contractor/profile/')
+        res = await request(app).patch(CONTRACTOR_PROFILE_ROUTE)
             .set({ Authorization: authorization })
             .send({
                 description: description,
@@ -153,7 +157,7 @@ describe('PATCH /api/contractor/profile/', () => {
 /**
  * Tests a homeowner being able to view contractor listings.
  */
-describe('GET /api/homeowner/contractors/', () => {
+describe(`GET ${ALL_CONTRACTOR_PROFILES_ROUTE}`, () => {
     it('should return all contractors for the homeowner to inspect.', async () => {
         let res;
 
@@ -172,7 +176,7 @@ describe('GET /api/homeowner/contractors/', () => {
         const authorization = getAuthorizationHeaderValue(token);
 
         // Homeowner attempts to view contractors
-        res = await request(app).get('/api/homeowner/contractors')
+        res = await request(app).get(ALL_CONTRACTOR_PROFILES_ROUTE)
             .set({ Authorization: authorization });
         expect(res.statusCode).to.equal(200);
         const contractors = res.body;
