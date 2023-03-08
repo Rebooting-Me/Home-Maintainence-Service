@@ -3,19 +3,22 @@
  * for a homeowner to get their specific listings.
  */
 const express = require('express');
-const { getListing, homeownerViewListing, getContractorProfiles } = require('../controllers/getListingController');
+const { homeownerViewListing, getContractorProfiles } = require('../controllers/homeownerController');
 const { authorizeHomeowner } = require('../middleware/requireAuthorization');
 const router = express.Router();
 
 const requireAuth = require('../middleware/requireAuth');
 
-//require authentication
+// require authentication
 router.use(requireAuth);
 
-router.get('/listings/:listing_id', getListing);
+// require authorization
+router.use(authorizeHomeowner)
 
-router.post('/listings', authorizeHomeowner, homeownerViewListing);
+// View a specific homeowner's listings
+router.post('/listings', homeownerViewListing);
 
-router.get('/contractors', authorizeHomeowner, getContractorProfiles);
+// View all contractor profiles
+router.get('/contractors', getContractorProfiles);
 
 module.exports = router;

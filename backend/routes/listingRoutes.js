@@ -19,7 +19,7 @@ router.use(authorizeHomeowner);
 // Create a new listing
 router.post('/newListing', createListing);
 
-// Edit an existing new listing
+// Edit an existing listing
 router.patch('/listings/:listing_id', updateListing);
 
 // Delete an existing listing

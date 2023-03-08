@@ -5,8 +5,8 @@ const { urlencoded } = require('body-parser');
 const bodyParser = require('body-parser');
 const express = require('express');
 const userRoutes = require('./routes/user');
-const contractorRoutes = require('./routes/contractor');
-const getListings = require('./routes/getListing');
+const contractorRoutes = require('./routes/contractorRoutes');
+const homeownerRoutes = require('./routes/homeownerRoutes');
 const listingRoutes = require('./routes/listingRoutes');
 const sendServices = require('./routes/getServices');
 const otherRoutes = require('./routes/otherRoutes');
@@ -22,11 +22,12 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/api/user', userRoutes);
-app.use('/api/user', getListings); //fetches stand-alone listing irrespective of userType
+app.use('/api/user', listingRoutes); // fetches stand-alone listing irrespective of userType
 
-app.use("/api/contractor", contractorRoutes);
+app.use('/api/contractor', contractorRoutes);
+app.use('/api/contractor', listingRoutes); // needed to fetch stand-alone listing 
 
-app.use('/api/homeowner', getListings);
+app.use('/api/homeowner', homeownerRoutes);
 app.use('/api/homeowner', listingRoutes);
 
 app.use('/api/services', sendServices);
