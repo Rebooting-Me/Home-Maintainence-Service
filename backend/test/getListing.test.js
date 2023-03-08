@@ -93,14 +93,18 @@ describe('Homeowners create and query for listings; then contractor queries for 
         const expectedListingJson = { ...homeownerListingJson };
         const receivedListingJson = res.body;
         delete receivedListingJson['listing_id'];
-        expect(res.body).to.eql(expectedListingJson);
+        expect(receivedListingJson).to.eql(expectedListingJson);
 
         res = await request(app).post('/api/homeowner/newListing')
             .set({ Authorization: authorization1 })
             .send(homeownerListingJson2);
         expect(res.statusCode).to.equal(201);
+
+        // We don't have the listing id, so delete it from the response JSON.
+        const receivedListingJson2 = res.body;
+        delete receivedListingJson2['listing_id'];
         const expectedListingJson2 = { ...homeownerListingJson2 };
-        expect(res.body).to.eql(expectedListingJson2);
+        expect(receivedListingJson2).to.eql(expectedListingJson2);
 
         // Create the second homeowner's data.
         // Sign in.
@@ -115,8 +119,12 @@ describe('Homeowners create and query for listings; then contractor queries for 
             .set({ Authorization: authorization2 })
             .send(secondHomeownerListingJson);
         expect(res.statusCode).to.equal(201);
+
+        // We don't have the listing id, so delete it from the response JSON.
         const expectedSecondHomeownerListingJson = { ...secondHomeownerListingJson };
-        expect(res.body).to.eql(expectedSecondHomeownerListingJson);
+        const secondHomeownerReceivedListingJson = res.body;
+        delete secondHomeownerReceivedListingJson['listing_id'];
+        expect(secondHomeownerReceivedListingJson).to.eql(expectedSecondHomeownerListingJson);
 
         // Check that only a homeowner's listings are returned for that homeowner
         res = await request(app).post('/api/homeowner/listings').set({ Authorization: authorization1 });
@@ -130,6 +138,7 @@ describe('Homeowners create and query for listings; then contractor queries for 
         for (const listingObject of firstHomeownerListings) {
             delete listingObject['__v'];
             delete listingObject['_id'];
+            delete listingObject['listing_id'];
         }
         expect(firstHomeownerListings).eql([expectedListingJson, expectedListingJson2]);
 
@@ -138,6 +147,7 @@ describe('Homeowners create and query for listings; then contractor queries for 
         for (const listingObject of secondHomeownerListings) {
             delete listingObject['__v'];
             delete listingObject['_id'];
+            delete listingObject['listing_id'];
         }
         expect(secondHomeownerListings).eql([expectedSecondHomeownerListingJson]);
 
