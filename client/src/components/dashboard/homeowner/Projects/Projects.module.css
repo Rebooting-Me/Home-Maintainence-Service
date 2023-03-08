@@ -10,7 +10,7 @@
 .projectsTop {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     height: 6%;
     width: 100%;
 }
@@ -22,7 +22,6 @@
     justify-content: flex-end;
     align-items: center;
     border-radius: 5px;
-    background-color: #E7EAEE;
 }
 
 .projectsSearch input {
@@ -60,7 +59,7 @@
 
 .newProject {
     padding-left: 3%;
-    width: 20%;
+    width: 25%;
     height: 100%;
 }
 

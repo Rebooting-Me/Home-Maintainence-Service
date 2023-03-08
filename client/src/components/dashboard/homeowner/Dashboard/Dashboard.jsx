@@ -13,7 +13,7 @@ const Dashboard = () => {
     const getTab = () => {
         switch (activeTab) {
             case 'sidebar-your-projects':
-                return <Projects />
+                return <Projects />;
         }
     }
     

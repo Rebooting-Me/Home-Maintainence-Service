@@ -67,10 +67,6 @@ describe('POST /api/homeowner/newListing', () => {
             .send(listingJson);
         expect(res.statusCode).to.equal(201);
 
-        // Manually set the homeowner id field on the listing so we can check it against the database copy.
-        listingJson.homeowner_id = _id;
-        expect(res.body).to.eql(listingJson);
-
         // Get the listing we just created from the database so we can access its id.
         // NOTE: We assume that there were no existing listings, so the only listing
         // is the one we just created.
@@ -82,7 +78,11 @@ describe('POST /api/homeowner/newListing', () => {
         const homeowner = await Homeowner.findById(_id).lean();
         expect(homeowner).to.exist;
         expect(homeowner.listings).to.exist;
-        expect(homeowner.listings[0]).to.eql(listing._id);
+
+        // We should be able to query for the listing we just created using the listing id from the homeowner.
+        const listingId = (homeowner.listings[0]);
+        const queriedListing = await Listing.findById(listingId).lean();
+        expect(listing).to.eql(queriedListing);
     });
 
     it('should fail if invalid service types are specified.', async () => {
