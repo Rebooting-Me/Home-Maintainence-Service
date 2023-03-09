@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useAuthContext } from '../../hooks/useAuthContext';
+import { useAuthContext } from '../../../../hooks/useAuthContext';
 import styles from './Listings.module.css';
 // import imageUrl from './image.svg';
 import Filter from './Filter.svg'
@@ -9,19 +9,16 @@ const Listings = (props) => {
   const [listings, setListings] = useState([]);
   const { user } = useAuthContext();
   const [filter, setFilter] = useState({});
-  const {setCurrentProjectId} = props;
+  const {setCurrentContractorId} = props;
 
-  const handleProjectClick = (projectId) => {
-    setCurrentProjectId(projectId);
-    console.log(projectId)
+  const handleContractorClick = (contractorId) => {
+    setCurrentContractorId(contractorId);
+    // console.log(contractorId)
   };
 
   useEffect(() => {
     // console.log('filter:', filter);
-    let url = '/api/contractor/listings';
-    if (user.userType === 'Homeowner') {
-      url = `/api/homeowner/listings/`;
-    }
+    let url = `/api/homeowner/contractors/`;
 
     // console.log(filter);
 
@@ -41,16 +38,16 @@ const Listings = (props) => {
   return (
     <div>
       <ListingFilters setFilter={setFilter} />
-      {listings.map(listing => (
+      {listings.map((listing, index ) => (
         <ListingCard
-          key={listing._id}
-          title={listing.title}
+          key={index}
+          title={listing.profile_name}
           description={listing.description}
           services={listing.services}
           city={listing.city}
           state={listing.state}
           id={listing._id}
-          onClick={handleProjectClick} // Pass the handleProjectClick function as a prop
+          onClick={handleContractorClick} // Pass the handleProjectClick function as a prop
         />
       ))}
     </div>
@@ -118,7 +115,7 @@ const ListingCard = ({ id , title, description, services, city , state, onClick 
                 <h1>{title}</h1>
                 <ul>
                     {services.map(service => (
-                        <li key={service}><ServiceIcon service={service} />{service.replace('_', ' ')}</li>
+                        <li key={service}><ServiceIcon service={service} />{service.replace('_',' ')}</li>
                     ))}
                 </ul>
                 <p>{description} <span>... more</span></p>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from './Sidebar.module.css';
 import Contractor from '../../../../assets/contractor-tools.svg';
-import Settings from '../../../../assets/setting.svg';
+// import Settings from '../../../../assets/setting.svg';
 import List from '../../../../assets/list.svg';
 
 const Sidebar = (props) => {
@@ -48,10 +48,10 @@ const Sidebar = (props) => {
                             <img src={Contractor} />
                             <a>Contractors</a>
                         </button>
-                        <button id='sidebar-settings' className={`${styles.nav}`}onClick={(e) => handleClick('sidebar-settings', e)}>
+                        {/* <button id='sidebar-settings' className={`${styles.nav}`}onClick={(e) => handleClick('sidebar-settings', e)}>
                             <img src={Settings} />
                             <a>Settings</a>
-                        </button>
+                        </button> */}
                 </div>
             </div>
         </nav>
