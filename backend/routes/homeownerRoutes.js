@@ -19,6 +19,6 @@ router.use(authorizeHomeowner)
 router.post('/listings', homeownerViewListing);
 
 // View all contractor profiles
-router.get('/contractors', getContractorProfiles);
+router.post('/contractors', getContractorProfiles);
 
 module.exports = router;

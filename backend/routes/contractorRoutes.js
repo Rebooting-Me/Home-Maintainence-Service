@@ -25,6 +25,6 @@ router.post('/listings', viewMultipleListings);
 // Allows updating the contractor's information 
 router.patch('/profile', updateContractorProfile);
 // Get contractor dashboard info
-router.post('/dashboard', getContractorDashboard);
+router.get('/dashboard', getContractorDashboard);
 
 module.exports = router;
