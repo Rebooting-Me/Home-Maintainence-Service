@@ -39,6 +39,7 @@ const Projects = () => {
                 { projectFormOn && isHomeowner(user) && (
                     <NewProjectForm 
                         showForm={setProjectFormOn}
+                        currentProjectId={currentProjectId}
                         setCurrentProjectId={setCurrentProjectId}
                         projectFormValues={projectFormValues}
                         setProjectFormValues={setProjectFormValues} />

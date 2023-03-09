@@ -3,10 +3,12 @@ import styles from './StandaloneListingView.module.css'
 import { useGetProjectDetails } from '../../hooks/useGetProjectDetails'
 import { projectHolder } from '../../constants/projectHolder'
 import { useAuthContext } from '../../hooks/useAuthContext'
+import { useCreateProject } from '../../hooks/useCreateProject'
 
 const StandaloneListingView = (props) => {
     const { projectId, setCurrentProjectId, prepopulateForm, showForm } = props
     const { getProjectDetails, isLoading, error } = useGetProjectDetails();
+    const { deleteProject } = useCreateProject();
     const [project, setProject] = useState({});
     const { user } = useAuthContext();
 
@@ -21,6 +23,11 @@ const StandaloneListingView = (props) => {
     const editForm = () => {
         prepopulateForm(project);
         showForm(true);
+    }
+
+    const deleteProjectButton = async () => {
+        await deleteProject(projectId);
+        setCurrentProjectId(null);
     }
 
   return (
@@ -52,6 +59,7 @@ const StandaloneListingView = (props) => {
             { user.userType=="Homeowner" && 
                 (<div className={styles.editButtonWrapper}>
                     <button onClick={editForm}>Edit</button>
+                    <button onClick={deleteProjectButton}>Delete</button>
                 </div>)
             }
             <div className={styles.projectContentWrapper}>
@@ -63,10 +71,12 @@ const StandaloneListingView = (props) => {
                     <div className={styles.projectServiceCards}>
                     {(project?.services? ((project.services?.map((service)=>{
                         const imgsvg = require(`../../assets/${service}.svg`);
+                        const serviceString = service.replace("_", " ");
+                        const decoratedServiceString = serviceString.charAt(0).toUpperCase() + serviceString.slice(1);
                         return (
                             <div key={service} className={styles.service}>
                                 <img src={imgsvg} alt=''/>
-                                <p>{service}</p>
+                                <p>{decoratedServiceString}</p>
                             </div>
                         );
                     }))) : (projectHolder.services.map((service)=>{

@@ -10,10 +10,10 @@ const ServicesButtonGroup = (props) => {
     //selected service from this button group
     const { getServices, isLoading, error } = useServices();
     const [state, setState] = useState({});
-    
 
     const buttonPressed = (service) => {
         const id = service + BUTTON_ID;
+        console.log("state", state);
         const element = document.getElementById(id);
         const services = [...selectedServices];
 
@@ -21,7 +21,8 @@ const ServicesButtonGroup = (props) => {
             element.classList.add("clicked");
             element.style.opacity = "100%";
             element.style.border = "1.5px solid #F93059";
-            services.push(service);
+            if(!services.includes(service))
+                services.push(service);
             
         } else {
             element.classList.remove("clicked");
@@ -44,6 +45,7 @@ const ServicesButtonGroup = (props) => {
                 ...state, 
                 "services": services
             });
+            populateSelectedServices();
         }
         fetchServices();
     }, []);
@@ -52,6 +54,17 @@ const ServicesButtonGroup = (props) => {
         e.preventDefault();
         const newServiceArray = buttonPressed(newService);
         setServices("services", newServiceArray);
+    }
+
+    const addSelectedService = (service) => {
+        const newServiceArray = buttonPressed(service);
+        setServices("services", newServiceArray);
+    }
+
+    const populateSelectedServices = () => {
+        selectedServices.forEach((service) => {
+            addSelectedService(service);
+        })
     }
     
     return (

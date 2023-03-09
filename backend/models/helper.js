@@ -3,7 +3,6 @@ const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
 const Listing = require('../models/listingModel');
 const validator = require('validator');
-const contractorModel = require('../models/contractorModel');
 
 async function login(user) {
     const { email, password } = user;
@@ -84,7 +83,7 @@ async function getUserData(queryObj) {
  * @returns the contractor JSON with the given id
  */
 async function getContractorData(contractorId) {
-    const contractor = await contractorModel.findById(contractorId).lean().select('-password');
+    const contractor = await Contractor.findById(contractorId).lean().select('-password');
     return contractor;
 }
 
@@ -100,7 +99,7 @@ async function updateContractorData(contractor_id, updateQuery) {
         new: true,
         lean: true,
     }
-    const contractor = await contractorModel.findByIdAndUpdate(contractor_id,
+    const contractor = await Contractor.findByIdAndUpdate(contractor_id,
         updateQuery, options).select('-password');
 
     return contractor;
@@ -133,4 +132,44 @@ async function createProjectListing(listing, ownerId) {
     };
 }
 
-module.exports = { login, signup, exists, storeUser, getUserData, getContractorData, updateContractorData, createProjectListing }
+/**
+ * Updates and returns the listing with the given listingId
+ * @param {*} listingId the id of the listing to update 
+ * @param {*} updateQuery a JSON object indicating which fields to update
+ * @returns the updated listing JSON
+ */
+async function updateProjectListing(listingId, updateQuery) {
+    const options = {
+        new: true,
+        lean: true,
+    }
+    const listing = await Listing.findByIdAndUpdate(listingId,
+        updateQuery, options);
+    return listing;
+}
+
+/**
+ * Deletes the listing with the given listingId from the Listing database, and also
+ * deletes the listing id reference from the Homeowner who owns the listing.
+ * @param {*} listingId the id of the listing to update 
+ * @param {*} homeownerId the id of the homeowner who owns the listing
+ * @returns the deleted listing JSON
+ */
+async function deleteProjectListing(listingId, homeownerId) {
+    // Delete the listing
+    const listing = await Listing.findByIdAndDelete(listingId).lean();
+
+    // Remove the reference the homeowner has to the listing
+    const homeowner = await Homeowner.findById(homeownerId);
+    const listingsWithDeletion = homeowner.listings.filter(listId => listId !== listingId);
+    // Update the homeowner object
+    await Homeowner.findByIdAndUpdate(homeownerId, { listings: listingsWithDeletion });
+
+    // Return the deleted listing
+    return listing;
+}
+
+module.exports = {
+    login, signup, exists, storeUser, getUserData, getContractorData, updateContractorData,
+    createProjectListing, updateProjectListing, deleteProjectListing
+}

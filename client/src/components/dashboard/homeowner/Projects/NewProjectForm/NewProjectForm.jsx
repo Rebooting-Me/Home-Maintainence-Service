@@ -5,7 +5,7 @@ import styles from './NewProjectForm.module.css';
 
 
 const NewProjectForm = (props) => {
-    const { showForm, setCurrentProjectId, projectFormValues, setProjectFormValues } = props;
+    const { showForm, currentProjectId, setCurrentProjectId, projectFormValues, setProjectFormValues } = props;
     const [state, setState] = useState({
         title: projectFormValues.title || "" ,
         description: projectFormValues.description || "",
@@ -14,7 +14,7 @@ const NewProjectForm = (props) => {
         zip_code: projectFormValues.zip_code || "",
         services: projectFormValues.services || []
     });
-    const { createProject, isLoading, error } = useCreateProject();
+    const { createProject, editProject, isLoading, error } = useCreateProject();
 
     const storeListing = async (e) => {
         e.preventDefault();
@@ -30,10 +30,11 @@ const NewProjectForm = (props) => {
     const updateListing = async (e) => {
         e.preventDefault();
         //updatelisting
+        const updatedProject = await editProject(state, currentProjectId);
         if(!error) {
             showForm(false);
         }
-        //setCurrentProjectId(newProject.listing_id);
+        setCurrentProjectId(updatedProject._id);
     }
 
     const setFieldInState = (field, value) => {

@@ -107,9 +107,16 @@ const ListingCard = ({ id , title, description, services, city , state, onClick 
                 </div>
                 <h1>{title}</h1>
                 <ul>
-                    {services.map(service => (
-                        <li key={service}><ServiceIcon service={service} />{service.charAt(0).toUpperCase() + service.slice(1)}</li>
-                    ))}
+                    {services.map(service => 
+                      //const serviceString = service.replace("_", " ");
+                      //const decoratedServiceString = serviceString.charAt(0).toUpperCase() + serviceString.slice(1);
+                      (
+                        <li key={service}>
+                          <ServiceIcon service={service} />
+                          {service.replace("_", " ").charAt(0).toUpperCase() + service.replace("_", " ").slice(1)}
+                        </li>
+                      )
+                    )}
                 </ul>
                 <p>{description} <span>... more</span></p>
             </div>

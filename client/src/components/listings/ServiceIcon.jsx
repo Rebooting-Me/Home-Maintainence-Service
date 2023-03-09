@@ -9,6 +9,7 @@ import styles from './Listings.module.css';
 // Add more imports for all the service icons here
 
 const ServiceIcon = ({ service }) => {
+  console.log("SERVICE" ,service);
   let icon = null;
 
   switch (service) {
@@ -24,7 +25,7 @@ const ServiceIcon = ({ service }) => {
     case 'roofing':
       icon = roofing;
       break;
-    case 'pest':
+    case 'pest_control':
       icon = pest;
       break;
     case 'remodeling':

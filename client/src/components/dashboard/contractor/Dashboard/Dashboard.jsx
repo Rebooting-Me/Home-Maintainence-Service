@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { useAuthContext } from '../../../../hooks/useAuthContext';
 import Profile from "../Profile/Profile";
-import Listings from "../../../listings/Listings";
 import styles from './Dashboard.module.css';
 import Projects from "../../homeowner/Projects/Projects";
 
