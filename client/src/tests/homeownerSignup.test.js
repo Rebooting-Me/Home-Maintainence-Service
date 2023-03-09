@@ -5,20 +5,19 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom'
-
-const createToken = (_id) => {
-    return _id;
-}
-const HOMEOWNER_USER_TYPE = 'HOMEOWNER';
-
-
 import App from '../App';
 import { AuthContextProvider } from '../context/AuthContext';
 
 import {
+    HOMEOWNER_USER_TYPE,
     signupNameInputTestId, signupEmailInputTestId, signupPasswordInputTestId,
     signupCheckboxTestId, signupHomeownerButtonTestId
 } from '../constants/testingConstants'
+
+const homeownerName = 'Homeowner name';
+const homeownerEmail = 'HomeownerEmail@email.com';
+const homeownerPassword = 'HomeownerPassword15!';
+const homeownerToken = 'homeownerToken';
 
 describe('Attempting to sign up as a homeowner', function () {
 
@@ -33,9 +32,9 @@ describe('Attempting to sign up as a homeowner', function () {
             resolve({
                 ok: true, status: 200, json: () => {
                     return Promise.resolve({
-                        name: 'User name',
+                        name: homeownerName,
                         userType: HOMEOWNER_USER_TYPE,
-                        token: createToken('dummy_token_id')
+                        token: homeownerToken
                     });
                 }
             });
@@ -68,20 +67,17 @@ describe('Attempting to sign up as a homeowner', function () {
         expect(screen.getByTestId(signupHomeownerButtonTestId)).toBeDisabled();
 
         // Fill in the sign-up form fields
-        const name = 'User name';
-        const email = 'useremail@email.com'
-        const password = 'passwordForUser135!';
         const nameInput = screen.getByTestId(signupNameInputTestId);
         const emailInput = screen.getByTestId(signupEmailInputTestId);
         const passwordInput = screen.getByTestId(signupPasswordInputTestId);
-        await user.type(nameInput, name);
-        await user.type(emailInput, email);
-        await user.type(passwordInput, password);
+        await user.type(nameInput, homeownerName);
+        await user.type(emailInput, homeownerEmail);
+        await user.type(passwordInput, homeownerPassword);
 
         // Check that the form was filled out
-        expect(screen.getByTestId(signupNameInputTestId)).toHaveValue(name);
-        expect(screen.getByTestId(signupEmailInputTestId)).toHaveValue(email);
-        expect(screen.getByTestId(signupPasswordInputTestId)).toHaveValue(password);
+        expect(screen.getByTestId(signupNameInputTestId)).toHaveValue(homeownerName);
+        expect(screen.getByTestId(signupEmailInputTestId)).toHaveValue(homeownerEmail);
+        expect(screen.getByTestId(signupPasswordInputTestId)).toHaveValue(homeownerPassword);
 
         // Mark the checkbox
         const checkbox = screen.getByTestId(signupCheckboxTestId);

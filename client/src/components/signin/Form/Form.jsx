@@ -4,6 +4,9 @@ import { Outlet, Link } from 'react-router-dom';
 import { useSignin } from '../../../hooks/useSignin';
 
 import Signin from '../../../assets/signin.svg';
+import {
+  signinEmailInputTestId, signinPasswordInputTestId, signinButtonTestId
+} from '../../../constants/testingConstants'
 
 const Form = () => {
   const [email, setEmail] = useState('');
@@ -36,6 +39,7 @@ const Form = () => {
               value={email}
               className={styles.input}
               type="email"
+              data-testid={signinEmailInputTestId}
             />
             <label htmlFor="password-input" className={styles.inputLabel}>Password</label>
             <input
@@ -44,12 +48,14 @@ const Form = () => {
               value={password}
               className={styles.input}
               type="password"
+              data-testid={signinPasswordInputTestId}
             />
             <div className={`${styles.buttonWrapper} center`}>
               <button
                 disabled={isLoading}
                 className={styles.btn}
                 type="submit"
+                data-testid={signinButtonTestId}
               >
                 <p>Sign In</p>
               </button>

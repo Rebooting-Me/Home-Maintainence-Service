@@ -4,18 +4,18 @@
 import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom'
-import Dashboard from '../components/dashboard/homeowner/Dashboard/Dashboard';
+import Dashboard from '../components/dashboard/contractor/Dashboard/Dashboard';
 import { AuthContextProvider } from '../context/AuthContext';
 import {
-    HOMEOWNER_USER_TYPE,
+    CONTRACTOR_USER_TYPE,
 } from '../constants/testingConstants'
 
-const homeownerUser = {
-    name: 'Homeowner Name',
-    userType: HOMEOWNER_USER_TYPE
+const contractorUser = {
+    name: 'Contractor Name',
+    userType: CONTRACTOR_USER_TYPE
 }
 
-describe('The dashboard page for a homeowner', function () {
+describe('The dashboard page for a contractor', function () {
 
     let originalFetch;
 
@@ -43,9 +43,9 @@ describe('The dashboard page for a homeowner', function () {
     })
 
 
-    it('should contain "Your Projects" and "Contractors" in the page.', async function () {
+    it('should contain "Your Profile" and "Homeowner Projects" in the page.', async function () {
         const testingState = {
-            user: homeownerUser
+            user: contractorUser
         };
 
         // We need an await/act to make sure rendering occurs as it would in a browser.
@@ -57,8 +57,8 @@ describe('The dashboard page for a homeowner', function () {
             );
 
         })
-        expect(screen.getByText('Your Projects')).toBeInTheDocument();
-        expect(screen.getByText('Contractors')).toBeInTheDocument();
+        expect(screen.getByText('Your Profile')).toBeInTheDocument();
+        expect(screen.getByText('Homeowner Projects')).toBeInTheDocument();
     });
 });
 
