@@ -6,7 +6,6 @@ import Filter from './Filter.svg'
 import ServiceIcon from './ServiceIcon';
 
 const Listings = (props) => {
-const Listings = (props) => {
   const [listings, setListings] = useState([]);
   const { user } = useAuthContext();
   const [filter, setFilter] = useState({});
@@ -17,9 +16,9 @@ const Listings = (props) => {
   };
 
   useEffect(() => {
-    let url = '/api/contractor/listings';
+    let url = 'api/contractor/listings';
     if (user.userType === 'Homeowner') {
-      url = `/api/homeowner/listings/`;
+      url = `api/homeowner/listings/`;
     }
 
     fetch(url, {
@@ -101,9 +100,9 @@ const ListingCard = ({ id , title, description, services, city , state, onClick 
   return (
     <a className={`${styles.container}`} onClick = { () => {onClick(id)} }>
         <div className={`${styles.listingCard}`}>
-            <div className={`${styles.listingImageWrapper}`}>
+            {/* <div className={`${styles.listingImageWrapper}`}>
                 <img src={imageUrl} alt={title} className={styles.listingImage} />
-            </div>
+            </div> */}
             <div className={`${styles.listingDetails}`}>
                 <div className={`${styles.location}`}>
                   {city}, {state}
