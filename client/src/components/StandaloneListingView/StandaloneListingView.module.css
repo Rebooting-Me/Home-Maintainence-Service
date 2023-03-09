@@ -404,3 +404,78 @@
 .cancel{
     background: #858585;
 }
+
+.modalOverlay {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    overflow: hidden;
+    z-index: 99998;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modalWrapper {
+    height: 200px;
+    width: 450px;
+    position: absolute;
+    z-index: 99999;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+    transform: translate(-50%, -50%);
+  }
+  
+  .modalHeader {
+    justify-self: flex-start;
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+    height: 25%;
+    background-color: #F93059;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    color: white;
+    font-family: 'Inter';
+  }
+  .modalHeader h3 {
+  }
+
+  .modalHeader button {
+    background-color: #F93059;
+    color: white;
+    font-size: 20px;
+  }
+  .modalHeader button:hover {
+    font-size: 22px;
+  }
+
+  .modalBody {
+    padding: 20px 20px;
+    background-color: #E7EAEE;
+    width: inherit;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .modalButtonWrapper {
+    align-self: flex-end;
+  }
+
+  .modalButtonWrapper button {
+    width: 100px;
+    margin-left: 10px;
+  }
+
+  .modalButtonWrapper button:hover {
+    box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.2);
+  }

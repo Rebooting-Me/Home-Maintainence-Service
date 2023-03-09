@@ -10,6 +10,7 @@ const StandaloneListingView = (props) => {
     const { getProjectDetails, isLoading } = useGetProjectDetails();
     const { deleteProject } = useCreateProject();
     const [project, setProject] = useState({});
+    const [deleteModalShow, setDeleteModalShow] = useState(false);
     const { user } = useAuthContext();
 
     useEffect(() => {
@@ -25,9 +26,13 @@ const StandaloneListingView = (props) => {
         showForm(true);
     }
 
-    const deleteProjectButton = async () => {
+    const deleteProjectHandle = async () => {
         await deleteProject(projectId);
         setCurrentProjectId(null);
+    }
+
+    const toggleModal = () => {
+        setDeleteModalShow(!deleteModalShow);
     }
 
   return (
@@ -59,7 +64,7 @@ const StandaloneListingView = (props) => {
             { user.userType=="Homeowner" && 
                 (<div className={styles.editButtonWrapper}>
                     <button onClick={editForm}>Edit</button>
-                    <button onClick={deleteProjectButton}>Delete</button>
+                    <button onClick={toggleModal}>Delete</button>
                 </div>)
             }
             <div className={styles.projectContentWrapper}>
@@ -100,10 +105,35 @@ const StandaloneListingView = (props) => {
                     <p>{project?.description? (project.description) : (projectHolder.description)}</p>
                 </div>
             </div>
+            <Modal onClose={toggleModal} show={deleteModalShow} handleDelete={deleteProjectHandle}/>
         </div>
         )}
     </div>
   )
 }
 
+const Modal = (props) => {
+    //if show is set to false, don't render
+    if (!props.show) {
+        return null;
+    }
+    return (
+        <div className={styles.modalOverlay}>
+            <div className={styles.modalWrapper}>
+                <div className={styles.modalHeader}>
+                    <h3>Delete Project?</h3>
+                    <button onClick={props.onClose}>x</button>
+                </div>
+                <div className={styles.modalBody}>
+                    <p>Are you sure you want to delete this project?</p>
+                    <div className={styles.modalButtonWrapper}>
+                        <button onClick={props.onClose}>Cancel</button>
+                        <button onClick={props.handleDelete}>Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+ 
 export default StandaloneListingView;
