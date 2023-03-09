@@ -31,9 +31,9 @@ const ProfileView = (props) => {
         (
         <div>
             <div className={styles.profileHeaderWrapper}>
-            <div className={styles.profileImageWrapper}>
+            {/* <div className={styles.profileImageWrapper}>
                 <img src={profile?.profile_image?(require(`${profile.profile_image}`)):(require(`../../../../assets/contractor/${profileHolder.profile_image}`))} alt=''/>
-            </div>
+            </div> */}
             <div className={styles.profileInfo}>
                     <div className={styles.profileName}>
                         <h2>{profile?.profile_name?(profile.profile_name):(profileHolder.profile_name)}</h2>

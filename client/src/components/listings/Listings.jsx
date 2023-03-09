@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import styles from './Listings.module.css';
-import imageUrl from './image.svg';
+// import imageUrl from './image.svg';
 import Filter from './Filter.svg'
 import ServiceIcon from './ServiceIcon';
 
+const Listings = (props) => {
 const Listings = (props) => {
   const [listings, setListings] = useState([]);
   const { user } = useAuthContext();
@@ -79,6 +80,8 @@ const ListingFilters = ({ setFilter }) => {
     if (services) {
       filter.services = services.split(',').map(service => service.trim());
     }
+
+    // console.log(filter);
 
     setFilter(filter);
   };

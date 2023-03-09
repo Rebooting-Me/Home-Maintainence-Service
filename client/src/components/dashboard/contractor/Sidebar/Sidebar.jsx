@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from './Sidebar.module.css';
-import Settings from '../../../../assets/setting.svg';
+// import Settings from '../../../../assets/setting.svg';
 import List from '../../../../assets/list.svg';
 import Profile from '../../../../assets/profile.svg';
-import Bids from '../../../../assets/bids.svg';
-import Reviews from '../../../../assets/reviews.svg';
+// import Bids from '../../../../assets/bids.svg';
+// import Reviews from '../../../../assets/reviews.svg';
 
 
 const Sidebar = (props) => {
@@ -51,7 +51,7 @@ const Sidebar = (props) => {
                         <img src={List} className={`${styles.menuItemImage}`}/>
                         <a>Homeowner Projects</a>
                     </button>
-                    <button id='sidebar-contractor-your-bids' className={`${styles.nav}`} onClick={(e) => handleClick('sidebar-contractor-your-bids', e)}>
+                    {/* <button id='sidebar-contractor-your-bids' className={`${styles.nav}`} onClick={(e) => handleClick('sidebar-contractor-your-bids', e)}>
                         <img src={Bids} className={`${styles.menuItemImage}`}/>
                         <a>Your Bids</a>
                     </button>
@@ -62,7 +62,7 @@ const Sidebar = (props) => {
                     <button id='sidebar-contractor-settings' className={`${styles.nav}`} onClick={(e) => handleClick('sidebar-contractor-settings', e)}>
                         <img src={Settings} className={`${styles.menuItemImage}`}/>
                         <a>Settings</a>
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </nav>
