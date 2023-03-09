@@ -43,6 +43,7 @@ button {
   cursor: pointer;
   font-weight: 400;
   font-size: 22px;
+  font-family: 'Inter';
   background-color: #e7eaee;
 }
 
@@ -53,6 +54,7 @@ button:hover {
 .nav {
   font-weight: 400;
   font-size: 22px;
+  font-family: 'Inter';
   margin: 0 15px;
   color: #000000;
   cursor: pointer;

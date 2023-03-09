@@ -37,6 +37,7 @@
   margin: 4vh 0 2vh 0;
   font-weight: 700;
   font-size: 52px;
+  font-family: 'Inter';
   line-height: 63px;
   display: flex;
   align-items: center;
@@ -72,6 +73,7 @@
   line-height: 27px;
   display: flex;
   align-items: center;
+  font-family: 'Inter';
 
   color: #f93059;
 }
@@ -86,6 +88,7 @@
 
   font-weight: 400;
   font-size: 1.2rem;
+  font-family: 'Inter';
   line-height: 29px;
   align-items: center;
   color: rgba(0, 0, 0, 0.5);
@@ -123,6 +126,7 @@
   font-weight: 600;
   margin-right: 5%;
   font-size: 24px;
+  font-family: 'Inter';
   line-height: 29px;
   display: flex;
   align-items: center;
@@ -141,6 +145,7 @@
   width: 90%;
   font-weight: 400;
   font-size: 14px;
+  font-family: 'Inter';
   line-height: 17px;
   display: flexbox;
   align-items: center;
@@ -162,5 +167,6 @@
   align-content: flex-start;
   font-weight: 400;
   font-size: 16px;
+  font-family: 'Inter';
   color: red;
 }

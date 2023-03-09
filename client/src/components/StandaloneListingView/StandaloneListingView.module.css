@@ -1,11 +1,33 @@
-.profileWrapper{
+.projectWrapper{
     height: 100%;
     width: 100%;
+}
+
+.projectInnerWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.goBackButton {
+    border: none;
+    background-color: transparent;
+    justify-self: left ;
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-family: 'Inter';
+    color: #F93059;
+}
+
+.goBackButton:hover {
+    font-size: 22px;
+    font-family: 'Inter';
 }
 
 .isLoading{
     font-weight: 500;
     font-size: 40px;
+    font-family: 'Inter';
     line-height: 34px;
     position: relative;
     color: #858585;
@@ -13,53 +35,52 @@
     margin: auto;
     width: 100%;
     height: 100%;
-    font-family: 'Inter';
 }
 
-.profileHeaderWrapper{
+.projectHeaderWrapper{
     height: 25vh;
     width: 100%;
     display: flex;
     flex-flow: row;
 }
 
-.profileImageWrapper{
-    position: relative;
-    width: 20%;
+.projectImageWrapper{
+    width: 30%;
     height: 0;
-    margin-bottom: 20%;
+    
 }
 
-.profileImageWrapper img{
+.projectImageWrapper img{
     width: 90%;
 }
 
-.profileInfo{
+.projectInfo{
     height: 100%;
     width: 100%;
 }
 
-.profileName{    
+.projectName{    
     font-weight: 400;
     font-size: 36px;
+    font-family: 'Inter';
     line-height: 58px;
     display: flex;
     align-items: center;
     margin-bottom: 1.5%;
-    font-family: 'Inter';
 }
 
-.profileAddress{
+.projectAddress{
     display: flex;
     flex-direction: row;
     margin-bottom: 1.5%;
 }
 
-.profileAddress p{
+.projectAddress p{
     font-weight: 400;
     font-size: 24px;
-    line-height: 29px;
     font-family: 'Inter';
+    line-height: 29px;
+
     display: flex;
     align-items: center;
 
@@ -67,21 +88,21 @@
     padding-right: 0.5%;
 }
 
-.profileWeb{
+.projectWeb{
     font-size: 24px;
+    font-family: 'Inter';
     line-height: 29px;
     display: flex;
     align-items: center;
     text-decoration-line: underline;
     margin-bottom: 1.5%;
-    font-family: 'Inter';
 }
 
-.profileWeb a:link{
+.projectWeb a:link{
     color: black;
 }
 
-.profilePhone{
+.projectPhone{
     font-size: 24px;
     font-family: 'Inter';
     line-height: 29px;
@@ -93,14 +114,19 @@
 
 .editButtonWrapper{
     position: absolute;
-    width: 7.5%;
+    width: 25%;
     height: 4.25vh;
-    right: 3%;
-    top: 2vh;
+    right: 5%;
+    top: 65px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 10%;
+    
 }
 
 .editButtonWrapper button{
-    width: 100%;
+    width: 90%;
     height: 100%;
 
     background: #F93059;
@@ -110,26 +136,29 @@
     font-weight: 500;
     font-size: 22px;
     font-family: 'Inter';
-    line-height: 34px;
     /* identical to box height */
 
     color: #FFFFFF;
 }
 
-.profileContentWrapper{
+.editButtonWrapper button:hover {
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.projectContentWrapper{
     height: 70vh;
     width: 100%;
 }
 
-.profileDescription{
+.projectDescription{
     margin-bottom: 2.5vh;
 }
 
-.profileDescription h3{
+.projectDescription h3{
     font-weight: 400;
     font-size: 40px;
-    font-family: 'Inter';
     line-height: 44px;
+    font-family: 'Inter';
     /* identical to box height */
 
     display: flex;
@@ -139,7 +168,7 @@
     margin-bottom: 1%;
 }
 
-.profileDescription p{
+.projectDescription p{
     font-weight: 400;
     font-size: 24px;
     font-family: 'Inter';
@@ -152,15 +181,25 @@
     color: #000000;
 }
 
-.profileServices{
+.projectPhone{
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    font-family: 'Inter';
+    align-items: center;
+    color: black;
+    margin-bottom: 1.5%;
+}
+
+.projectServices{
     margin-bottom: 2.5vh;
 }
 
-.profileServices h3{
+.projectServices h3{
     font-weight: 400;
     font-size: 40px;
-    font-family: 'Inter';
     line-height: 44px;
+    font-family: 'Inter';
     /* identical to box height */
 
     display: flex;
@@ -170,7 +209,7 @@
     margin-bottom: 1%;
 }
 
-.profileServiceCards{
+.projectServiceCards{
     display: flex;
     flex-direction: row;
 }
@@ -198,9 +237,9 @@
     font-weight: 600;
     font-size: 24px;
     line-height: 29px;
-    font-family: 'Inter';
 
     display: flex;
+    font-family: 'Inter';
     align-items: center;
     text-align: center;
 
@@ -208,7 +247,7 @@
     padding: 0 10%;
 }
 
-.profileForm{
+.projectForm{
     height: 100%;
     width: 100%;
     display: flex;
@@ -219,12 +258,12 @@
 .inputLabel{
     font-weight: 400;
     font-size: 24px;
-    font-family: 'Inter';
     line-height: 29px;
     /* identical to box height */
 
     display: flex;
     align-items: center;
+    font-family: 'Inter';
 
     color: #000000;
 }
@@ -245,8 +284,8 @@
 
     font-weight: 400;
     font-size: 24px;
-    line-height: 29px;
     font-family: 'Inter';
+    line-height: 29px;
 }
 
 .address input{
@@ -310,10 +349,6 @@
     opacity: 1;
  }
 
- .services input:hover + label {
-    opacity: 1;
- }
-
 .description{
     width: 50%;
     height: 25vh;
@@ -329,8 +364,8 @@
     font-family: 'Inter';
     font-weight: 400;
     font-size: 24px;
-    line-height: 29px;
     font-family: 'Inter';
+    line-height: 29px;
     /* identical to box height */
 
     display: flex;
@@ -357,8 +392,8 @@
 
     font-weight: 500;
     font-size: 24px;
-    font-family: 'Inter';
     line-height: 34px;
+    font-family: 'Inter';
     color: #FFFFFF;
 }
 

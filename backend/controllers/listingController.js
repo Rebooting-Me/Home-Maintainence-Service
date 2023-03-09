@@ -83,7 +83,7 @@ const updateListing = async (req, res) => {
 const deleteListing = async (req, res) => {
     try {
         // Extract homeowner ID from the request body
-        const { homeowner_id } = req.body;
+        const homeowner_id = req.user._id;
         // Get the listing id from the request parameters
         const listingId = req.params.listing_id;
         // Delete the listing and all references to it in the database

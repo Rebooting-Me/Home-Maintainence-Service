@@ -25,6 +25,7 @@
     font-weight: 500;
     margin-top: 3rem;
     font-weight: 800;
+    font-family: 'Inter';
 }
 
 .sidebarLinksWrapper {
@@ -35,6 +36,7 @@
     flex:0.5;
     margin: 5rem;
     width: 80%;
+    font-family: 'Inter';
   }
   
 .nav {

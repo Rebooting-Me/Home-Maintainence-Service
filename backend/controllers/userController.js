@@ -32,7 +32,6 @@ const signupUser = async (req, res) => {
         res.status(200).json({ name, userType, token });
     }
     catch (error) {
-        console.log(error);
         res.status(400).json({ error: error.message });
     }
 }
