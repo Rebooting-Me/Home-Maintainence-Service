@@ -9,7 +9,7 @@ import App from '../App';
 import { AuthContextProvider } from '../context/AuthContext';
 
 import {
-    HOMEOWNER_USER_TYPE,
+    CONTRACTOR_USER_TYPE,
     signinEmailInputTestId, signinPasswordInputTestId, signinButtonTestId
 } from '../constants/testingConstants'
 
@@ -18,7 +18,7 @@ const contractorEmail = 'ContractorEmail@email.com';
 const contractorPassword = 'ContractorPassword15!';
 const contractorToken = 'contractorToken';
 
-describe('Attempting to sign in as a homeowner', function () {
+describe('Attempting to sign in as a contractor', function () {
 
     let originalFetch;
 
@@ -26,18 +26,20 @@ describe('Attempting to sign in as a homeowner', function () {
         // Save global fetch
         originalFetch = global.fetch;
 
-        // Mock global fetch
-        const mockFetch = jest.fn(() => new Promise((resolve) => {
-            resolve({
-                ok: true, status: 200, json: () => {
-                    return Promise.resolve({
+        const mockFetch = jest.fn().mockResolvedValue(
+            {
+                ok: true,
+                status: 200,
+                json: () => {
+                    const obj = {
                         name: contractorName,
-                        userType: HOMEOWNER_USER_TYPE,
+                        userType: CONTRACTOR_USER_TYPE,
                         token: contractorToken
-                    });
-                }
-            });
-        }));
+                    };
+                    return obj;
+                },
+            }
+        );
         global.fetch = mockFetch;
 
     });

@@ -27,17 +27,40 @@ describe('Attempting to sign in as a homeowner', function () {
         originalFetch = global.fetch;
 
         // Mock global fetch
-        const mockFetch = jest.fn(() => new Promise((resolve) => {
-            resolve({
-                ok: true, status: 200, json: () => {
-                    return Promise.resolve({
+        const mockFetch = jest.fn();
+
+        // The first return value is for signing in.
+        // The second return value is for listings.
+        mockFetch
+            .mockResolvedValueOnce({
+                ok: true,
+                status: 200,
+                json: () => {
+                    const obj = {
                         name: homeownerName,
                         userType: HOMEOWNER_USER_TYPE,
                         token: homeownerToken
+                    };
+                    return obj;
+                },
+            })
+            // This mock may not actually work!
+            .mockResolvedValue({
+                ok: true,
+                status: 200,
+                json: () => {
+                    return [];
+                },
+                then: () => {
+                    return Promise.resolve({
+                        then: () => {
+                            return Promise.resolve([]);
+                        }
                     });
                 }
             });
-        }));
+
+
         global.fetch = mockFetch;
 
     });
