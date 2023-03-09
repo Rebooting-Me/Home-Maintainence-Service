@@ -176,7 +176,7 @@ describe(`GET ${ALL_CONTRACTOR_PROFILES_ROUTE}`, () => {
         const authorization = getAuthorizationHeaderValue(token);
 
         // Homeowner attempts to view contractors
-        res = await request(app).get(ALL_CONTRACTOR_PROFILES_ROUTE)
+        res = await request(app).post(ALL_CONTRACTOR_PROFILES_ROUTE)
             .set({ Authorization: authorization });
         expect(res.statusCode).to.equal(200);
         const contractors = res.body;

@@ -55,7 +55,27 @@ const homeownerViewListing = async (req, res) => {
  */
 const getContractorProfiles = async (req, res) => {
   try {
-    const contractors = await Contractor.find().lean();
+    // Get the properties to filter
+    const { state, city, zip_code, services } = req.body;
+    const filter = {};
+
+    if (state) {
+      filter.state = state;
+    }
+    if (city) {
+      filter.city = city;
+    }
+    if (zip_code) {
+      filter.zip_code = zip_code;
+    }
+    if (services) {
+      filter.services = { $in: services };
+    }
+
+    // Get all contractors meeting the filter
+    const contractors = await Contractor.find(filter).lean();
+
+    // Return the contractors in the response
     return res.status(200).json(contractors);
   } catch (err) {
     // Uncomment this line to see the error message. DO NOT leave uncommented in production!
