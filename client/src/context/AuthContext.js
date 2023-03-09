@@ -14,20 +14,26 @@ export const authReducer = (state, action) => {
 }
 
 // eslint-disable-next-line react/prop-types
-export const AuthContextProvider = ({ children }) => {
+export const AuthContextProvider = ({ children, testingState }) => {
+    // Use a provided user for testing if specified.
+    let testUser = null;
+    if (testingState) {
+        testUser = testingState.user;
+    }
+
     const [state, dispatch] = useReducer(authReducer, {
-        user: null
+        user: null || testUser
     });
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
-        if(user) {
-            dispatch({ type: 'SIGNIN', payload: user});
+        if (user) {
+            dispatch({ type: 'SIGNIN', payload: user });
         }
     }, []);
 
     return (
-        <AuthContext.Provider value={{...state, dispatch}}>
+        <AuthContext.Provider value={{ ...state, dispatch }}>
             {children}
         </AuthContext.Provider>
     )
