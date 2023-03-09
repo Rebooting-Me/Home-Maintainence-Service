@@ -7,7 +7,7 @@ import { useCreateProject } from '../../hooks/useCreateProject'
 
 const StandaloneListingView = (props) => {
     const { projectId, setCurrentProjectId, prepopulateForm, showForm } = props
-    const { getProjectDetails, isLoading, error } = useGetProjectDetails();
+    const { getProjectDetails, isLoading } = useGetProjectDetails();
     const { deleteProject } = useCreateProject();
     const [project, setProject] = useState({});
     const { user } = useAuthContext();

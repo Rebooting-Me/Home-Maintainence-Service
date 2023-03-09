@@ -128,7 +128,6 @@ async function createProjectListing(listing, ownerId) {
         state: createdListing.state,
         zip_code: createdListing.zip_code,
         services: (Array.isArray(services) ? services : [services]), //serviceId being populated with [String] in response
-        listing_id: createdListing._id
     };
 }
 
