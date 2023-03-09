@@ -19,8 +19,6 @@ const ProfileView = (props) => {
             });
 
             const json = await response.json();
-            console.log(user.token);
-            console.log(json);
             setProfile({...json});
             setIsLoading(false);
         };

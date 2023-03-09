@@ -38,14 +38,14 @@ const StandaloneListingView = (props) => {
                         <h2>{project?.title?(project.title):(projectHolder.title)}</h2>
                     </div>
                     <div className={styles.projectAddress}>
-                        <p>{project?.city? (project.city) : (projectHolder.city)}</p>
-                        <p>{project?.state? (project.state) : (projectHolder.state)}</p>
+                        <p>{project?.city? (project.city) : (projectHolder.city)},</p>
+                        <p>{project?.state? (project.state) : (projectHolder.state)},</p>
                         <p>{project?.zip_code? (project.zip_code) : (projectHolder.zip_code)}</p>
                     </div>
                     
-                    <div className={styles.projectPhone}>
+                    {/* <div className={styles.projectPhone}>
                         <p>{project?.phone_number? (project.phone_number) : (projectHolder.phone_number)}</p>
-                    </div>
+                    </div> */}
                     
                 </div>
             </div>

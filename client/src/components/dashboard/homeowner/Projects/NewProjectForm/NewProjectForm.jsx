@@ -6,7 +6,6 @@ import styles from './NewProjectForm.module.css';
 
 const NewProjectForm = (props) => {
     const { showForm, setCurrentProjectId, projectFormValues, setProjectFormValues } = props;
-    console.log(projectFormValues)
     const [state, setState] = useState({
         title: projectFormValues.title || "" ,
         description: projectFormValues.description || "",
@@ -72,7 +71,7 @@ const NewProjectForm = (props) => {
                                                 />
                                             </div>
                                             
-                                            <div className={`${styles.simpleInputSet}`}>
+                                            {/* <div className={`${styles.simpleInputSet}`}>
                                                 <label>Phone</label>
                                                 <input 
                                                     onChange={(e) => {setFieldInState("phone", e.target.value)}}
@@ -80,7 +79,7 @@ const NewProjectForm = (props) => {
                                                     placeholder="(XXX)XXX-XXXX"
                                                     type="tel"
                                                 />
-                                            </div>
+                                            </div> */}
                                             
                                             <div className={`${styles.addressInputSet}`}>
                                                 <label>Project Address</label>

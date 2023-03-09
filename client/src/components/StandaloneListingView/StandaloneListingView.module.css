@@ -15,16 +15,19 @@
     justify-self: left ;
     margin-bottom: 40px;
     font-size: 20px;
+    font-family: 'Inter';
     color: #F93059;
 }
 
 .goBackButton:hover {
     font-size: 22px;
+    font-family: 'Inter';
 }
 
 .isLoading{
     font-weight: 500;
     font-size: 40px;
+    font-family: 'Inter';
     line-height: 34px;
     position: relative;
     color: #858585;
@@ -59,6 +62,7 @@
 .projectName{    
     font-weight: 400;
     font-size: 36px;
+    font-family: 'Inter';
     line-height: 58px;
     display: flex;
     align-items: center;
@@ -74,6 +78,7 @@
 .projectAddress p{
     font-weight: 400;
     font-size: 24px;
+    font-family: 'Inter';
     line-height: 29px;
 
     display: flex;
@@ -85,6 +90,7 @@
 
 .projectWeb{
     font-size: 24px;
+    font-family: 'Inter';
     line-height: 29px;
     display: flex;
     align-items: center;
@@ -98,6 +104,7 @@
 
 .projectPhone{
     font-size: 24px;
+    font-family: 'Inter';
     line-height: 29px;
     display: flex;
     align-items: center;
@@ -107,10 +114,10 @@
 
 .editButtonWrapper{
     position: absolute;
-    width: 7.5%;
+    width: 8%;
     height: 4.25vh;
     right: 5%;
-    top: 60px;
+    top: 65px;
 }
 
 .editButtonWrapper button{
@@ -123,10 +130,14 @@
 
     font-weight: 500;
     font-size: 22px;
-    line-height: 34px;
+    font-family: 'Inter';
     /* identical to box height */
 
     color: #FFFFFF;
+}
+
+.editButtonWrapper button:hover {
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .projectContentWrapper{
@@ -142,6 +153,7 @@
     font-weight: 400;
     font-size: 40px;
     line-height: 44px;
+    font-family: 'Inter';
     /* identical to box height */
 
     display: flex;
@@ -154,6 +166,7 @@
 .projectDescription p{
     font-weight: 400;
     font-size: 24px;
+    font-family: 'Inter';
     line-height: 44px;
     /* identical to box height */
 
@@ -167,6 +180,7 @@
     font-size: 24px;
     line-height: 29px;
     display: flex;
+    font-family: 'Inter';
     align-items: center;
     color: black;
     margin-bottom: 1.5%;
@@ -180,6 +194,7 @@
     font-weight: 400;
     font-size: 40px;
     line-height: 44px;
+    font-family: 'Inter';
     /* identical to box height */
 
     display: flex;
@@ -219,6 +234,7 @@
     line-height: 29px;
 
     display: flex;
+    font-family: 'Inter';
     align-items: center;
     text-align: center;
 
@@ -242,6 +258,7 @@
 
     display: flex;
     align-items: center;
+    font-family: 'Inter';
 
     color: #000000;
 }
@@ -262,6 +279,7 @@
 
     font-weight: 400;
     font-size: 24px;
+    font-family: 'Inter';
     line-height: 29px;
 }
 
@@ -317,6 +335,7 @@
     font-size: 28px;
     line-height: 29px;
     text-align: center;
+    font-family: 'Inter';
 
     color: #F93059;
 }
@@ -340,6 +359,7 @@
     font-family: 'Inter';
     font-weight: 400;
     font-size: 24px;
+    font-family: 'Inter';
     line-height: 29px;
     /* identical to box height */
 
@@ -368,6 +388,7 @@
     font-weight: 500;
     font-size: 24px;
     line-height: 34px;
+    font-family: 'Inter';
     color: #FFFFFF;
 }
 

@@ -1,6 +1,6 @@
 const Listing = require('../models/listingModel');
-const Homeowner = require('../models/homeownerModel');
 const Contractor = require('../models/contractorModel');
+const Homeowner = require('../models/homeownerModel');
 
 // function to view stand-alone listing [common to HO and CO]
 const getListing = async (req, res) => {
@@ -20,20 +20,41 @@ const getListing = async (req, res) => {
 
 //allows only HO to view their created listings
 const homeownerViewListing = async (req, res) => {
+  // 
   try {
+    const { state, city, zip_code, services } = req.body;
+    const filter = {};
+
     // Find the homeowner by ID
     const homeownerId = req.user._id;
     const homeowner = await Homeowner.findById(homeownerId);
     if (!homeowner) {
       return res.status(404).json({ message: 'Homeowner not found' });
     }
-    // Find all listings created by the homeowner
-    const listings = await Listing.find({ homeowner_id: homeownerId });
-    // Return the listings as a JSON array
+
+    //filter feature for HO to filter out 4 properties
+    if (state) {
+      filter.state = state;
+    }
+    if (city) {
+      filter.city = city;
+    }
+    if (zip_code) {
+      filter.zip_code = zip_code;
+    }
+    if (services) {
+      filter.services = { $in: services };
+    }
+    filter.homeowner_id = homeownerId;
+
+    // Find all filtered listings in the database
+    const listings = await Listing.find(filter).select("-homeowner_id");
+
+    // Return the array of listings as a JSON response (except HO id)
     return res.json(listings);
   } catch (err) {
     console.error(err.message);
-    return res.status(500).json({ message: 'Server error' });
+    return res.status(500).json({ message: "Server error" });
   }
 }
 

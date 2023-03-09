@@ -8,10 +8,17 @@
 }
 
 .sidebar {
+    position: fixed;
+    height: 87.5vh;
+    overflow-y: auto;
     width: 15%;
 }
 
 .tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 85%;
-    padding: 30px;
+    margin-left: auto;
+    padding: 50px;
 }

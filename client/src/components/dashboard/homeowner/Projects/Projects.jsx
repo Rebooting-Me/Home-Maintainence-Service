@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styles from './Projects.module.css';
 import NewProjectForm from "./NewProjectForm/NewProjectForm";
 import StandaloneListingView from "../../../StandaloneListingView/StandaloneListingView";
-// TODO: import Listings
+import Listings from "../../../listings/Listings";
+import { useAuthContext } from "../../../../hooks/useAuthContext";
 
 const Projects = () => {
 
@@ -10,45 +11,50 @@ const Projects = () => {
     const [currentProjectId, setCurrentProjectId] = useState(null);
     const [projectFormValues, setProjectFormValues] = useState({});
 
-    const search = () => {
+    const createProject = () => {
+        setProjectFormValues({});
+        setProjectFormOn(true);
+    }
+
+    const { user } = useAuthContext();
+
+    const isHomeowner = (user) => {
+        return (user.userType === "Homeowner");
     }
 
     return (
         <div className={`${styles.outerTab}`}>
-            { !projectFormOn && !currentProjectId && (
-                <div className={`${styles.projectsTop}`}>
-                    <div className={`${styles.projectsSearch}`}>
-                        <input placeholder="Search your projects" 
-                            onChange={(e) => search(e.target.value)} size="50"/>
-                        <button className={`${styles.searchButton}`} type="submit">Search</button>
+            <div className={`${styles.projectsContent}`}>
+                {!projectFormOn && !currentProjectId &&(
+                    <div>
+                        { isHomeowner(user) && (
+                            <div className={`${styles.newProject}`}>
+                                <button onClick={createProject}>Create Project</button>
+                            </div>
+                        )}
+                        <Listings setCurrentProjectId={setCurrentProjectId} />
                     </div>
-                    <div className={`${styles.newProject}`}>
-                        <button onClick={() => setProjectFormOn(true)}>New Project</button>
-                    </div>
-                </div>
-            )}
-            { projectFormOn && (
-                 <NewProjectForm 
-                    showForm={setProjectFormOn}
-                    setCurrentProjectId={setCurrentProjectId}
-                    projectFormValues={projectFormValues}
-                    setProjectFormValues={setProjectFormValues} />
-            )}
-            { currentProjectId && !projectFormOn && (
-                <StandaloneListingView
-                    projectId={currentProjectId}
-                    setCurrentProjectId={setCurrentProjectId}
-                    prepopulateForm={setProjectFormValues}
-                    showForm={setProjectFormOn} />
-            )}
-            { /* TODO:
-                <Listings 
-                    setProjecCurrenttId={setCurrentProjectId} >
-                */
-            }
+                )}
+                
+                { projectFormOn && isHomeowner(user) && (
+                    <NewProjectForm 
+                        showForm={setProjectFormOn}
+                        setCurrentProjectId={setCurrentProjectId}
+                        projectFormValues={projectFormValues}
+                        setProjectFormValues={setProjectFormValues} />
+                )}
+                { currentProjectId && !projectFormOn && (
+                    <StandaloneListingView
+                        projectId={currentProjectId}
+                        setCurrentProjectId={setCurrentProjectId}
+                        prepopulateForm={setProjectFormValues}
+                        showForm={setProjectFormOn} />
+                )}
+            </div>
 
         </div>
     )
 }
+
 
 export default Projects;

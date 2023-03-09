@@ -22,6 +22,7 @@
     margin: auto;
     width: 100%;
     height: 100%;
+    font-family: 'Inter';
 } 
 
 form {
@@ -51,6 +52,7 @@ form {
     flex-direction: column;
     width: 100%;
     font-size: 22px;
+    font-family: 'Inter';
     margin-bottom: 25px;
 }
 
@@ -68,6 +70,7 @@ form {
     width: 77%;
     text-indent: 10px;
     opacity: 60%;
+    font-family: 'Inter';
 }
 
 .simpleInputSet textarea {
@@ -79,6 +82,7 @@ form {
     resize: none;
     text-indent: 10px;
     opacity: 60%;
+    font-family: 'Inter';
 }
 
 .error {
@@ -90,6 +94,7 @@ form {
     flex-direction: column;
     width: 100%;
     font-size: 22px;
+    font-family: 'Inter';
     margin-bottom: 25px;
 }
 
@@ -110,6 +115,7 @@ form {
     border-radius: 10px;
     height: 70px;
     font-size: 22px;
+    font-family: 'Inter';
     border: none;
     text-indent: 10px;
     opacity: 60%;
@@ -142,6 +148,7 @@ form {
     color: white;
     border: none;
     font-size: 22px;
+    font-family: 'Inter';
 }
 
 .formButtonGroup button[type="submit"] {

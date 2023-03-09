@@ -4,6 +4,7 @@ import { useAuthContext } from '../../../../hooks/useAuthContext';
 import Profile from "../Profile/Profile";
 import Listings from "../../../listings/Listings";
 import styles from './Dashboard.module.css';
+import Projects from "../../homeowner/Projects/Projects";
 
 const Dashboard = () => {
 
@@ -16,7 +17,7 @@ const Dashboard = () => {
             case 'sidebar-contractor-your-profile':
                 return <Profile />;
             case 'sidebar-contractor-homeowner-projects':
-                return <Listings />;
+                return <Projects />;
             /* case 'sidebar-contractor-your-bids':
                 return <Bids />;
             case 'sidebar-contractor-your-reviews':

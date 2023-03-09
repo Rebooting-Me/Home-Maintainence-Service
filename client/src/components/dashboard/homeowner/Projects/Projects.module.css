@@ -5,70 +5,27 @@
     justify-content: flex-start;
     align-items: flex-start;
     height: 100%;
-}
-
-.projectsTop {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 6%;
     width: 100%;
 }
 
-.projectsSearch {
-    width: 80%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border-radius: 5px;
-    background-color: #E7EAEE;
-}
-
-.projectsSearch input {
+.projectsContent {
     width: 100%;
     height: 100%;
-    background-color: transparent;
-    border: none;
-    border-radius: inherit;
-    text-align: left;
-    text-indent: 22px;
-    overflow: visible;
-    font-size: 22px;
 }
 
-.projectsSearch input:focus {
-    outline: none;
-}
-
-.searchButton {
-    height: 65%;
-    width: 40px;
-    background-color: transparent;
-    border: none;
-    border-radius: inherit;
-    overflow: hidden;
-    text-indent: -999px;
-    background: url('../../../../assets/search.svg');
-    background-repeat: no-repeat;
-    opacity: 50%;
-}
-
-.searchButton:hover {
-    opacity: 80%;
-}
 
 .newProject {
-    padding-left: 3%;
-    width: 20%;
-    height: 100%;
+    width: 25%;
+    height: 4%;
+    float: right;
 }
 
 .newProject button {
     width: 100%;
-    height: inherit;
+    height: 100%;
     background-color: #F93059;
     color: white;
+    border-radius: 10px;
 }
 
 .newProject button:hover {

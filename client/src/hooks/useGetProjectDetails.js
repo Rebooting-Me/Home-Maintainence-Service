@@ -9,7 +9,7 @@ export const useGetProjectDetails = () =>{
     const getProjectDetails = async (listing_id) =>{
         setIsLoading(true);
         setError(null);
-        const response = await fetch('api/homeowner/listings/'+listing_id, {
+        const response = await fetch('api/user/listings/'+listing_id, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${user.token}`

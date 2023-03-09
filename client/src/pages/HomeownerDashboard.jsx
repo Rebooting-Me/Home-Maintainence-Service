@@ -6,8 +6,8 @@ export class HomeownerDashboard extends Component {
     render() {
       return (
         <div>
-          <Navbar />
           <Dashboard />
+          <div style={{position:"fixed", top: "0", minWidth: "100%"}}><Navbar /></div>
         </div>
       );
     }
