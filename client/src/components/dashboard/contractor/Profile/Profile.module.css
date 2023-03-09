@@ -310,6 +310,10 @@
     opacity: 1;
  }
 
+ .services input:hover + label {
+    opacity: 1;
+ }
+
 .description{
     width: 50%;
     height: 25vh;

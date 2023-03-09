@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { useAuthContext } from '../../../../hooks/useAuthContext';
 import Projects from "../Projects/Projects";
+import Listings from "../ContractorListings/Listings";
 import styles from './Dashboard.module.css';
 
 const Dashboard = () => {
@@ -14,6 +15,8 @@ const Dashboard = () => {
         switch (activeTab) {
             case 'sidebar-your-projects':
                 return <Projects />;
+            case 'sidebar-contractors':
+                return <Listings />;
         }
     }
     
