@@ -13,7 +13,6 @@ const ServicesButtonGroup = (props) => {
 
     const buttonPressed = (service) => {
         const id = service + BUTTON_ID;
-        console.log("state", state);
         const element = document.getElementById(id);
         const services = [...selectedServices];
 
