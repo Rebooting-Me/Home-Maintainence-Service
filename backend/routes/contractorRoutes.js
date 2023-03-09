@@ -13,7 +13,7 @@ router.use(requireAuth);
 
 // The contractor profile does not require authorization to view.
 // That is, a homeowner can view the profile.
-router.get('/profile/', getContractorProfile);
+router.get('/profile', getContractorProfile);
 
 // require authorization on all routes declared below this line.
 router.use(authorizeContractor);
