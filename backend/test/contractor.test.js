@@ -157,7 +157,7 @@ describe(`PATCH ${CONTRACTOR_PROFILE_ROUTE}`, () => {
 /**
  * Tests a homeowner being able to view contractor listings.
  */
-describe(`GET ${ALL_CONTRACTOR_PROFILES_ROUTE}`, () => {
+describe(`POST ${ALL_CONTRACTOR_PROFILES_ROUTE}`, () => {
     it('should return all contractors for the homeowner to inspect.', async () => {
         let res;
 

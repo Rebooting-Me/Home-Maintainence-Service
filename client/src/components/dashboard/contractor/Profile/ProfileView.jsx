@@ -19,8 +19,6 @@ const ProfileView = (props) => {
             });
 
             const json = await response.json();
-            console.log(user.token);
-            console.log(json);
             setProfile({...json});
             setIsLoading(false);
         };
@@ -70,7 +68,7 @@ const ProfileView = (props) => {
                         return (
                             <div key={service} className={styles.service}>
                                 <img src={imgsvg} alt=''/>
-                                <p>{service}</p>
+                                <p>{service.replace("_", " ").charAt(0).toUpperCase() + service.replace("_", " ").slice(1)}</p>
                             </div>
                         );
                     }))) : (profileHolder.services.map((service)=>{

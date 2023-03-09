@@ -20,7 +20,6 @@ const requireAuth = async (req, res, next) => {
             _id: userInfo._id,
             userType: userInfo.userType
         }
-        //console.log(req.user);
         next();
     } catch (error) {
         res.status(401).json({ error: 'Request is not authorized' });

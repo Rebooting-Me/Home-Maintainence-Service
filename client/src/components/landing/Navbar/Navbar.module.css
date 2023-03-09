@@ -39,6 +39,7 @@
   font-weight: 400;
   font-size: 22px;
   margin: 0 15px;
+  font-family: 'Inter';
   color: #000000;
   cursor: pointer;
   float: right;
@@ -59,6 +60,7 @@ button {
   cursor: pointer;
   font-weight: 400;
   font-size: 22px;
+  font-family: 'Inter';
   background-color: #e7eaee;
 }
 

@@ -24,8 +24,6 @@ const ProfileEdit = (props) => {
             });
 
             const json = await response.json();
-            console.log(user.token);
-            console.log(json);
             setProfileName(json.profile_name? json.profile_name:'');
             setCity(json.city? json.city:'');
             setState(json.state? json.state:'');
@@ -35,7 +33,6 @@ const ProfileEdit = (props) => {
             setServices(json.services? json.services:[]);
             setDescription(json.description? json.description:'');
             setIsLoading(false);
-            console.log(json.phone_number)
         };
         getProfile()
     }, []);
@@ -43,7 +40,6 @@ const ProfileEdit = (props) => {
     const services_provided = ["plumbing","remodeling","pest_control","landscaping","electrical","roofing"];
 
     const updateProfile = async (profile_name, city, state, zip_code, website_url, phone_number, services, description) =>{
-        console.log(JSON.stringify({profile_name, city, state, zip_code, website_url, phone_number, services, description}))
 
         const response = await fetch('api/contractor/profile', {
             method: "PATCH",

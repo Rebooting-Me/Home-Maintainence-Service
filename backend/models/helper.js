@@ -74,7 +74,6 @@ async function getUserData(queryObj) {
     if (userInfo) {
         userInfo.userType = userType;
     }
-
     return userInfo;
 }
 
@@ -122,13 +121,13 @@ async function createProjectListing(listing, ownerId) {
     );
 
     return {
+        listing_id: createdListing._id,
         title: createdListing.title,
         description: createdListing.description,
         city: createdListing.city,
         state: createdListing.state,
         zip_code: createdListing.zip_code,
         services: (Array.isArray(services) ? services : [services]), //serviceId being populated with [String] in response
-        listing_id: createdListing._id
     };
 }
 

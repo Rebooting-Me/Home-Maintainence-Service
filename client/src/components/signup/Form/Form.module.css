@@ -37,6 +37,7 @@
   margin: 4vh 0 2vh 0;
   font-weight: 700;
   font-size: 52px;
+  font-family: 'Inter';
   line-height: 63px;
   display: flex;
   align-items: center;
@@ -69,6 +70,7 @@
   margin: 3vh 0 1vh 0;
   font-weight: 700;
   font-size: 22px;
+  font-family: 'Inter';
   line-height: 27px;
   display: flex;
   align-items: center;
@@ -87,6 +89,7 @@
   font-weight: 400;
   font-size: 1.2rem;
   line-height: 29px;
+  font-family: 'Inter';
   align-items: center;
   color: rgba(0, 0, 0, 0.5);
   padding: 1%;
@@ -104,6 +107,7 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
+  font-family: 'Inter';
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -149,6 +153,7 @@
   line-height: 29px;
   display: flex;
   align-items: center;
+  font-family: 'Inter';
   text-align: center;
 
   color: #ffffff;
@@ -164,6 +169,7 @@
   width: 90%;
   font-weight: 400;
   font-size: 14px;
+  font-family: 'Inter';
   line-height: 17px;
   display: flexbox;
   align-items: center;
@@ -186,4 +192,5 @@
   font-weight: 400;
   font-size: 16px;
   color: red;
+  font-family: 'Inter';
 }

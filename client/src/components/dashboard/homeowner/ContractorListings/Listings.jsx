@@ -35,8 +35,9 @@ const Listings = (props) => {
     .catch(error => console.error(error));
   }, [filter]);
 
+  //console.log(listings);
   return (
-    <div>
+    <div className={styles.innerTab}>
       <ListingFilters setFilter={setFilter} />
       {listings.map((listing, index ) => (
         <ListingCard
@@ -92,8 +93,8 @@ const ListingFilters = ({ setFilter }) => {
 
   return (
     <form className= { styles.filter } onSubmit={handleSubmit}>
-      <input type="text" placeholder="State" value={state} onChange={e => setState(e.target.value)} />
       <input type="text" placeholder="City" value={city} onChange={e => setCity(e.target.value)} />
+      <input type="text" placeholder="State" value={state} onChange={e => setState(e.target.value)} />
       <input type="text" placeholder="Zip Code" value={zip} onChange={e => setZip(e.target.value)} />
       <input type="text" placeholder="Services" value={services} onChange={e => setServices(e.target.value)} />
       <button type="submit" className={styles.filterButton}><img src={ Filter } /></button>
@@ -115,7 +116,10 @@ const ListingCard = ({ id , title, description, services, city , state, onClick 
                 <h1>{title}</h1>
                 <ul>
                     {services.map(service => (
-                        <li key={service}><ServiceIcon service={service} />{service.replace('_',' ')}</li>
+                        <li key={service}>
+                          <ServiceIcon service={service} />
+                          {service.replace("_", " ").charAt(0).toUpperCase() + service.replace("_", " ").slice(1)}
+                        </li>
                     ))}
                 </ul>
                 <p>{description} <span>... more</span></p>

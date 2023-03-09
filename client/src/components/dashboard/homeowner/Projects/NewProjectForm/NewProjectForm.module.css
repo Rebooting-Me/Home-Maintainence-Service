@@ -1,0 +1,178 @@
+.tabWrapper {
+    width: 100%;
+    padding: inherit;
+    min-height: 100vh;
+    padding: 10px;
+}
+.outerWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between ;
+}
+.isLoading{
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 34px;
+    position: relative;
+    color: #858585;
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    font-family: 'Inter';
+} 
+
+form {
+    width: 100%;
+    height: 100%;
+}
+
+.outerFormWrapper {
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.inputWrapper {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: space-evenly;
+    height: 100%;
+}
+
+.simpleInputSet {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 22px;
+    font-family: 'Inter';
+    margin-bottom: 25px;
+}
+
+.simpleInputSet label {
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.simpleInputSet input[type="text"],[type="tel"] {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    height: 70px;
+    font-size: 22px;
+    border: none;
+    width: 77%;
+    text-indent: 10px;
+    opacity: 60%;
+    font-family: 'Inter';
+}
+
+.simpleInputSet textarea {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    height: 250px;
+    font-size: 22px;
+    border: none;
+    resize: none;
+    text-indent: 10px;
+    opacity: 60%;
+    font-family: 'Inter';
+}
+
+.error {
+    height: 5%;
+}
+
+.addressInputSet {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 22px;
+    font-family: 'Inter';
+    margin-bottom: 25px;
+}
+
+.addressInputSet label {
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.addressInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.addressInputSet input[type="text"] {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    height: 70px;
+    font-size: 22px;
+    font-family: 'Inter';
+    border: none;
+    text-indent: 10px;
+    opacity: 60%;
+}
+
+.cityInput {
+    width: 40%;
+}
+.stateInput {
+    width: 34%
+}
+.zipCodeInput {
+    width: 20%;
+}
+
+
+.formButtonGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 30%;
+    height: fit-content;
+    
+}
+
+.formButtonGroup button {
+    width: 47%;
+    height: 4vh;
+    background-color: #858585;
+    color: white;
+    border: none;
+    font-size: 22px;
+    font-family: 'Inter';
+}
+
+.formButtonGroup button[type="submit"] {
+    background-color: #F93059;
+    color: white;
+}
+
+.formButtonGroup button:hover {
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.simpleInputSet input[type="text"]:hover,
+input[type="tel"]:hover,
+textarea:hover,
+.addressInputSet input[type="text"]:hover {
+    opacity: 100%;
+}
+
+.simpleInputSet input[type="text"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+.addressInputSet input[type="text"]:focus {
+    opacity: 100%;
+    border: none;
+}
+
