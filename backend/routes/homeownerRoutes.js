@@ -3,7 +3,7 @@
  * for a homeowner to get their specific listings.
  */
 const express = require('express');
-const { homeownerViewListing, getContractorProfiles } = require('../controllers/homeownerController');
+const { homeownerViewListing, getContractorProfiles, getContractorProfile } = require('../controllers/homeownerController');
 const { authorizeHomeowner } = require('../middleware/requireAuthorization');
 const router = express.Router();
 
@@ -20,5 +20,8 @@ router.post('/listings', homeownerViewListing);
 
 // View all contractor profiles
 router.post('/contractors', getContractorProfiles);
+
+// Get a specific contractor's profile
+router.get('/contractor/:contractor_id', getContractorProfile);
 
 module.exports = router;

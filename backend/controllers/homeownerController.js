@@ -59,6 +59,9 @@ const getContractorProfiles = async (req, res) => {
     const { state, city, zip_code, services } = req.body;
     const filter = {};
 
+    filter.profile_name = {$exists : true, $ne : ""};
+    filter.services = {$exists: true, $not: {$size: 0}}
+
     if (state) {
       filter.state = state;
     }
@@ -69,7 +72,7 @@ const getContractorProfiles = async (req, res) => {
       filter.zip_code = zip_code;
     }
     if (services) {
-      filter.services = { $in: services };
+      filter.services = { $in: services, $not: {$size: 0} };
     }
 
     // Get all contractors meeting the filter
@@ -84,4 +87,25 @@ const getContractorProfiles = async (req, res) => {
   }
 }
 
-module.exports = { homeownerViewListing, getContractorProfiles };
+/**
+ * Returns the details of a specific, stand-alone contractor profile. The request parameters must contain the "_id" of 
+ * the listing.
+ * @param {*} req 
+ * @param {*} res 
+ */
+const getContractorProfile = async (req, res) => {
+  try {
+    // Find the listing by ID
+    const profile = await Contractor.findById(req.params.contractor_id).select();
+    if (!profile) {
+        return res.status(404).json({ message: 'Contractor not found' });
+    }
+    // Return the listing details excluding `homeowner_id` as a JSON object
+    return res.json(profile);
+} catch (err) {
+    console.error(err.message);
+    return res.status(500).json({ message: 'Server error' });
+}
+}
+
+module.exports = { homeownerViewListing, getContractorProfiles, getContractorProfile };

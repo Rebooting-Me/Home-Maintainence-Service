@@ -158,15 +158,32 @@ describe(`PATCH ${CONTRACTOR_PROFILE_ROUTE}`, () => {
  * Tests a homeowner being able to view contractor listings.
  */
 describe(`POST ${ALL_CONTRACTOR_PROFILES_ROUTE}`, () => {
-    it('should return all contractors for the homeowner to inspect.', async () => {
+    it('should return all contractors with profile name and services for the homeowner to inspect.', async () => {
         let res;
 
         // Create some contractors:
-        // First contractor
+        // First contractor without information filled
         res = await request(app).post(SIGNUP_ROUTE).send(contractorJson);
         expect(res.statusCode).to.equal(200);
-        // Second contractor
+        // Second contractor with information to be filled
         res = await request(app).post(SIGNUP_ROUTE).send(secondContractorJson);
+        expect(res.statusCode).to.equal(200);
+
+        // Get the contractor's id.
+        const token_2 = res.body.token;
+        const authorization_2 = getAuthorizationHeaderValue(token_2);
+
+        // Next, update second contractor profile fields.
+        const contractorServices = [services.PLUMBING, services.REMODELING, services.PEST_CONTROL]
+        const profile_name = 'Second Contractor Profile Name';
+
+        // The response should contain the updated contractor.
+        res = await request(app).patch(CONTRACTOR_PROFILE_ROUTE)
+            .set({ Authorization: authorization_2 })
+            .send({
+                profile_name: profile_name,
+                services: contractorServices
+            });
         expect(res.statusCode).to.equal(200);
 
         // Create homeowner. 
@@ -180,6 +197,6 @@ describe(`POST ${ALL_CONTRACTOR_PROFILES_ROUTE}`, () => {
             .set({ Authorization: authorization });
         expect(res.statusCode).to.equal(200);
         const contractors = res.body;
-        expect(contractors.length).to.equal(2);
+        expect(contractors.length).to.equal(1);
     });
 });

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import styles from './Profile.module.css'
+import styles from './ContractorStandAlone.module.css'
 import {profileHolder} from '../../../../constants/profileHolder'
 import { useAuthContext } from '../../../../hooks/useAuthContext'
 
-const ProfileView = (props) => {
-    const { onClickEdit } = props;
+const ContractorStandAlone = (props) => {
+    const { contractorId, setContractorId } = props;
     const {user} = useAuthContext();
     const [isLoading, setIsLoading] = useState(false);
     const [profile, setProfile] = useState({});
@@ -14,9 +14,13 @@ const ProfileView = (props) => {
     useEffect(()=>{
         const getProfile = async () => {
             setIsLoading(true);
-            const response = await fetch('api/contractor/profile', {
-                headers:{'Authorization': `Bearer ${user.token}`}
-            });
+            const response = await fetch('api/homeowner/contractor/'+ contractorId, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${user.token}`
+                }
+            }
+            );
 
             const json = await response.json();
             setProfile({...json});
@@ -30,10 +34,7 @@ const ProfileView = (props) => {
         {isLoading ? (<div className={styles.isLoading}>Loading</div>) : 
         (
         <div>
-            {
-                (!profile?.profile_name || profile?.services?.length == 0) &&
-            (<div className={styles.warning}>Oops... Looks like your profile name or your service is currently empty! Please fill them in to start being posted to homeowners.</div>)
-            }
+            <button onClick={() => {setContractorId(null)}} className={styles.goBackButton}>&#60; View all contractors</button>
             <div className={styles.profileHeaderWrapper}>
             {/* <div className={styles.profileImageWrapper}>
                 <img src={profile?.profile_image?(require(`${profile.profile_image}`)):(require(`../../../../assets/contractor/${profileHolder.profile_image}`))} alt=''/>
@@ -55,9 +56,6 @@ const ProfileView = (props) => {
                         <p>{profile?.phone_number? (profile.phone_number) : (profileHolder.phone_number)}</p>
                     </div>
                 </div>
-            </div>
-            <div className={styles.editButtonWrapper}>
-                <button onClick={onClickEdit}>Edit</button>
             </div>
             <div className={styles.profileContentWrapper}>
                 <div className={styles.profileDescription}>
@@ -98,4 +96,4 @@ const ProfileView = (props) => {
   )
 }
 
-export default ProfileView
+export default ContractorStandAlone
