@@ -29,6 +29,8 @@ const secondContractorJson = {
     name: 'Second Contractor Name',
     email: 'secondcontractor@email.com',
     password: 'Second_UCSD_23_Tritons_CSE_!',
+    profile_name: 'Second Contractor Profile Name',
+    services: ['plumbing'],
     userType: CONTRACTOR_USER_TYPE
 }
 
@@ -158,14 +160,14 @@ describe(`PATCH ${CONTRACTOR_PROFILE_ROUTE}`, () => {
  * Tests a homeowner being able to view contractor listings.
  */
 describe(`POST ${ALL_CONTRACTOR_PROFILES_ROUTE}`, () => {
-    it('should return all contractors for the homeowner to inspect.', async () => {
+    it('should return all contractors with profile name and services for the homeowner to inspect.', async () => {
         let res;
 
         // Create some contractors:
-        // First contractor
+        // First contractor without information filled
         res = await request(app).post(SIGNUP_ROUTE).send(contractorJson);
         expect(res.statusCode).to.equal(200);
-        // Second contractor
+        // Second contractor with information filled
         res = await request(app).post(SIGNUP_ROUTE).send(secondContractorJson);
         expect(res.statusCode).to.equal(200);
 
@@ -180,6 +182,6 @@ describe(`POST ${ALL_CONTRACTOR_PROFILES_ROUTE}`, () => {
             .set({ Authorization: authorization });
         expect(res.statusCode).to.equal(200);
         const contractors = res.body;
-        expect(contractors.length).to.equal(2);
+        expect(contractors.length).to.equal(1);
     });
 });
