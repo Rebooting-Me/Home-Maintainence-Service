@@ -29,8 +29,6 @@ const secondContractorJson = {
     name: 'Second Contractor Name',
     email: 'secondcontractor@email.com',
     password: 'Second_UCSD_23_Tritons_CSE_!',
-    profile_name: 'Second Contractor Profile Name',
-    services: ['plumbing'],
     userType: CONTRACTOR_USER_TYPE
 }
 
@@ -167,8 +165,25 @@ describe(`POST ${ALL_CONTRACTOR_PROFILES_ROUTE}`, () => {
         // First contractor without information filled
         res = await request(app).post(SIGNUP_ROUTE).send(contractorJson);
         expect(res.statusCode).to.equal(200);
-        // Second contractor with information filled
+        // Second contractor with information to be filled
         res = await request(app).post(SIGNUP_ROUTE).send(secondContractorJson);
+        expect(res.statusCode).to.equal(200);
+
+        // Get the contractor's id.
+        const token_2 = res.body.token;
+        const authorization_2 = getAuthorizationHeaderValue(token_2);
+
+        // Next, update second contractor profile fields.
+        const contractorServices = [services.PLUMBING, services.REMODELING, services.PEST_CONTROL]
+        const profile_name = 'Second Contractor Profile Name';
+
+        // The response should contain the updated contractor.
+        res = await request(app).patch(CONTRACTOR_PROFILE_ROUTE)
+            .set({ Authorization: authorization_2 })
+            .send({
+                profile_name: profile_name,
+                services: contractorServices
+            });
         expect(res.statusCode).to.equal(200);
 
         // Create homeowner. 
