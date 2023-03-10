@@ -4,17 +4,23 @@ import styles from './Listings.module.css';
 // import imageUrl from './image.svg';
 import Filter from './Filter.svg'
 import ServiceIcon from './ServiceIcon';
+import ContractorStandAlone from '../ContractorStandAloneListing/ContractorStandAlone';
 
-const Listings = (props) => {
+const Listings = () => {
   const [listings, setListings] = useState([]);
   const { user } = useAuthContext();
+  const [currentContractorId, setCurrentContractorId] = useState(null);
   const [filter, setFilter] = useState({});
-  const {setCurrentContractorId} = props;
 
   const handleContractorClick = (contractorId) => {
     setCurrentContractorId(contractorId);
-    // console.log(contractorId)
+    console.log(contractorId)
   };
+
+  const isHomeowner = (user) => {
+    return (user.userType === "Homeowner");
+  };
+
 
   useEffect(() => {
     // console.log('filter:', filter);
@@ -38,6 +44,8 @@ const Listings = (props) => {
   //console.log(listings);
   return (
     <div className={styles.innerTab}>
+    { !currentContractorId && (
+      <div>
       <ListingFilters setFilter={setFilter} />
       {listings.map((listing, index ) => (
         <ListingCard
@@ -51,6 +59,12 @@ const Listings = (props) => {
           onClick={handleContractorClick} // Pass the handleProjectClick function as a prop
         />
       ))}
+      </div>
+    )
+    }
+    { currentContractorId && isHomeowner(user) && (
+      <ContractorStandAlone contractorId={currentContractorId} setContractorId={setCurrentContractorId}/>
+    )}
     </div>
   );
 };
