@@ -9,7 +9,6 @@ import styles from './Listings.module.css';
 // Add more imports for all the service icons here
 
 const ServiceIcon = ({ service }) => {
-  console.log("SERVICE" ,service);
   let icon = null;
 
   switch (service) {
