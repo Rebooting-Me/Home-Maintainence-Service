@@ -17,7 +17,7 @@ import {
 const Form = () => {
   const location = useLocation();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState(location.state?.email);
+  const [email, setEmail] = useState(location.state?.email? location.state.email : '');
   const [password, setPassword] = useState('');
   const [agree, setAgree] = useState('');
   const [userType, setUserType] = useState('');

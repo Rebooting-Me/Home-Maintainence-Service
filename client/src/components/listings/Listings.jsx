@@ -37,9 +37,9 @@ const Listings = (props) => {
   return (
     <div>
         <ListingFilters setFilter={setFilter} />
-        {listings.map(listing => (
+        {listings.map((listing, index) => (
           <ListingCard
-            key={listing.id}
+            key={index}
             title={listing.title}
             description={listing.description}
             services={listing.services}
@@ -105,7 +105,7 @@ const ListingCard = ({ id , title, description, services, city , state, onClick 
             </div> */}
             <div className={`${styles.listingDetails}`}>
                 <div className={`${styles.location}`}>
-                  {city}, {state}
+                  {city}{city? ', ':''}  {state}
                 </div>
                 <h1>{title}</h1>
                 <ul>

@@ -14,7 +14,7 @@ const Listings = () => {
 
   const handleContractorClick = (contractorId) => {
     setCurrentContractorId(contractorId);
-    console.log(contractorId)
+    // console.log(contractorId)
   };
 
   const isHomeowner = (user) => {
@@ -47,7 +47,7 @@ const Listings = () => {
     { !currentContractorId && (
       <div>
       <ListingFilters setFilter={setFilter} />
-      {listings.map((listing, index ) => (
+      {listings.map((listing, index) => (
         <ListingCard
           key={index}
           title={listing.profile_name}
@@ -125,7 +125,7 @@ const ListingCard = ({ id , title, description, services, city , state, onClick 
             </div> */}
             <div className={styles.listingDetails }>
                 <div className={styles.location}>
-                  {city}, {state}
+                  {city}{city? ', ':''} {state}
                 </div>
                 <h1>{title}</h1>
                 <ul>

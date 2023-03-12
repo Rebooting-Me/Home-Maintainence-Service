@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import styles from './ContractorStandAlone.module.css'
-import {profileHolder} from '../../../../constants/profileHolder'
+// import {profileHolder} from '../../../../constants/profileHolder'
 import { useAuthContext } from '../../../../hooks/useAuthContext'
 
 const ContractorStandAlone = (props) => {
@@ -41,26 +41,26 @@ const ContractorStandAlone = (props) => {
             </div> */}
             <div className={styles.profileInfo}>
                     <div className={styles.profileName}>
-                        <h2>{profile?.profile_name?(profile.profile_name):(profileHolder.profile_name)}</h2>
+                        <h2>{profile?.profile_name?(profile.profile_name):('')}</h2>
                     </div>
                     <div className={styles.profileAddress}>
-                        <p>{profile?.city? (profile.city) : (profileHolder.city)}</p>
-                        <p>{profile?.state? (profile.state) : (profileHolder.state)}</p>
-                        <p>{profile?.zip_code? (profile.zip_code) : (profileHolder.zip_code)}</p>
+                        <p>{profile?.city? (profile.city) : ('')}</p>
+                        <p>{profile?.state? (profile.state) : ('')}</p>
+                        <p>{profile?.zip_code? (profile.zip_code) : ('')}</p>
                     </div>
                     <div className={styles.profileWeb}>
-                        <a href={profile?.website_url? (profile.website_url) : (profileHolder.website_url)}>
-                            {profile?.website_url? (profile.website_url) : (profileHolder.website_url)}</a>
+                        <a href={profile?.website_url? (profile.website_url) : ('')}>
+                            {profile?.website_url? (profile.website_url) : ('')}</a>
                     </div>
                     <div className={styles.profilePhone}>
-                        <p>{profile?.phone_number? (profile.phone_number) : (profileHolder.phone_number)}</p>
+                        <p>{profile?.phone_number? (profile.phone_number) : ('')}</p>
                     </div>
                 </div>
             </div>
             <div className={styles.profileContentWrapper}>
                 <div className={styles.profileDescription}>
                     <h3>About this contractor</h3>
-                    <p>{profile?.description? (profile.description) : (profileHolder.description)}</p>
+                    <p>{profile?.description? (profile.description) : ('')}</p>
                 </div>
                 <div className={styles.profileServices}>
                     <h3>Services offered</h3>
@@ -73,20 +73,7 @@ const ContractorStandAlone = (props) => {
                                 <p>{service.replace("_", " ").charAt(0).toUpperCase() + service.replace("_", " ").slice(1)}</p>
                             </div>
                         );
-                    }))) : (profileHolder.services.map((service)=>{
-                        const imgsvg = require(`../../../../assets/${service}.svg`);
-                        return (
-                            <div key={service} className={styles.service}>
-                                <img src={imgsvg} alt=''/>
-                                <p>
-                                    {service.toLowerCase()
-                                    .split('_')
-                                    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-                                    .join(' ')}
-                                </p>
-                            </div>
-                        );
-                    })))}
+                    }))) : (<div></div>))}
                     </div>
                 </div>
             </div>
